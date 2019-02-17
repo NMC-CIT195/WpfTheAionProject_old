@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfTheAionProject.Models
 {
+    /// <summary>
+    /// player class
+    /// </summary>
     public class Player : Character
     {
         #region ENUMS
