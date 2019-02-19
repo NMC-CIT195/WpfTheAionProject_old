@@ -19,6 +19,8 @@ namespace WpfTheAionProject.PresentationLayer
 
         private Player _player;
         private List<string> _messages;
+        private Location[,] _gameMap;
+        private GameMapLocation _currentLocation;
 
         #endregion
 
@@ -35,6 +37,17 @@ namespace WpfTheAionProject.PresentationLayer
             get { return string.Join("\n\n", _messages); }
         }
 
+        public Location[,] GameMap
+        {
+            get { return _gameMap; }
+            set { _gameMap = value; }
+        }
+
+        public string CurrentLocationName
+        {
+            get { return _gameMap[_currentLocation.Row, _currentLocation.Column].Name; }
+        }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -44,10 +57,16 @@ namespace WpfTheAionProject.PresentationLayer
 
         }
 
-        public GameSessionViewModel(Player player, List<string> initialMessages)
+        public GameSessionViewModel(
+            Player player, 
+            List<string> initialMessages, 
+            Location[,] gameMap, 
+            GameMapLocation currentLocation)
         {
             _player = player;
             _messages = initialMessages;
+            _gameMap = gameMap;
+            _currentLocation = currentLocation;
             InitializeMainPanel();
         }
 

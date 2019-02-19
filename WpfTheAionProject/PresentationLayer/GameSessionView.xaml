@@ -76,19 +76,32 @@
                             <RowDefinition Height="2*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <Border
-                            Margin="10"
-                            Padding="10"
-                            Background="WhiteSmoke"
-                            Style="{StaticResource BorderStyle}">
-                            <TextBlock
-                                Grid.Row="0"
+                        <StackPanel
+                            Orientation="Vertical">
+                            <Border
+                                Grid.Row="0"                            
+                                Margin="10"
+                                Padding="10"
                                 Background="WhiteSmoke"
-                                TextWrapping="Wrap"
-                                Text="{Binding MessageDisplay}">
-                                
-                            </TextBlock>
-                        </Border>
+                                Style="{StaticResource BorderStyle}">
+                                <TextBlock
+                                    Height="200"
+                                    Background="WhiteSmoke"
+                                    TextWrapping="Wrap"
+                                    Text="{Binding MessageDisplay}"/>
+                            </Border>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,10,0">
+                                <Label Content="Current Location" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <TextBox
+                                    Width="250"
+                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                        </StackPanel>
+
                     </Grid>
 
                 </Border>

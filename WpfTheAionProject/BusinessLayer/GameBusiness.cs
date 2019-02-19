@@ -18,7 +18,12 @@ namespace WpfTheAionProject.BusinessLayer
             //
             // instantiate the view model and initialize the data set
             //
-            _gameSessionViewModel = new GameSessionViewModel(GameData.PlayerData(), GameData.InitialMessages());
+            _gameSessionViewModel = new GameSessionViewModel(
+                GameData.PlayerData(),
+                GameData.InitialMessages(),
+                GameData.GameMap(),
+                GameData.InitialGameMapLocation()
+                );
             GameSessionView gameSessionView = new GameSessionView(_gameSessionViewModel);
 
             gameSessionView.DataContext = _gameSessionViewModel;
