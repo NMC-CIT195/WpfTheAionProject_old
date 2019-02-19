@@ -19,9 +19,20 @@ namespace WpfTheAionProject.PresentationLayer
     /// </summary>
     public partial class GameSessionView : Window
     {
-        public GameSessionView()
+        GameSessionViewModel _gameSessionViewModel;
+
+        public GameSessionView(GameSessionViewModel gameSessionViewModel)
         {
+            _gameSessionViewModel = gameSessionViewModel;
+
+            InitializeWindowTheme();
+
             InitializeComponent();
+        }
+
+        private void InitializeWindowTheme()
+        {
+            this.Title = "Laughing Leaf Productions";
         }
     }
 }

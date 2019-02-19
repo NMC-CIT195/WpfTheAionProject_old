@@ -20,6 +20,8 @@ namespace WpfTheAionProject.Models
         #region FIELDS
 
         private int _lives;
+        private int _health;
+        private int _experiencePoints;
         private JobTitleName _jobTitle;
 
         #endregion
@@ -36,6 +38,18 @@ namespace WpfTheAionProject.Models
         {
             get { return _jobTitle; }
             set { _jobTitle = value; }
+        }
+
+        public int Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
+
+        public int ExperiencePoints
+        {
+            get { return _experiencePoints; }
+            set { _experiencePoints = value; }
         }
 
         #endregion

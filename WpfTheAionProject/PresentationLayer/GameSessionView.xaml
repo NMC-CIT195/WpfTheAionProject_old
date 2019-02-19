@@ -5,8 +5,165 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTheAionProject.PresentationLayer"
         mc:Ignorable="d"
-        Title="GameSessionView" Height="300" Width="300">
-    <Grid>
+        Background="MidnightBlue"
+        Width="900"
+        Height="600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow">
+    <Window.Resources>
+        <Style x:Key="BorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="PowderBlue"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style x:Key="MainPanelLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Lucida Console"/>
+        </Style>
         
+        <Style x:Key="MainPanelTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="MidnightBlue"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Padding" Value="3,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border 
+                            Background="{TemplateBinding Background}"   
+                            x:Name="Bd" 
+                            BorderBrush="Black"  
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border
+            Margin="10"
+            Style="{StaticResource BorderStyle}">
+            <Grid
+                Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,0,0,10"
+                    Style="{StaticResource BorderStyle}">
+
+                </Border>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="10,0,10,10"
+                    Style="{StaticResource BorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Border
+                            Margin="10"
+                            Padding="10"
+                            Background="WhiteSmoke"
+                            Style="{StaticResource BorderStyle}">
+                            <TextBlock
+                                Grid.Row="0"
+                                Background="WhiteSmoke"
+                                TextWrapping="Wrap"
+                                Text="{Binding MessageDisplay}">
+                                
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+
+                </Border>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="0,0,0,10"
+                    Style="{StaticResource BorderStyle}">
+
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Style="{StaticResource BorderStyle}">
+                    <Grid
+                        Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="0"
+                            Orientation="Vertical">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                <Label Content="Name" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <TextBox Text="{Binding Player.Name}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                <Label Content="Race" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <TextBox Text="{Binding Player.Race}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                <Label Content="Age" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <TextBox Text="{Binding Player.Age}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                <Label Content="Job Title" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <TextBox Text="{Binding Player.JobTitle}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Column="3"
+                            Orientation="Vertical">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                <Label Content="Health" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <TextBox Text="{Binding Player.Health}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                <Label Content="Lives" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <TextBox Text="{Binding Player.Lives}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                <Label Content="Experience" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <TextBox Text="{Binding Player.ExperiencePoints}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
