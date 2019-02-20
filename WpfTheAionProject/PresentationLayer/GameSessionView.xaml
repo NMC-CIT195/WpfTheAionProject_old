@@ -11,6 +11,16 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow">
     <Window.Resources>
+        <LinearGradientBrush 
+            x:Key="GrayBlueGradientBrush" 
+            StartPoint="0,0" 
+            EndPoint="1,0"
+            Opacity="50">
+            <GradientStop Color="MidnightBlue" Offset="0"/>
+            <GradientStop Color="#CCCCFF" Offset="0.25" />
+            <GradientStop Color="#CCCCFF" Offset="0.75" />
+            <GradientStop Color="MidnightBlue" Offset="1" />
+        </LinearGradientBrush>
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="PowderBlue"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -20,7 +30,49 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontFamily" Value="Lucida Console"/>
         </Style>
-        
+        <Style x:Key="MainPanelButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10,0,10,0"/>
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Background" Value="Silver"/>
+            <Setter Property="Foreground" Value="MidnightBlue"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid 
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}" 
+                            ClipToBounds="True">
+                            <Rectangle 
+                                x:Name="innerRectangle" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" 
+                                Fill="{TemplateBinding Background}" 
+                                RadiusX="5" 
+                                RadiusY="5" />
+                            <!-- Present Content (text) of the button. -->
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter 
+                                    x:Name="myContentPresenter" 
+                                    Margin="2" 
+                                    HorizontalAlignment="Center"
+                                    Content="{TemplateBinding  Content}" 
+                                    TextBlock.Foreground="Black" />
+                            </DockPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="LightSteelBlue" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="MainPanelTextBoxStyle" TargetType="TextBox">
             <Setter Property="Foreground" Value="MidnightBlue"/>
             <Setter Property="Width" Value="100"/>
@@ -64,7 +116,6 @@
                     Grid.Column="0"
                     Margin="0,0,0,10"
                     Style="{StaticResource BorderStyle}">
-
                 </Border>
                 <Border
                     Grid.Row="0"
@@ -77,9 +128,9 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <StackPanel
+                            Grid.Row="0" 
                             Orientation="Vertical">
-                            <Border
-                                Grid.Row="0"                            
+                            <Border                                                           
                                 Margin="10"
                                 Padding="10"
                                 Background="WhiteSmoke"
@@ -101,7 +152,66 @@
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                         </StackPanel>
-
+                        <StackPanel
+                            Grid.Row="1" 
+                            Orientation="Vertical">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0,5,10,0">
+                                <Button 
+                                    x:Name="AlphaButton"
+                                    Content="Alpha" 
+                                    Style="{StaticResource MainPanelButtonStyle}" 
+                                    Click="AlphaButton_Click"/>
+                                <TextBox
+                                    Width="250"
+                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0,5,10,0">
+                                <Button 
+                                    x:Name="BetaButton"
+                                    Content="Beta" 
+                                    Style="{StaticResource MainPanelButtonStyle}" 
+                                    Click="AlphaButton_Click"/>
+                                <TextBox
+                                    Width="250"
+                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0,5,10,0">
+                                <Button 
+                                    x:Name="GammaButton"
+                                    Content="Gamma" 
+                                    Style="{StaticResource MainPanelButtonStyle}" 
+                                    Click="AlphaButton_Click"/>
+                                <TextBox
+                                    Width="250"
+                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0,5,10,0">
+                                <Button 
+                                    x:Name="DeltaButton"
+                                    Content="Delta" 
+                                    Style="{StaticResource MainPanelButtonStyle}" 
+                                    Click="AlphaButton_Click"/>
+                                <TextBox
+                                    Width="250"
+                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </Grid>
 
                 </Border>

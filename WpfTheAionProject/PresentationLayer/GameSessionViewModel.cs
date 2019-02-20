@@ -21,6 +21,7 @@ namespace WpfTheAionProject.PresentationLayer
         private List<string> _messages;
         private Location[,] _gameMap;
         private GameMapLocation _currentLocation;
+        
 
         #endregion
 
