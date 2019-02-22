@@ -15,18 +15,25 @@ namespace WpfTheAionProject.BusinessLayer
 
         public GameBusiness()
         {
-            //
-            // instantiate and open the player setup window
-            //
+            bool newPlayer = true;
             Player player = new Player();
-            PlayerSetupView playerSetupView = new PlayerSetupView(player);
-            playerSetupView.ShowDialog();
+            PlayerSetupView playerSetupView = null;
+
+            if (newPlayer)
+            {
+                playerSetupView = new PlayerSetupView(player);
+                playerSetupView.ShowDialog();
+            }
+            else
+            {
+                player = GameData.PlayerData();
+            }
 
             //
             // instantiate the view model and initialize the data set
             //
             _gameSessionViewModel = new GameSessionViewModel(
-                GameData.PlayerData(),
+                player,
                 GameData.InitialMessages(),
                 GameData.GameMap(),
                 GameData.InitialGameMapLocation()
@@ -36,6 +43,12 @@ namespace WpfTheAionProject.BusinessLayer
             gameSessionView.DataContext = _gameSessionViewModel;
 
             gameSessionView.Show();
+
+            //
+            // dialog window is initially hidden to mitigate issue with
+            // main window closing after dialog window closes
+            //
+            playerSetupView.Close();
         }
     }
 }

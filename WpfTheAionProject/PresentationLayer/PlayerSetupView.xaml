@@ -8,8 +8,7 @@
         Background="MidnightBlue"
         Width="400"
         Height="400"
-        WindowStartupLocation="CenterOwner"
-        WindowStyle="None">
+        WindowStyle="SingleBorderWindow">
     <Window.Resources>
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="PowderBlue"/>

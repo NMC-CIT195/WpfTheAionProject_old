@@ -53,9 +53,12 @@ namespace WpfTheAionProject.PresentationLayer
             
             if (IsValidInput(out errorMessage))
             {
+                //
+                // set player properties and close window
+                //
                 Enum.TryParse(JobTitleComboBox.SelectionBoxItem.ToString(), out Player.JobTitleName jobTitle);
                 Enum.TryParse(RaceComboBox.SelectionBoxItem.ToString(), out Player.JobTitleName race);
-                this.Close();
+                Visibility = Visibility.Hidden;
             }
             else
             {
@@ -67,6 +70,11 @@ namespace WpfTheAionProject.PresentationLayer
             }
         }
 
+        /// <summary>
+        /// validate user input and generate appropriate error messages
+        /// </summary>
+        /// <param name="errorMessage">user feedback</param>
+        /// <returns>is user input valid</returns>
         private bool IsValidInput(out string errorMessage)
         {
             errorMessage = "";
