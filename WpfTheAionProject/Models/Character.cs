@@ -12,7 +12,6 @@ namespace WpfTheAionProject.Models
 
         public enum RaceType
         {
-            None,
             Human,
             Thorian,
             Xantorian

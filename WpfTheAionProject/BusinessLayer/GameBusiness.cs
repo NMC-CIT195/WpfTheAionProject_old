@@ -16,6 +16,13 @@ namespace WpfTheAionProject.BusinessLayer
         public GameBusiness()
         {
             //
+            // instantiate and open the player setup window
+            //
+            Player player = new Player();
+            PlayerSetupView playerSetupView = new PlayerSetupView(player);
+            playerSetupView.ShowDialog();
+
+            //
             // instantiate the view model and initialize the data set
             //
             _gameSessionViewModel = new GameSessionViewModel(

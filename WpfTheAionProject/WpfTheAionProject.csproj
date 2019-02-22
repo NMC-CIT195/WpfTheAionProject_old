@@ -71,6 +71,9 @@
       <DependentUpon>GameSessionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PresentationLayer\GameSessionViewModel.cs" />
+    <Compile Include="PresentationLayer\PlayerSetupView.xaml.cs">
+      <DependentUpon>PlayerSetupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -98,6 +101,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="PresentationLayer\GameSessionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PresentationLayer\PlayerSetupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

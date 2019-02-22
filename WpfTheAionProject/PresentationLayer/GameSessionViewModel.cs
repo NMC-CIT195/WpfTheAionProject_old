@@ -60,8 +60,8 @@ namespace WpfTheAionProject.PresentationLayer
 
         public GameSessionViewModel(
             Player player, 
-            List<string> initialMessages, 
-            Location[,] gameMap, 
+            List<string> initialMessages,
+            Location[,] gameMap,
             GameMapLocation currentLocation)
         {
             _player = player;
