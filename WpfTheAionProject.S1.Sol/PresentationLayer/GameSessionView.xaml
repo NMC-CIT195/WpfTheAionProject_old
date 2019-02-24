@@ -128,107 +128,15 @@
                     Margin="10,0,10,10"
                     Style="{StaticResource BorderStyle}">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
                         <StackPanel
-                            Grid.Row="0" 
-                            Orientation="Vertical">
-                            <StackPanel
-                                    Orientation="Vertical"
-                                    HorizontalAlignment="Center"
-                                    Margin="0">
-                                <Label 
-                                        Content="Current Location" 
-                                        HorizontalAlignment="Center"
-                                        Style="{StaticResource MainPanelLabelStyle}"/>
-                                <TextBox
-                                    Width="250"
-                                    Margin="0,0,0,5"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
-                                    Style="{StaticResource MainPanelTextBoxStyle}"
-                                    HorizontalContentAlignment="Center"
-                                    Background="WhiteSmoke"/>
-                                <Border
-                                    Grid.Column="1"
-                                    Margin="0"
-                                    Padding="0"
-                                    Background="WhiteSmoke"
-                                    Style="{StaticResource BorderStyle}">
-                                    <TextBox
-                                        Height="150"
-                                        Width="350"
-                                        Margin="10"
-                                        Background="WhiteSmoke"
-                                        BorderThickness="0"
-                                        TextWrapping="Wrap"
-                                        Text="{Binding CurrentLocation.Description, Mode=OneWay}"
-                                        VerticalScrollBarVisibility="Auto"
-                                        VerticalContentAlignment="top"
-                                        Style="{StaticResource MainPanelTextBoxStyle}"/>
-                                </Border>
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel
-                            Grid.Row="1" 
-                            Orientation="Vertical">
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Margin="0,5,10,0">
-                                <Button 
-                                    x:Name="AlphaButton"
-                                    Content="Alpha" 
-                                    Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="AlphaButton_Click"/>
-                                <TextBox
-                                    Width="250"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
-                                    Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            </StackPanel>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Margin="0,5,10,0">
-                                <Button 
-                                    x:Name="BetaButton"
-                                    Content="Beta" 
-                                    Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="AlphaButton_Click"/>
-                                <TextBox
-                                    Width="250"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
-                                    Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            </StackPanel>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Margin="0,5,10,0">
-                                <Button 
-                                    x:Name="GammaButton"
-                                    Content="Gamma" 
-                                    Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="AlphaButton_Click"/>
-                                <TextBox
-                                    Width="250"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
-                                    Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            </StackPanel>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Margin="0,5,10,0">
-                                <Button 
-                                    x:Name="DeltaButton"
-                                    Content="Delta" 
-                                    Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="AlphaButton_Click"/>
-                                <TextBox
-                                    Width="250"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
-                                    Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            </StackPanel>
+                            Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0">
+                            <Label 
+                                Content="Location and Travel Interface" 
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MainPanelLabelStyle}"/>
                         </StackPanel>
                     </Grid>
                 </Border>

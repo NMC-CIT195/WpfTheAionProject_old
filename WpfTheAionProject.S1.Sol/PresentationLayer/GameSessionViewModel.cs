@@ -22,9 +22,7 @@ namespace WpfTheAionProject.PresentationLayer
 
         private Player _player;
         private List<string> _messages;
-        private Location[,] _gameMap;
-        private GameMapCoordinates _currentLocationCoordinates;
-        private Location _currentLocation;
+        private DateTime _gameStartTime;
 
         #endregion
 
@@ -38,23 +36,7 @@ namespace WpfTheAionProject.PresentationLayer
 
         public string MessageDisplay
         {
-            get { return string.Join("\n\n", _messages); }
-        }
-
-        public Location[,] GameMap
-        {
-            get { return _gameMap; }
-            set { _gameMap = value; }
-        }
-
-        public Location CurrentLocation
-        {
-            get { return _currentLocation; }
-        }
-
-        public string CurrentLocationName
-        {
-            get { return _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column].Name; }
+            get { return FormatMessagesForViewer(); }
         }
 
         #endregion
@@ -68,15 +50,10 @@ namespace WpfTheAionProject.PresentationLayer
 
         public GameSessionViewModel(
             Player player,
-            List<string> initialMessages,
-            Location[,] gameMap,
-            GameMapCoordinates currentLocationCoordinates)
+            List<string> initialMessages)
         {
             _player = player;
             _messages = initialMessages;
-            _gameMap = gameMap;
-            _currentLocationCoordinates = currentLocationCoordinates;
-            _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
             InitializeView();
         }
 
@@ -85,14 +62,31 @@ namespace WpfTheAionProject.PresentationLayer
         /// </summary>
         private void InitializeView()
         {
-
+            _gameStartTime = DateTime.Now;
         }
 
         #endregion
 
         #region METHODS
 
+        private string FormatMessagesForViewer()
+        {
+            List<string> lifoMessages = new List<string>();
 
+            for (int index = 0; index < _messages.Count; index++)
+            {
+                lifoMessages.Add($" <{GameTime().ToString(@"hh\:mm\:ss")}> " + _messages[index]);
+            }
+
+            lifoMessages.Reverse();
+
+            return string.Join("\n\n", lifoMessages);
+        }
+
+        private TimeSpan GameTime()
+        {
+            return DateTime.Now - _gameStartTime;
+        }
 
         #endregion
 

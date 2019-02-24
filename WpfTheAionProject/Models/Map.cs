@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfTheAionProject.Models
 {
+    /// <summary>
+    /// game map class
+    /// </summary>
     public class Map
     {
         #region FIELDS

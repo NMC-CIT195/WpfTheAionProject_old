@@ -7,6 +7,9 @@ using WpfTheAionProject.Models;
 
 namespace WpfTheAionProject.DataLayer
 {
+    /// <summary>
+    /// static class to store the game data set
+    /// </summary>
     public static class GameData
     {
         public static Player PlayerData()

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfTheAionProject.Models
 {
+    /// <summary>
+    /// simple class to store game map coordinates
+    /// </summary>
     public class GameMapCoordinates
     {
         public int Row { get; set; }
