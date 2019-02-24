@@ -54,10 +54,17 @@ namespace WpfTheAionProject.PresentationLayer
             if (IsValidInput(out errorMessage))
             {
                 //
-                // set player properties and close window
+                // get values from combo boxes
                 //
                 Enum.TryParse(JobTitleComboBox.SelectionBoxItem.ToString(), out Player.JobTitleName jobTitle);
-                Enum.TryParse(RaceComboBox.SelectionBoxItem.ToString(), out Player.JobTitleName race);
+                Enum.TryParse(RaceComboBox.SelectionBoxItem.ToString(), out Player.RaceType race);
+
+                //
+                // set player properties
+                //
+                _player.JobTitle = jobTitle;
+                _player.Race = race;
+
                 Visibility = Visibility.Hidden;
             }
             else

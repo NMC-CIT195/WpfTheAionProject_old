@@ -9,31 +9,56 @@ using WpfTheAionProject.Models;
 
 namespace WpfTheAionProject.BusinessLayer
 {
+    /// <summary>
+    /// business logic layer class
+    /// manages windows and interacts with the data layer
+    /// </summary>
     public class GameBusiness
     {
         GameSessionViewModel _gameSessionViewModel;
+        bool _newPlayer = false; // assume player is new for this sprint
+        Player _player = new Player();
+        PlayerSetupView _playerSetupView = null;
 
         public GameBusiness()
         {
-            bool newPlayer = true;
-            Player player = new Player();
-            PlayerSetupView playerSetupView = null;
+            SetupPlayer();
+            InstantiateAndShowView();
+        }
 
-            if (newPlayer)
+        /// <summary>
+        /// setup new or existing player
+        /// </summary>
+        private void SetupPlayer()
+        {
+            if (_newPlayer)
             {
-                playerSetupView = new PlayerSetupView(player);
-                playerSetupView.ShowDialog();
+                _playerSetupView = new PlayerSetupView(_player);
+                _playerSetupView.ShowDialog();
+
+                //
+                // setup up game based player properties
+                //
+                _player.ExperiencePoints = 0;
+                _player.Health = 100;
+                _player.Lives = 3;
             }
             else
             {
-                player = GameData.PlayerData();
+                _player = GameData.PlayerData();
             }
+        }
 
+        /// <summary>
+        /// create view model with data set
+        /// </summary>
+        private void InstantiateAndShowView()
+        {
             //
             // instantiate the view model and initialize the data set
             //
             _gameSessionViewModel = new GameSessionViewModel(
-                player,
+                _player,
                 GameData.InitialMessages(),
                 GameData.GameMap(),
                 GameData.InitialGameMapLocation()
@@ -48,7 +73,9 @@ namespace WpfTheAionProject.BusinessLayer
             // dialog window is initially hidden to mitigate issue with
             // main window closing after dialog window closes
             //
-            playerSetupView.Close();
+            // commented out because the player setup window is disabled
+            //
+            //_playerSetupView.Close();
         }
     }
 }

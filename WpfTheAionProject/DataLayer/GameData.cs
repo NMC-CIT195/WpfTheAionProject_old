@@ -30,13 +30,14 @@ namespace WpfTheAionProject.DataLayer
             return new List<string>()
             {
                 "You have been hired by the Norlon Corporation to participate in its latest endeavor, the Aion Project. Your mission is to  test the limits of the new Aion Engine and report back to the Norlon Corporation.",
-                "You will begin by choosing a new location and using Aion Engine to travel to that point in the Galaxy."
+                "You will begin by choosing a new location and using Aion Engine to travel to that point in the Galaxy.",
+                "The Aion Engine, design by Dr. Tormeld, is limited to four slipstreams, denoted by the first four Greek letters, from any given locations."
             };
         }
 
-        public static GameMapLocation InitialGameMapLocation()
+        public static GameMapCoordinates InitialGameMapLocation()
         {
-            return new GameMapLocation() { Row = 0, Column = 0 };
+            return new GameMapCoordinates() { Row = 0, Column = 0 };
         }
 
         public static Location[,] GameMap()

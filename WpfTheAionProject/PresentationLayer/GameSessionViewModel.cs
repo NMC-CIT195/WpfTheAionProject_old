@@ -20,8 +20,11 @@ namespace WpfTheAionProject.PresentationLayer
         private Player _player;
         private List<string> _messages;
         private Location[,] _gameMap;
-        private GameMapLocation _currentLocation;
-        
+        private GameMapCoordinates _currentLocationCoordinates;
+        private Location _currentLocation;
+
+
+
 
         #endregion
 
@@ -44,9 +47,14 @@ namespace WpfTheAionProject.PresentationLayer
             set { _gameMap = value; }
         }
 
+        public Location CurrentLocation
+        {
+            get { return _currentLocation; }
+        }
+
         public string CurrentLocationName
         {
-            get { return _gameMap[_currentLocation.Row, _currentLocation.Column].Name; }
+            get { return _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column].Name; }
         }
 
         #endregion
@@ -59,15 +67,16 @@ namespace WpfTheAionProject.PresentationLayer
         }
 
         public GameSessionViewModel(
-            Player player, 
+            Player player,
             List<string> initialMessages,
             Location[,] gameMap,
-            GameMapLocation currentLocation)
+            GameMapCoordinates currentLocationCoordinates)
         {
             _player = player;
             _messages = initialMessages;
             _gameMap = gameMap;
-            _currentLocation = currentLocation;
+            _currentLocationCoordinates = currentLocationCoordinates;
+            _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
             InitializeMainPanel();
         }
 
@@ -90,4 +99,5 @@ namespace WpfTheAionProject.PresentationLayer
 
         #endregion
     }
+
 }

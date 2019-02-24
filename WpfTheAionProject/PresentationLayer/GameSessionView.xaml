@@ -103,7 +103,7 @@
             <Grid
                 Margin="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="3*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -116,6 +116,11 @@
                     Grid.Column="0"
                     Margin="0,0,0,10"
                     Style="{StaticResource BorderStyle}">
+                    <Label 
+                        Content="Action Interface"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource MainPanelLabelStyle}"/>
                 </Border>
                 <Border
                     Grid.Row="0"
@@ -130,27 +135,37 @@
                         <StackPanel
                             Grid.Row="0" 
                             Orientation="Vertical">
-                            <Border                                                           
-                                Margin="10"
-                                Padding="10"
-                                Background="WhiteSmoke"
-                                Style="{StaticResource BorderStyle}">
-                                <TextBlock
-                                    Height="200"
-                                    Background="WhiteSmoke"
-                                    TextWrapping="Wrap"
-                                    Text="{Binding MessageDisplay}"/>
-                            </Border>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Margin="0,0,10,0">
-                                <Label Content="Current Location" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <StackPanel
+                                    Orientation="Vertical"
+                                    HorizontalAlignment="Center"
+                                    Margin="0">
+                                    <Label 
+                                        Content="Current Location" 
+                                        HorizontalAlignment="Center"
+                                        Style="{StaticResource MainPanelLabelStyle}"/>
                                 <TextBox
                                     Width="250"
                                     Text="{Binding CurrentLocationName, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            </StackPanel>
+                                <Border
+                                    Grid.Column="1"
+                                    Margin="0"
+                                    Padding="0"
+                                    Background="WhiteSmoke"
+                                    Style="{StaticResource BorderStyle}">
+                                    <TextBox
+                                        Height="150"
+                                        Width="350"
+                                        Margin="10"
+                                        Background="WhiteSmoke"
+                                        BorderThickness="0"
+                                        TextWrapping="Wrap"
+                                        Text="{Binding CurrentLocation.Description, Mode=OneWay}"
+                                        VerticalScrollBarVisibility="Auto"
+                                        VerticalContentAlignment="top"
+                                        Style="{StaticResource MainPanelTextBoxStyle}"/>
+                                </Border>
+                            </StackPanel>                       
                         </StackPanel>
                         <StackPanel
                             Grid.Row="1" 
@@ -213,14 +228,17 @@
                             </StackPanel>
                         </StackPanel>
                     </Grid>
-
                 </Border>
                 <Border
                     Grid.Row="0"
                     Grid.Column="2"
                     Margin="0,0,0,10"
                     Style="{StaticResource BorderStyle}">
-
+                    <Label 
+                        Content="Inventory Interface"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource MainPanelLabelStyle}"/>
                 </Border>
                 <Border
                     Grid.Row="1"
@@ -230,8 +248,7 @@
                         Margin="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel
@@ -239,31 +256,49 @@
                             Orientation="Vertical">
                             <StackPanel
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Right">
-                                <Label Content="Name" Style="{StaticResource MainPanelLabelStyle}"/>
+                                HorizontalAlignment="Left">
                                 <TextBox Text="{Binding Player.Name}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                                <Label Content="Name" Style="{StaticResource MainPanelLabelStyle}"/>
                             </StackPanel>
                             <StackPanel
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Right">
+                                HorizontalAlignment="Left">
+                                <TextBox Text="{Binding Player.Race}" Style="{StaticResource MainPanelTextBoxStyle}"/>                                
                                 <Label Content="Race" Style="{StaticResource MainPanelLabelStyle}"/>
-                                <TextBox Text="{Binding Player.Race}" Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Right">
+                                HorizontalAlignment="Left">
+                                <TextBox Text="{Binding Player.Age}" Style="{StaticResource MainPanelTextBoxStyle}"/>                                
                                 <Label Content="Age" Style="{StaticResource MainPanelLabelStyle}"/>
-                                <TextBox Text="{Binding Player.Age}" Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Right">
+                                HorizontalAlignment="Left">
+                                <TextBox Text="{Binding Player.JobTitle}" Style="{StaticResource MainPanelTextBoxStyle}"/>                                
                                 <Label Content="Job Title" Style="{StaticResource MainPanelLabelStyle}"/>
-                                <TextBox Text="{Binding Player.JobTitle}" Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                         </StackPanel>
+                        <Border
+                            Grid.Column="1"
+                            Margin="0"
+                            Padding="0"
+                            Background="WhiteSmoke"
+                            Style="{StaticResource BorderStyle}">
+                            <TextBox
+                                Height="auto"
+                                Width="auto"
+                                Margin="10"
+                                Background="WhiteSmoke"
+                                BorderThickness="0"
+                                TextWrapping="Wrap"
+                                Text="{Binding MessageDisplay, Mode=OneWay}"
+                                VerticalScrollBarVisibility="Auto"
+                                VerticalContentAlignment="top"
+                                Style="{StaticResource MainPanelTextBoxStyle}"/>
+                        </Border>
                         <StackPanel
-                            Grid.Column="3"
+                            Grid.Column="2"
                             Orientation="Vertical">
                             <StackPanel
                                 Orientation="Horizontal"
