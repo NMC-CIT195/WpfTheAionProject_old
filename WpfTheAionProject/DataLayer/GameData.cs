@@ -32,9 +32,8 @@ namespace WpfTheAionProject.DataLayer
         {
             return new List<string>()
             {
-                "You have been hired by the Norlon Corporation to participate in its latest endeavor, the Aion Project. Your mission is to  test the limits of the new Aion Engine and report back to the Norlon Corporation.",
-                "You will begin by choosing a new location and using Aion Engine to travel to that point in the Galaxy.",
-                "The Aion Engine, design by Dr. Tormeld, is limited to four slipstreams, denoted by the first four Greek letters, from any given locations."
+                "\tYou have been hired by the Norlon Corporation to participate in its latest endeavor, the Aion Project. Your mission is to  test the limits of the new Aion Engine and report back to the Norlon Corporation.",
+                "\tYou will begin by choosing a new location and using Aion Engine to travel to that point in the Galaxy.\n\tThe Aion Engine, design by Dr. Tormeld, is limited to four slipstreams, denoted by the first four Greek letters, from any given locations."
             };
         }
 
@@ -43,6 +42,17 @@ namespace WpfTheAionProject.DataLayer
             return new GameMapCoordinates() { Row = 0, Column = 0 };
         }
 
+        //public static Location EmptyLocation()
+        //{
+        //    return new Location()
+        //    {
+        //        Id = 0,
+        //        Name = "No Available Slipstream",
+        //        Description = "This channel does not currently have an available slipstream from this access point. Please choose another slipstream.",
+        //        Accessible = true
+        //    };
+        //}
+
         public static Location[,] GameMap()
         {
             int rows = 3;
@@ -50,6 +60,17 @@ namespace WpfTheAionProject.DataLayer
 
             Location[,] mapLocations = new Location[rows, columns];
 
+            //
+            // row 1
+            //
+            mapLocations[0, 0] = new Location()
+            {
+                Id = 4,
+                Name = "Norlon Corporate Headquarters",
+                Description = "The Norlon Corporation Headquarters is located in just outside of Detroit Michigan.Norlon, founded in 1985 as a bio-tech company, is now a 36 billion dollar company with huge holdings in defense and space research and development.",
+                Accessible = true,
+                ExperiencePoints = 10
+            };
             mapLocations[0, 1] = new Location()
             {
                 Id = 1,
@@ -59,6 +80,9 @@ namespace WpfTheAionProject.DataLayer
                 ExperiencePoints = 10
             };
 
+            //
+            // row 2
+            //
             mapLocations[1, 1] = new Location()
             {
                 Id = 2,
@@ -68,6 +92,9 @@ namespace WpfTheAionProject.DataLayer
                 ExperiencePoints = 10
             };
 
+            //
+            // row 3
+            //
             mapLocations[2, 0] = new Location()
             {
                 Id = 3,
@@ -76,16 +103,6 @@ namespace WpfTheAionProject.DataLayer
                 Accessible = false,
                 ExperiencePoints = 20
             };
-
-            mapLocations[0, 0] = new Location()
-            {
-                Id = 4,
-                Name = "Norlon Corporate Headquarters",
-                Description = "The Norlon Corporation Headquarters is located in just outside of Detroit Michigan.Norlon, founded in 1985 as a bio-tech company, is now a 36 billion dollar company with huge holdings in defense and space research and development.",
-                Accessible = true,
-                ExperiencePoints = 10
-            };
-
             mapLocations[2, 1] = new Location()
             {
                 Id = 4,
@@ -94,6 +111,7 @@ namespace WpfTheAionProject.DataLayer
                 Accessible = true,
                 ExperiencePoints = 10
             };
+
             return mapLocations;
         }
     }

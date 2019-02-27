@@ -11,6 +11,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         <LinearGradientBrush 
             x:Key="GrayBlueGradientBrush" 
             StartPoint="0,0" 
@@ -146,7 +147,7 @@
                                 <TextBox
                                     Width="250"
                                     Margin="0,0,0,5"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Text="{Binding CurrentLocation.Name, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"
                                     HorizontalContentAlignment="Center"
                                     Background="WhiteSmoke"/>
@@ -181,10 +182,11 @@
                                     x:Name="AlphaButton"
                                     Content="Alpha" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="AlphaButton_Click"/>
+                                    Visibility="{Binding HasLocationToEast, Converter={StaticResource BooleanToVisibility}}"
+                                    Click="AlphaTravelButton_Click"/>
                                 <TextBox
                                     Width="250"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Text="{Binding AlphaLocation.Name, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
@@ -195,10 +197,10 @@
                                     x:Name="BetaButton"
                                     Content="Beta" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="AlphaButton_Click"/>
+                                    Click="BetaTravelButton_Click"/>
                                 <TextBox
                                     Width="250"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Text="{Binding BetaLocation.Name, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
@@ -209,10 +211,10 @@
                                     x:Name="GammaButton"
                                     Content="Gamma" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="AlphaButton_Click"/>
+                                    Click="GammaTravelButton_Click"/>
                                 <TextBox
                                     Width="250"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Text="{Binding GammaLocation.Name, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
@@ -223,10 +225,10 @@
                                     x:Name="DeltaButton"
                                     Content="Delta" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="AlphaButton_Click"/>
+                                    Click="DeltaTravelButton_Click"/>
                                 <TextBox
                                     Width="250"
-                                    Text="{Binding CurrentLocationName, Mode=OneWay}" 
+                                    Text="{Binding DeltaLocation.Name, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                         </StackPanel>

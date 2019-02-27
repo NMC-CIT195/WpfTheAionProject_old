@@ -57,6 +57,10 @@ namespace WpfTheAionProject.PresentationLayer
             InitializeView();
         }
 
+        #endregion
+
+        #region METHODS
+
         /// <summary>
         /// initial setup of the game session view
         /// </summary>
@@ -65,17 +69,17 @@ namespace WpfTheAionProject.PresentationLayer
             _gameStartTime = DateTime.Now;
         }
 
-        #endregion
-
-        #region METHODS
-
+        /// <summary>
+        /// generates a sting of mission messages with time stamp with most current first
+        /// </summary>
+        /// <returns>string of formated mission messages</returns>
         private string FormatMessagesForViewer()
         {
             List<string> lifoMessages = new List<string>();
 
             for (int index = 0; index < _messages.Count; index++)
             {
-                lifoMessages.Add($" <{GameTime().ToString(@"hh\:mm\:ss")}> " + _messages[index]);
+                lifoMessages.Add($" <T:{GameTime().ToString(@"hh\:mm\:ss")}> " + _messages[index]);
             }
 
             lifoMessages.Reverse();
@@ -83,6 +87,10 @@ namespace WpfTheAionProject.PresentationLayer
             return string.Join("\n\n", lifoMessages);
         }
 
+        /// <summary>
+        /// running time of game
+        /// </summary>
+        /// <returns></returns>
         private TimeSpan GameTime()
         {
             return DateTime.Now - _gameStartTime;
