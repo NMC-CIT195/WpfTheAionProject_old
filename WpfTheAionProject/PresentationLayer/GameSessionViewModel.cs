@@ -223,6 +223,15 @@ namespace WpfTheAionProject.PresentationLayer
             }
         }
 
+        private void OnPlayerMove()
+        {
+            if (!_player.HasVisited(_currentLocation))
+            {
+                _player.LocationsVisited.Add(_currentLocation);
+                _player.ExperiencePoints += _currentLocation.ExperiencePoints;
+            }
+        }
+
         /// <summary>
         /// travel north (alpha)
         /// </summary>
@@ -233,6 +242,7 @@ namespace WpfTheAionProject.PresentationLayer
                 _currentLocationCoordinates.Row--;
                 _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
                 UpdateAvailableTravelPoints();
+                OnPlayerMove();
             }
         }
 
@@ -246,6 +256,7 @@ namespace WpfTheAionProject.PresentationLayer
                 _currentLocationCoordinates.Column++;
                 _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
                 UpdateAvailableTravelPoints();
+                OnPlayerMove();
             }
         }
 
@@ -259,6 +270,7 @@ namespace WpfTheAionProject.PresentationLayer
                 _currentLocationCoordinates.Row++;
                 _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
                 UpdateAvailableTravelPoints();
+                OnPlayerMove();
             }
         }
 
@@ -272,6 +284,7 @@ namespace WpfTheAionProject.PresentationLayer
                 _currentLocationCoordinates.Column--;
                 _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
                 UpdateAvailableTravelPoints();
+                OnPlayerMove();
             }
         }
 

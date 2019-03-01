@@ -9,7 +9,7 @@ namespace WpfTheAionProject.Models
     /// <summary>
     /// base class for all game characters
     /// </summary>
-    public class Character
+    public class Character : ObservableObject
     {
         #region ENUMERABLES
 

@@ -23,6 +23,7 @@ namespace WpfTheAionProject.Models
         private int _health;
         private int _experiencePoints;
         private JobTitleName _jobTitle;
+        private List<Location> _locationsVisited;
 
         #endregion
 
@@ -49,18 +50,36 @@ namespace WpfTheAionProject.Models
         public int ExperiencePoints
         {
             get { return _experiencePoints; }
-            set { _experiencePoints = value; }
+            set
+            {
+                _experiencePoints = value;
+                OnPropertyChanged("ExperiencePoints");
+            }
+        }
+
+        public List<Location> LocationsVisited
+        {
+            get { return _locationsVisited; }
+            set { _locationsVisited = value; }
         }
 
         #endregion
 
         #region CONSTRUCTORS
 
-
-
+        public Player()
+        {
+            _locationsVisited = new List<Location>();
+        }
+        
         #endregion
 
         #region METHODS
+
+        public bool HasVisited(Location location)
+        {
+            return _locationsVisited.Contains(location);
+        }
 
         /// <summary>
         /// override the default greeting in the Character class to include the job title
