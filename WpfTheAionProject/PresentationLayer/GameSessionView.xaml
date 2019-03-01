@@ -176,22 +176,22 @@
                             Orientation="Vertical">
                             <StackPanel
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Right"
+                                HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
                                     x:Name="AlphaButton"
                                     Content="Alpha" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
-                                    Visibility="{Binding HasLocationToEast, Converter={StaticResource BooleanToVisibility}}"
                                     Click="AlphaTravelButton_Click"/>
                                 <TextBox
                                     Width="250"
                                     Text="{Binding AlphaLocation.Name, Mode=OneWay}" 
+                                    Visibility="{Binding HasAlphaLocation, Converter={StaticResource BooleanToVisibility}}"
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Right"
+                                HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
                                     x:Name="BetaButton"
@@ -201,11 +201,12 @@
                                 <TextBox
                                     Width="250"
                                     Text="{Binding BetaLocation.Name, Mode=OneWay}" 
+                                    Visibility="{Binding HasBetaLocation, Converter={StaticResource BooleanToVisibility}}"                                   
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Right"
+                                HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
                                     x:Name="GammaButton"
@@ -215,11 +216,12 @@
                                 <TextBox
                                     Width="250"
                                     Text="{Binding GammaLocation.Name, Mode=OneWay}" 
+                                    Visibility="{Binding HasGammaLocation, Converter={StaticResource BooleanToVisibility}}"
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Right"
+                                HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
                                     x:Name="DeltaButton"
@@ -229,6 +231,7 @@
                                 <TextBox
                                     Width="250"
                                     Text="{Binding DeltaLocation.Name, Mode=OneWay}" 
+                                    Visibility="{Binding HasDeltaLocation, Converter={StaticResource BooleanToVisibility}}"
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                         </StackPanel>

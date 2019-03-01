@@ -29,8 +29,6 @@ namespace WpfTheAionProject.PresentationLayer
         private GameMapCoordinates _currentLocationCoordinates;
         private Location _currentLocation;
         private Location _alphaLocation, _betaLocation, _gammaLocation, _deltaLocation;
-        private bool _hasAlphaLocation, _hasBetaLocation, _hasGammaLocation, _hasDeltaLocation;
-
 
         #endregion
 
@@ -57,10 +55,6 @@ namespace WpfTheAionProject.PresentationLayer
             {
                 _currentLocation = value;
                 OnPropertyChanged("CurrentLocation");
-                OnPropertyChanged("HasAlphaLocation");
-                OnPropertyChanged("HasBetaLocation");
-                OnPropertyChanged("HasGammaLocation");
-                OnPropertyChanged("HasDeltaLocation");
             }
         }
 
@@ -74,6 +68,7 @@ namespace WpfTheAionProject.PresentationLayer
             {
                 _alphaLocation = value;
                 OnPropertyChanged("AlphaLocation");
+                OnPropertyChanged("HasAlphaLocation");
             }
         }
         public Location BetaLocation
@@ -83,6 +78,7 @@ namespace WpfTheAionProject.PresentationLayer
             {
                 _betaLocation = value;
                 OnPropertyChanged("BetaLocation");
+                OnPropertyChanged("HasBetaLocation");
             }
         }
         public Location GammaLocation
@@ -92,6 +88,7 @@ namespace WpfTheAionProject.PresentationLayer
             {
                 _gammaLocation = value;
                 OnPropertyChanged("GammaLocation");
+                OnPropertyChanged("HasGammaLocation");
             }
         }
         public Location DeltaLocation
@@ -101,12 +98,13 @@ namespace WpfTheAionProject.PresentationLayer
             {
                 _deltaLocation = value;
                 OnPropertyChanged("DeltaLocation");
+                OnPropertyChanged("HasDeltaLocation");
             }
         }
-        public bool HasAlphaLocation { get { return _hasAlphaLocation; } }
-        public bool HasBetaLocation { get { return _hasBetaLocation; } }
-        public bool HasGammaLocation { get { return _hasGammaLocation; } }
-        public bool HasDeltaLocation { get { return _hasDeltaLocation; } }
+        public bool HasAlphaLocation { get { return AlphaLocation != null; } }
+        public bool HasBetaLocation { get { return BetaLocation != null; } }
+        public bool HasGammaLocation { get { return GammaLocation != null; } }
+        public bool HasDeltaLocation { get { return DeltaLocation != null; } }
 
         #endregion
 
@@ -144,25 +142,7 @@ namespace WpfTheAionProject.PresentationLayer
         /// </summary>
         private void InitializeView()
         {
-            InitializeGameMap();
             UpdateAvailableTravelPoints();
-        }
-
-        /// <summary>
-        /// fill all empty game map locations with an empty location object
-        /// </summary>
-        private void InitializeGameMap()
-        {
-            for (int row = 0; row < _maxRows; row++)
-            {
-                for (int column = 0; column < _maxColumns; column++)
-                {
-                    if (_gameMap[row, column] == null)
-                    {
-                        _gameMap[row, column] = EmptyLocation();
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -193,24 +173,19 @@ namespace WpfTheAionProject.PresentationLayer
             //
             // reset travel location information
             //
-            _alphaLocation = EmptyLocation();
-            _betaLocation = EmptyLocation();
-            _gammaLocation = EmptyLocation();
-            _deltaLocation = EmptyLocation();
-            _hasAlphaLocation = false;
-            _hasBetaLocation = false;
-            _hasGammaLocation = false;
-            _hasDeltaLocation = false;
+            AlphaLocation = null;
+            BetaLocation = null;
+            GammaLocation = null;
+            DeltaLocation = null;
 
             //
             // not on north boundary of map array (alpha)
             //
             if (_currentLocationCoordinates.Row > 0)
             {
-                if (_gameMap[_currentLocationCoordinates.Row - 1, _currentLocationCoordinates.Column].Id != 0) // location exists
+                if (_gameMap[_currentLocationCoordinates.Row - 1, _currentLocationCoordinates.Column] != null) // location exists
                 {
                     AlphaLocation = _gameMap[_currentLocationCoordinates.Row - 1, _currentLocationCoordinates.Column];
-                    _hasAlphaLocation = true;
                 }
             }
 
@@ -219,12 +194,10 @@ namespace WpfTheAionProject.PresentationLayer
             //
             if (_currentLocationCoordinates.Row < _maxRows - 1)
             {
-                if (_gameMap[_currentLocationCoordinates.Row + 1, _currentLocationCoordinates.Column].Id != 0) // location exists
+                if (_gameMap[_currentLocationCoordinates.Row + 1, _currentLocationCoordinates.Column] != null) // location exists
                 {
                     GammaLocation = _gameMap[_currentLocationCoordinates.Row + 1, _currentLocationCoordinates.Column];
-                    _hasGammaLocation = true;
                 }
-
             }
 
             //
@@ -232,12 +205,10 @@ namespace WpfTheAionProject.PresentationLayer
             //
             if (_currentLocationCoordinates.Column > 0)
             {
-                if (_gameMap[_currentLocationCoordinates.Column, _currentLocationCoordinates.Column - 1].Id != 0) // location exists
+                if (_gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column - 1] != null) // location exists
                 {
                     DeltaLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column - 1];
-                    _hasDeltaLocation = true;
                 }
-
             }
 
             //
@@ -245,42 +216,65 @@ namespace WpfTheAionProject.PresentationLayer
             //
             if (_currentLocationCoordinates.Column < _maxColumns - 1)
             {
-                if (_gameMap[_currentLocationCoordinates.Column, _currentLocationCoordinates.Column + 1].Id != 0) // location exists
+                if (_gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column + 1] != null) // location exists
                 {
                     BetaLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column + 1];
-                    _hasBetaLocation = true;
                 }
-
             }
         }
 
+        /// <summary>
+        /// travel north (alpha)
+        /// </summary>
         public void AlphaTravel()
         {
-            _currentLocationCoordinates.Row--;
-            CurrentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
-            UpdateAvailableTravelPoints();
+            if (HasAlphaLocation)
+            {
+                _currentLocationCoordinates.Row--;
+                _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                UpdateAvailableTravelPoints();
+            }
         }
 
+        /// <summary>
+        /// travel east (beta)
+        /// </summary>
         public void BetaTravel()
         {
-            _currentLocationCoordinates.Column++;
-            CurrentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
-            UpdateAvailableTravelPoints();
+            if (HasBetaLocation)
+            {
+                _currentLocationCoordinates.Column++;
+                _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                UpdateAvailableTravelPoints();
+            }
         }
 
+        /// <summary>
+        /// travel south (gamma)
+        /// </summary>
         public void GammaTravel()
         {
-            _currentLocationCoordinates.Row++;
-            CurrentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
-            UpdateAvailableTravelPoints();
+            if (HasGammaLocation)
+            {
+                _currentLocationCoordinates.Row++;
+                _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                UpdateAvailableTravelPoints();
+            }
         }
 
+        /// <summary>
+        /// travel west (delta)
+        /// </summary>
         public void DeltaTravel()
         {
-            _currentLocationCoordinates.Column--;
-            CurrentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
-            UpdateAvailableTravelPoints();
+            if (HasDeltaLocation)
+            {
+                _currentLocationCoordinates.Column--;
+                _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                UpdateAvailableTravelPoints();
+            }
         }
+
         /// <summary>
         /// generates a sting of mission messages with time stamp with most current first
         /// </summary>
