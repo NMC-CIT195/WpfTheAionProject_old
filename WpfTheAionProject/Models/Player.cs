@@ -32,19 +32,31 @@ namespace WpfTheAionProject.Models
         public int Lives
         {
             get { return _lives; }
-            set { _lives = value; }
+            set
+            {
+                _lives = value;
+                OnPropertyChanged(nameof(Lives));
+            }
         }
 
         public JobTitleName JobTitle
         {
             get { return _jobTitle; }
-            set { _jobTitle = value; }
+            set
+            {
+                _jobTitle = value;
+                OnPropertyChanged(nameof(JobTitle));
+            }
         }
 
         public int Health
         {
             get { return _health; }
-            set { _health = value; }
+            set
+            {
+                _health = value;
+                OnPropertyChanged(nameof(Health));
+            }
         }
 
         public int ExperiencePoints
@@ -53,7 +65,7 @@ namespace WpfTheAionProject.Models
             set
             {
                 _experiencePoints = value;
-                OnPropertyChanged("ExperiencePoints");
+                OnPropertyChanged(nameof(ExperiencePoints));
             }
         }
 

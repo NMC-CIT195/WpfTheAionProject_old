@@ -141,6 +141,10 @@
                                     HorizontalAlignment="Center"
                                     Margin="0">
                                 <Label 
+                                        Content="{Binding MissionTimeDisplay}" 
+                                        HorizontalAlignment="Center"
+                                        Style="{StaticResource MainPanelLabelStyle}"/>
+                                <Label 
                                         Content="Current Location" 
                                         HorizontalAlignment="Center"
                                         Style="{StaticResource MainPanelLabelStyle}"/>

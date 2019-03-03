@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfTheAionProject.Models;
 using WpfTheAionProject;
+using System.Windows.Threading;
 
 namespace WpfTheAionProject.PresentationLayer
 {
@@ -20,6 +21,8 @@ namespace WpfTheAionProject.PresentationLayer
         #region FIELDS
 
         private DateTime _gameStartTime;
+        private string _gameTimeDisplay;
+        private TimeSpan _gameTime;
 
         private Player _player;
         private List<string> _messages;
@@ -54,7 +57,7 @@ namespace WpfTheAionProject.PresentationLayer
             set
             {
                 _currentLocation = value;
-                OnPropertyChanged("CurrentLocation");
+                OnPropertyChanged(nameof(CurrentLocation));
             }
         }
 
@@ -67,44 +70,58 @@ namespace WpfTheAionProject.PresentationLayer
             set
             {
                 _alphaLocation = value;
-                OnPropertyChanged("AlphaLocation");
-                OnPropertyChanged("HasAlphaLocation");
+                OnPropertyChanged(nameof(AlphaLocation));
+                OnPropertyChanged(nameof(HasAlphaLocation));
             }
         }
+
         public Location BetaLocation
         {
             get { return _betaLocation; }
             set
             {
                 _betaLocation = value;
-                OnPropertyChanged("BetaLocation");
-                OnPropertyChanged("HasBetaLocation");
+                OnPropertyChanged(nameof(BetaLocation));
+                OnPropertyChanged(nameof(HasBetaLocation));
             }
         }
+
         public Location GammaLocation
         {
             get { return _gammaLocation; }
             set
             {
                 _gammaLocation = value;
-                OnPropertyChanged("GammaLocation");
-                OnPropertyChanged("HasGammaLocation");
+                OnPropertyChanged(nameof(GammaLocation));
+                OnPropertyChanged(nameof(HasGammaLocation));
             }
         }
+
         public Location DeltaLocation
         {
             get { return _deltaLocation; }
             set
             {
                 _deltaLocation = value;
-                OnPropertyChanged("DeltaLocation");
-                OnPropertyChanged("HasDeltaLocation");
+                OnPropertyChanged(nameof(DeltaLocation));
+                OnPropertyChanged(nameof(HasDeltaLocation));
             }
         }
+
         public bool HasAlphaLocation { get { return AlphaLocation != null; } }
         public bool HasBetaLocation { get { return BetaLocation != null; } }
         public bool HasGammaLocation { get { return GammaLocation != null; } }
         public bool HasDeltaLocation { get { return DeltaLocation != null; } }
+
+        public string MissionTimeDisplay
+        {
+            get { return _gameTimeDisplay; }
+            set
+            {
+                _gameTimeDisplay = value;
+                OnPropertyChanged(nameof(MissionTimeDisplay));
+            }
+        }
 
         #endregion
 
@@ -131,6 +148,8 @@ namespace WpfTheAionProject.PresentationLayer
             _currentLocationCoordinates = currentLocationCoordinates;
             _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
             InitializeView();
+
+            GameTimer();
         }
 
         #endregion
@@ -138,10 +157,34 @@ namespace WpfTheAionProject.PresentationLayer
         #region METHODS
 
         /// <summary>
+        /// game time event, publishes every 1 second
+        /// </summary>
+        public void GameTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Tick += OnGameTimerTick;
+            timer.Start();
+        }
+
+        /// <summary>
+        /// game timer event handler
+        /// 1) update mission time on window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void OnGameTimerTick(object sender, EventArgs e)
+        {
+            _gameTime = DateTime.Now - _gameStartTime;
+            MissionTimeDisplay = "Mission Time " + _gameTime.ToString(@"hh\:mm\:ss");
+        }
+
+        /// <summary>
         /// initial setup of the game session view
         /// </summary>
         private void InitializeView()
         {
+            _gameStartTime = DateTime.Now;
             UpdateAvailableTravelPoints();
         }
 
@@ -183,9 +226,10 @@ namespace WpfTheAionProject.PresentationLayer
             //
             if (_currentLocationCoordinates.Row > 0)
             {
-                if (_gameMap[_currentLocationCoordinates.Row - 1, _currentLocationCoordinates.Column] != null) // location exists
+                Location nextAlphaLocation = _gameMap[_currentLocationCoordinates.Row - 1, _currentLocationCoordinates.Column];
+                if (nextAlphaLocation != null && nextAlphaLocation.Accessible == true) // location exists
                 {
-                    AlphaLocation = _gameMap[_currentLocationCoordinates.Row - 1, _currentLocationCoordinates.Column];
+                    AlphaLocation = nextAlphaLocation;
                 }
             }
 
@@ -194,7 +238,8 @@ namespace WpfTheAionProject.PresentationLayer
             //
             if (_currentLocationCoordinates.Row < _maxRows - 1)
             {
-                if (_gameMap[_currentLocationCoordinates.Row + 1, _currentLocationCoordinates.Column] != null) // location exists
+                Location nextGammaLocation = _gameMap[_currentLocationCoordinates.Row + 1, _currentLocationCoordinates.Column];
+                if (nextGammaLocation != null && nextGammaLocation.Accessible == true) // location exists
                 {
                     GammaLocation = _gameMap[_currentLocationCoordinates.Row + 1, _currentLocationCoordinates.Column];
                 }
@@ -205,7 +250,8 @@ namespace WpfTheAionProject.PresentationLayer
             //
             if (_currentLocationCoordinates.Column > 0)
             {
-                if (_gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column - 1] != null) // location exists
+                Location nextDeltaLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column - 1];
+                if (nextDeltaLocation != null && nextDeltaLocation.Accessible == true) // location exists
                 {
                     DeltaLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column - 1];
                 }
@@ -216,13 +262,17 @@ namespace WpfTheAionProject.PresentationLayer
             //
             if (_currentLocationCoordinates.Column < _maxColumns - 1)
             {
-                if (_gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column + 1] != null) // location exists
+                Location nextBetaLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column + 1];
+                if (nextBetaLocation != null && nextBetaLocation.Accessible == true) // location exists
                 {
                     BetaLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column + 1];
                 }
             }
         }
 
+        /// <summary>
+        /// player move event handler
+        /// </summary>
         private void OnPlayerMove()
         {
             if (!_player.HasVisited(_currentLocation))
@@ -240,7 +290,7 @@ namespace WpfTheAionProject.PresentationLayer
             if (HasAlphaLocation)
             {
                 _currentLocationCoordinates.Row--;
-                _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                CurrentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
             }
@@ -254,7 +304,7 @@ namespace WpfTheAionProject.PresentationLayer
             if (HasBetaLocation)
             {
                 _currentLocationCoordinates.Column++;
-                _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                CurrentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
             }
@@ -268,7 +318,7 @@ namespace WpfTheAionProject.PresentationLayer
             if (HasGammaLocation)
             {
                 _currentLocationCoordinates.Row++;
-                _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                CurrentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
             }
@@ -282,7 +332,7 @@ namespace WpfTheAionProject.PresentationLayer
             if (HasDeltaLocation)
             {
                 _currentLocationCoordinates.Column--;
-                _currentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                CurrentLocation = _gameMap[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
             }

@@ -91,6 +91,14 @@ namespace WpfTheAionProject.DataLayer
                 Accessible = true,
                 ExperiencePoints = 10
             };
+            mapLocations[1, 2] = new Location()
+            {
+                Id = 2,
+                Name = "Epitoria's Reading Room",
+                Description = "Queen Epitoria, the Torian Monarh of the 5th Dynasty, was know for her passion for galactic history. The room has a tall vaulted ceiling, open in the middle  with four floors of wrapping balconies filled with scrolls, texts, and infocrystals.",
+                Accessible = false,
+                ExperiencePoints = 50
+            };
 
             //
             // row 3
