@@ -11,13 +11,19 @@ namespace WpfTheAionProject.Models
     /// </summary>
     public class Location
     {
+        #region ENUMS
+
+ 
+        #endregion
+
         #region FIELDS
 
         private int _id; // must be a unique value for each object
         private string _name;
         private string _description;
         private bool _accessible;
-        private int _experiencePoints;
+        private int _requiredExperiencePoints;
+        private int _experiencePointsValue;
 
         #endregion
 
@@ -48,10 +54,16 @@ namespace WpfTheAionProject.Models
             set { _accessible = value; }
         }
 
-        public int ExperiencePoints
+        public int ExperiencePointsValue
         {
-            get { return _experiencePoints; }
-            set { _experiencePoints = value; }
+            get { return _experiencePointsValue; }
+            set { _experiencePointsValue = value; }
+        }
+        
+        public int RequiredExperiencePoints
+        {
+            get { return _requiredExperiencePoints; }
+            set { _requiredExperiencePoints = value; }
         }
 
         #endregion
@@ -66,7 +78,10 @@ namespace WpfTheAionProject.Models
 
         #region METHODS
 
-
+        public bool IsAccessibleByExperiencePoints(int playerExperiencePoints)
+        {
+            return playerExperiencePoints >= _requiredExperiencePoints ? true : false;
+        }
 
         #endregion
     }

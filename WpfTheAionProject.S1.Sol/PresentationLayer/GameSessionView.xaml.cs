@@ -34,10 +34,5 @@ namespace WpfTheAionProject.PresentationLayer
         {
             this.Title = "Laughing Leaf Productions";
         }
-
-        private void AlphaButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

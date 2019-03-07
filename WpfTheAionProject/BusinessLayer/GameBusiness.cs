@@ -16,13 +16,15 @@ namespace WpfTheAionProject.BusinessLayer
     public class GameBusiness
     {
         GameSessionViewModel _gameSessionViewModel;
-        bool _newPlayer = false; // assume player is new for this sprint
+        bool _newPlayer = false; // player data coming from GameData class
         Player _player = new Player();
         PlayerSetupView _playerSetupView = null;
+        List<string> _messages;
 
         public GameBusiness()
         {
             SetupPlayer();
+            InitializeDataSet();
             InstantiateAndShowView();
         }
 
@@ -47,6 +49,15 @@ namespace WpfTheAionProject.BusinessLayer
             {
                 _player = GameData.PlayerData();
             }
+        }
+
+        /// <summary>
+        /// initialize data set
+        /// </summary>
+        private void InitializeDataSet()
+        {
+            _player = GameData.PlayerData();
+            _messages = GameData.InitialMessages();
         }
 
         /// <summary>

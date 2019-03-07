@@ -69,7 +69,7 @@ namespace WpfTheAionProject.DataLayer
                 Name = "Norlon Corporate Headquarters",
                 Description = "The Norlon Corporation Headquarters is located in just outside of Detroit Michigan.Norlon, founded in 1985 as a bio-tech company, is now a 36 billion dollar company with huge holdings in defense and space research and development.",
                 Accessible = true,
-                ExperiencePoints = 10
+                ExperiencePointsValue = 10
             };
             mapLocations[0, 1] = new Location()
             {
@@ -77,7 +77,7 @@ namespace WpfTheAionProject.DataLayer
                 Name = "Aion Base Lab",
                 Description = "The Norlon Corporation research facility located in the city of Heraklion on the north coast of Crete and the top secret research lab for the Aion Project.\nThe lab is a large, well lit room, and staffed by a small number of scientists, all wearing light blue uniforms with the hydra-like Norlan Corporation logo.",
                 Accessible = true,
-                ExperiencePoints = 10
+                ExperiencePointsValue = 10
             };
 
             //
@@ -89,7 +89,7 @@ namespace WpfTheAionProject.DataLayer
                 Name = "Felandrian Plains",
                 Description = "The Felandrian Plains are a common destination for tourist. Located just north of the equatorial line on the planet of Corlon, they provide excellent habitat for a rich ecosystem of flora and fauna.",
                 Accessible = true,
-                ExperiencePoints = 10
+                ExperiencePointsValue = 10
             };
             mapLocations[1, 2] = new Location()
             {
@@ -97,7 +97,8 @@ namespace WpfTheAionProject.DataLayer
                 Name = "Epitoria's Reading Room",
                 Description = "Queen Epitoria, the Torian Monarh of the 5th Dynasty, was know for her passion for galactic history. The room has a tall vaulted ceiling, open in the middle  with four floors of wrapping balconies filled with scrolls, texts, and infocrystals.",
                 Accessible = false,
-                ExperiencePoints = 50
+                ExperiencePointsValue = 50,
+                RequiredExperiencePoints = 80                
             };
 
             //
@@ -109,7 +110,7 @@ namespace WpfTheAionProject.DataLayer
                 Name = "Xantoria Market",
                 Description = "The Xantoria market, once controlled by the Thorian elite, is now an open market managed by the Xantorian Commerce Coop. It is a place where many races from various systems trade goods.",
                 Accessible = false,
-                ExperiencePoints = 20
+                ExperiencePointsValue = 20
             };
             mapLocations[2, 1] = new Location()
             {
@@ -117,7 +118,7 @@ namespace WpfTheAionProject.DataLayer
                 Name = "The Tamfasia Galactic Academy",
                 Description = "The Tamfasia Galactic Academy was founded in the early 4th galactic metachron. You are currently in the library, standing next to the protoplasmic encabulator that stores all recorded information of the galactic history.",
                 Accessible = true,
-                ExperiencePoints = 10
+                ExperiencePointsValue = 10
             };
 
             return mapLocations;

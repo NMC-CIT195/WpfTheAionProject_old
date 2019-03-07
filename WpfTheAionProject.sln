@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTheAionProject", "WpfThe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTheAionProject.S1.Sol", "WpfTheAionProject.S1.Sol\WpfTheAionProject.S1.Sol.csproj", "{58E5A1E6-1C83-4C97-9F4B-2D218E1EC11C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTheAionProject.Test", "WpfTheAionProject.Test\WpfTheAionProject.Test.csproj", "{35A0E4A3-23B4-4C37-84F2-057F1A79C074}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{58E5A1E6-1C83-4C97-9F4B-2D218E1EC11C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58E5A1E6-1C83-4C97-9F4B-2D218E1EC11C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58E5A1E6-1C83-4C97-9F4B-2D218E1EC11C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A0E4A3-23B4-4C37-84F2-057F1A79C074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A0E4A3-23B4-4C37-84F2-057F1A79C074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A0E4A3-23B4-4C37-84F2-057F1A79C074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A0E4A3-23B4-4C37-84F2-057F1A79C074}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
