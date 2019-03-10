@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using WpfTheAionProject.PresentationLayer;
 using WpfTheAionProject.DataLayer;
 using WpfTheAionProject.Models;
-using System.Collections.ObjectModel;
 
 namespace WpfTheAionProject.BusinessLayer
 {
@@ -16,13 +15,8 @@ namespace WpfTheAionProject.BusinessLayer
     /// </summary>
     public class GameBusiness
     {
-        //
-        // true: open player setup window - uncomment the Close() method in InstantiateAndShowView
-        // false: player data coming from GameData class
-        //
-        bool _newPlayer = false;
-
         GameSessionViewModel _gameSessionViewModel;
+        bool _newPlayer = false; // player data coming from GameData class
         Player _player = new Player();
         PlayerSetupView _playerSetupView = null;
         List<string> _messages;
@@ -74,12 +68,7 @@ namespace WpfTheAionProject.BusinessLayer
             //
             // instantiate the view model and initialize the data set
             //
-            _gameSessionViewModel = new GameSessionViewModel(
-                _player,
-                GameData.InitialMessages(),
-                GameData.GameMap(),
-                GameData.InitialGameMapLocation()
-                );
+            _gameSessionViewModel = new GameSessionViewModel(_player, _messages);
             GameSessionView gameSessionView = new GameSessionView(_gameSessionViewModel);
 
             gameSessionView.DataContext = _gameSessionViewModel;
