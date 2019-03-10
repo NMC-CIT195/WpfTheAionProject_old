@@ -26,8 +26,6 @@ namespace WpfTheAionProject.BusinessLayer
         Player _player = new Player();
         PlayerSetupView _playerSetupView = null;
         List<string> _messages;
-        Map _gameMap;
-        GameMapCoordinates _initialGameMapCoordinates;
 
         public GameBusiness()
         {
@@ -66,8 +64,6 @@ namespace WpfTheAionProject.BusinessLayer
         {
             _player = GameData.PlayerData();
             _messages = GameData.InitialMessages();
-            _gameMap = GameData.GameMap();
-            _initialGameMapCoordinates = GameData.InitialGameMapLocation();
         }
 
         /// <summary>
@@ -80,9 +76,9 @@ namespace WpfTheAionProject.BusinessLayer
             //
             _gameSessionViewModel = new GameSessionViewModel(
                 _player,
-                _messages,
-                _gameMap,
-                _initialGameMapCoordinates
+                GameData.InitialMessages(),
+                GameData.GameMap(),
+                GameData.InitialGameMapLocation()
                 );
             GameSessionView gameSessionView = new GameSessionView(_gameSessionViewModel);
 

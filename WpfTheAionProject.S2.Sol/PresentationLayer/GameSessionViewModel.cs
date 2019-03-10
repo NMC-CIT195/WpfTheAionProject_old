@@ -30,7 +30,7 @@ namespace WpfTheAionProject.PresentationLayer
 
         private Map _gameMap;
         private Location _currentLocation;
-        private Location _alphaLocation, _betaLocation, _gammaLocation, _deltaLocation;
+        private Location _northLocation, _eastLocation, _southLocation, _westLocation;
 
         #endregion
 
@@ -56,13 +56,11 @@ namespace WpfTheAionProject.PresentationLayer
         {
             get { return FormatMessagesForViewer(); }
         }
-
-        //public Map GameMap
-        //{
-        //    get { return _gameMap; }
-        //    set { _gameMap = value; }
-        //}
-
+        public Map GameMap
+        {
+            get { return _gameMap; }
+            set { _gameMap = value; }
+        }
         public Location CurrentLocation
         {
             get { return _currentLocation; }
@@ -76,54 +74,54 @@ namespace WpfTheAionProject.PresentationLayer
         //
         // expose information about travel points from current location
         //
-        public Location AlphaLocation
+        public Location NorthLocation
         {
-            get { return _alphaLocation; }
+            get { return _northLocation; }
             set
             {
-                _alphaLocation = value;
-                OnPropertyChanged(nameof(AlphaLocation));
-                OnPropertyChanged(nameof(HasAlphaLocation));
+                _northLocation = value;
+                OnPropertyChanged(nameof(NorthLocation));
+                OnPropertyChanged(nameof(HasNorthLocation));
             }
         }
 
-        public Location BetaLocation
+        public Location EastLocation
         {
-            get { return _betaLocation; }
+            get { return _eastLocation; }
             set
             {
-                _betaLocation = value;
-                OnPropertyChanged(nameof(BetaLocation));
-                OnPropertyChanged(nameof(HasBetaLocation));
+                _eastLocation = value;
+                OnPropertyChanged(nameof(EastLocation));
+                OnPropertyChanged(nameof(HasEastLocation));
             }
         }
 
-        public Location GammaLocation
+        public Location SouthLocation
         {
-            get { return _gammaLocation; }
+            get { return _southLocation; }
             set
             {
-                _gammaLocation = value;
-                OnPropertyChanged(nameof(GammaLocation));
-                OnPropertyChanged(nameof(HasGammaLocation));
+                _southLocation = value;
+                OnPropertyChanged(nameof(SouthLocation));
+                OnPropertyChanged(nameof(HasSouthLocation));
             }
         }
 
-        public Location DeltaLocation
+        public Location WestLocation
         {
-            get { return _deltaLocation; }
+            get { return _westLocation; }
             set
             {
-                _deltaLocation = value;
-                OnPropertyChanged(nameof(DeltaLocation));
-                OnPropertyChanged(nameof(HasDeltaLocation));
+                _westLocation = value;
+                OnPropertyChanged(nameof(WestLocation));
+                OnPropertyChanged(nameof(HasWestLocation));
             }
         }
 
-        public bool HasAlphaLocation { get { return AlphaLocation != null; } }
-        public bool HasBetaLocation { get { return BetaLocation != null; } }
-        public bool HasGammaLocation { get { return GammaLocation != null; } }
-        public bool HasDeltaLocation { get { return DeltaLocation != null; } }
+        public bool HasNorthLocation { get { return NorthLocation != null; } }
+        public bool HasEastLocation { get { return EastLocation != null; } }
+        public bool HasSouthLocation { get { return SouthLocation != null; } }
+        public bool HasWestLocation { get { return WestLocation != null; } }
 
         public string MissionTimeDisplay
         {
@@ -215,39 +213,35 @@ namespace WpfTheAionProject.PresentationLayer
         /// <summary>
         /// calculate the available travel points from current location
         /// game slipstreams are a mapping against the 2D array where 
-        /// Alpha = North
-        /// Beta = East
-        /// Gamma = South
-        /// Delta = West
         /// </summary>
         private void UpdateAvailableTravelPoints()
         {
             //
             // reset travel location information
             //
-            AlphaLocation = null;
-            BetaLocation = null;
-            GammaLocation = null;
-            DeltaLocation = null;
+            NorthLocation = null;
+            EastLocation = null;
+            SouthLocation = null;
+            WestLocation = null;
 
-            if (_gameMap.AlphaLocation(_player) != null)
+            if (_gameMap.NorthLocation(_player) != null)
             {
-                AlphaLocation = _gameMap.AlphaLocation(_player);
+                NorthLocation = _gameMap.NorthLocation(_player);
             }
 
-            if (_gameMap.BetaLocation(_player) != null)
+            if (_gameMap.EastLocation(_player) != null)
             {
-                BetaLocation = _gameMap.BetaLocation(_player);
+                EastLocation = _gameMap.EastLocation(_player);
             }
 
-            if (_gameMap.GammaLocation(_player) != null)
+            if (_gameMap.SouthLocation(_player) != null)
             {
-                GammaLocation = _gameMap.GammaLocation(_player);
+                SouthLocation = _gameMap.SouthLocation(_player);
             }
 
-            if (_gameMap.DeltaLocation(_player) != null)
+            if (_gameMap.WestLocation(_player) != null)
             {
-                DeltaLocation = _gameMap.DeltaLocation(_player);
+                WestLocation = _gameMap.WestLocation(_player);
             }      
         }
 
@@ -284,13 +278,13 @@ namespace WpfTheAionProject.PresentationLayer
         }
 
         /// <summary>
-        /// travel north (alpha)
+        /// travel north
         /// </summary>
-        public void AlphaTravel()
+        public void MoveNorth()
         {
-            if (HasAlphaLocation)
+            if (HasNorthLocation)
             {
-                _gameMap.MoveAlpha();
+                _gameMap.MoveNorth();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
@@ -298,13 +292,13 @@ namespace WpfTheAionProject.PresentationLayer
         }
 
         /// <summary>
-        /// travel east (beta)
+        /// travel east
         /// </summary>
-        public void BetaTravel()
+        public void MoveEast()
         {
-            if (HasBetaLocation)
+            if (HasEastLocation)
             {
-                _gameMap.MoveBeta();
+                _gameMap.MoveEast();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
@@ -312,13 +306,13 @@ namespace WpfTheAionProject.PresentationLayer
         }
 
         /// <summary>
-        /// travel south (gamma)
+        /// travel south
         /// </summary>
-        public void GammaTravel()
+        public void MoveSouth()
         {
-            if (HasGammaLocation)
+            if (HasSouthLocation)
             {
-                _gameMap.MoveGamma();
+                _gameMap.MoveSouth();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
@@ -326,13 +320,13 @@ namespace WpfTheAionProject.PresentationLayer
         }
 
         /// <summary>
-        /// travel west (delta)
+        /// travel west
         /// </summary>
-        public void DeltaTravel()
+        public void MoveWest()
         {
-            if (HasDeltaLocation)
+            if (HasWestLocation)
             {
-                _gameMap.MoveDelta();
+                _gameMap.MoveWest();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();

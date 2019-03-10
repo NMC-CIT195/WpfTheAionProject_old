@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{35583DFD-2AC8-421D-B847-7DBB18473A86}</ProjectGuid>
+    <ProjectGuid>{4B2D34DA-C469-4E34-8E48-23815FB5AFA6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>WpfTheAionProject</RootNamespace>
     <AssemblyName>WpfTheAionProject</AssemblyName>
@@ -56,12 +56,20 @@
     </ApplicationDefinition>
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Utilities\StringHelpers.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BusinessLayer\GameBusiness.cs" />
     <Compile Include="DataLayer\GameData.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Page Include="PresentationLayer\GameSessionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

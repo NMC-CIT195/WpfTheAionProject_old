@@ -40,6 +40,7 @@ namespace WpfTheAionProject.Models
 
         #endregion
 
+
         #region CONSTRUCTORS
 
         public Map(int rows, int columns)
@@ -51,12 +52,10 @@ namespace WpfTheAionProject.Models
 
         #endregion
 
+
         #region METHODS
 
-        //
-        // move alpha
-        //
-        public void MoveAlpha()
+        public void MoveNorth()
         {
             //
             // not on north border
@@ -67,10 +66,7 @@ namespace WpfTheAionProject.Models
             }
         }
 
-        //
-        // move alpha
-        //
-        public void MoveBeta()
+        public void MoveEast()
         {
             //
             // not on east border
@@ -81,25 +77,15 @@ namespace WpfTheAionProject.Models
             }
         }
 
-        //
-        // move gamma
-        //
-        public void MoveGamma()
+        public void MoveSouth()
         {
-            //
-            // not on south border
-            //
             if (_currentLocationCoordinates.Row < _maxRows - 1)
             {
                 _currentLocationCoordinates.Row += 1;
             }
         }
 
-
-        //
-        // move alpha
-        //
-        public void MoveDelta()
+        public void MoveWest()
         {
             //
             // not on west border
@@ -111,111 +97,111 @@ namespace WpfTheAionProject.Models
         }
 
         //
-        // get the alpha location if it exists
+        // get the north location if it exists
         //
-        public Location AlphaLocation(Player player)
+        public Location NorthLocation(Player player)
         {
-            Location alphaLocation = null;
+            Location northLocation = null;
 
             //
             // not on north border
             //
             if (_currentLocationCoordinates.Row > 0)
             {
-                Location nextAlphaLocation = _mapLocations[_currentLocationCoordinates.Row - 1, _currentLocationCoordinates.Column];
+                Location nextNorthLocation = _mapLocations[_currentLocationCoordinates.Row - 1, _currentLocationCoordinates.Column];
 
                 //
                 // location exists and player can access location
                 //
-                if (nextAlphaLocation != null &&
-                    (nextAlphaLocation.Accessible == true || nextAlphaLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
+                if (nextNorthLocation != null &&
+                    (nextNorthLocation.Accessible == true || nextNorthLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
                 {
-                    alphaLocation = nextAlphaLocation;
+                    northLocation = nextNorthLocation;
                 }
             }
 
-            return alphaLocation;
+            return northLocation;
         }
 
         //
-        // get the beta location if it exists
+        // get the east location if it exists
         //
-        public Location BetaLocation(Player player)
+        public Location EastLocation(Player player)
         {
-            Location betaLocation = null;
+            Location eastLocation = null;
 
             //
             // not on east border
             //
             if (_currentLocationCoordinates.Column < _maxColumns - 1)
             {
-                Location nextBetaLocation = _mapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column + 1];
+                Location nextEastLocation = _mapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column + 1];
 
                 //
                 // location exists and player can access location
                 //
-                if (nextBetaLocation != null &&
-                    (nextBetaLocation.Accessible == true || nextBetaLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
+                if (nextEastLocation != null &&
+                    (nextEastLocation.Accessible == true || nextEastLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
                 {
-                    betaLocation = nextBetaLocation;
+                    eastLocation = nextEastLocation;
                 }
             }
 
-            return betaLocation;
+            return eastLocation;
         }
 
         //
-        // get the gamma location if it exists
+        // get the south location if it exists
         //
-        public Location GammaLocation(Player player)
+        public Location SouthLocation(Player player)
         {
-            Location gammaLocation = null;
+            Location southLocation = null;
 
             //
             // not on south border
             //
             if (_currentLocationCoordinates.Row < _maxRows - 1)
             {
-                Location nextGammaLocation = _mapLocations[_currentLocationCoordinates.Row + 1, _currentLocationCoordinates.Column];
+                Location nextSouthLocation = _mapLocations[_currentLocationCoordinates.Row + 1, _currentLocationCoordinates.Column];
 
                 //
                 // location exists and player can access location
                 //
-                if (nextGammaLocation != null &&
-                    (nextGammaLocation.Accessible == true || nextGammaLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
+                if (nextSouthLocation != null &&
+                    (nextSouthLocation.Accessible == true || nextSouthLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
                 {
-                    gammaLocation = nextGammaLocation;
+                    southLocation = nextSouthLocation;
                 }
             }
 
-            return gammaLocation;
+            return southLocation;
         }
 
         //
-        // get the delta location if it exists
+        // get the west location if it exists
         //
-        public Location DeltaLocation(Player player)
+        public Location WestLocation(Player player)
         {
-            Location deltaLocation = null;
+            Location westLocation = null;
 
             //
             // not on west border
             //
             if (_currentLocationCoordinates.Column > 0)
             {
-                Location nextDeltaLocation = _mapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column - 1];
+                Location nextWestLocation = _mapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column - 1];
 
                 //
                 // location exists and player can access location
                 //
-                if (nextDeltaLocation != null &&
-                    (nextDeltaLocation.Accessible == true || nextDeltaLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
+                if (nextWestLocation != null &&
+                    (nextWestLocation.Accessible == true || nextWestLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
                 {
-                    deltaLocation = nextDeltaLocation;
+                    westLocation = nextWestLocation;
                 }
             }
 
-            return deltaLocation;
+            return westLocation;
         }
 
         #endregion
