@@ -56,11 +56,13 @@ namespace WpfTheAionProject.PresentationLayer
         {
             get { return FormatMessagesForViewer(); }
         }
-        public Map GameMap
-        {
-            get { return _gameMap; }
-            set { _gameMap = value; }
-        }
+
+        //public Map GameMap
+        //{
+        //    get { return _gameMap; }
+        //    set { _gameMap = value; }
+        //}
+
         public Location CurrentLocation
         {
             get { return _currentLocation; }

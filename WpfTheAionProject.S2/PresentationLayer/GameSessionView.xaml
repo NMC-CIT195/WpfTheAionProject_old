@@ -11,7 +11,6 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow">
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         <LinearGradientBrush 
             x:Key="GrayBlueGradientBrush" 
             StartPoint="0,0" 
@@ -183,13 +182,13 @@
                                 HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
-                                    Content="North" 
+                                    x:Name="AlphaButton"
+                                    Content="Alpha" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="NorthTravelButton_Click"/>
+                                    Click="AlphaTravelButton_Click"/>
                                 <TextBox
                                     Width="250"
-                                    Text="{Binding NorthLocation.Name, Mode=OneWay}" 
-                                    Visibility="{Binding HasNorthLocation, Converter={StaticResource BooleanToVisibility}}"
+                                    Text="{Binding AlphaLocation.Name, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
@@ -197,13 +196,13 @@
                                 HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
-                                    Content="East" 
+                                    x:Name="BetaButton"
+                                    Content="Beta" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="EastTravelButton_Click"/>
+                                    Click="BetaTravelButton_Click"/>
                                 <TextBox
                                     Width="250"
-                                    Text="{Binding EastLocation.Name, Mode=OneWay}" 
-                                    Visibility="{Binding HasEastLocation, Converter={StaticResource BooleanToVisibility}}"                                   
+                                    Text="{Binding BetaLocation.Name, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
@@ -211,13 +210,13 @@
                                 HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
-                                    Content="South" 
+                                    x:Name="GammaButton"
+                                    Content="Gamma" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="SouthTravelButton_Click"/>
+                                    Click="GammaTravelButton_Click"/>
                                 <TextBox
                                     Width="250"
-                                    Text="{Binding SouthLocation.Name, Mode=OneWay}" 
-                                    Visibility="{Binding HasSouthLocation, Converter={StaticResource BooleanToVisibility}}"
+                                    Text="{Binding GammaLocation.Name, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                             <StackPanel
@@ -225,13 +224,13 @@
                                 HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
-                                    Content="West" 
+                                    x:Name="DeltaButton"
+                                    Content="Delta" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
-                                    Click="WestTravelButton_Click"/>
+                                    Click="DeltaTravelButton_Click"/>
                                 <TextBox
                                     Width="250"
-                                    Text="{Binding WestLocation.Name, Mode=OneWay}" 
-                                    Visibility="{Binding HasWestLocation, Converter={StaticResource BooleanToVisibility}}"
+                                    Text="{Binding DeltaLocation.Name, Mode=OneWay}" 
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                         </StackPanel>

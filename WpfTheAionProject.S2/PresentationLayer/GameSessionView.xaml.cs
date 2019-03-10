@@ -35,24 +35,24 @@ namespace WpfTheAionProject.PresentationLayer
             this.Title = "Laughing Leaf Productions";
         }
 
-        private void NorthTravelButton_Click(object sender, RoutedEventArgs e)
+        private void AlphaTravelButton_Click(object sender, RoutedEventArgs e)
         {
-            _gameSessionViewModel.MoveNorth();
+            _gameSessionViewModel.AlphaTravel();
         }
 
-        private void EastTravelButton_Click(object sender, RoutedEventArgs e)
+        private void BetaTravelButton_Click(object sender, RoutedEventArgs e)
         {
-            _gameSessionViewModel.MoveEast();
+            _gameSessionViewModel.BetaTravel();
         }
 
-        private void SouthTravelButton_Click(object sender, RoutedEventArgs e)
+        private void GammaTravelButton_Click(object sender, RoutedEventArgs e)
         {
-            _gameSessionViewModel.MoveSouth();
+            _gameSessionViewModel.GammaTravel();
         }
 
-        private void WestTravelButton_Click(object sender, RoutedEventArgs e)
+        private void DeltaTravelButton_Click(object sender, RoutedEventArgs e)
         {
-            _gameSessionViewModel.MoveWest();
+            _gameSessionViewModel.DeltaTravel();
         }
     }
 }
