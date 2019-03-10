@@ -29,8 +29,6 @@ namespace WpfTheAionProject.PresentationLayer
         private List<string> _messages;
 
         private Map _gameMap;
-        private int _maxRows, _maxColumns;
-        private GameMapCoordinates _currentLocationCoordinates;
         private Location _currentLocation;
         private Location _alphaLocation, _betaLocation, _gammaLocation, _deltaLocation;
 
@@ -43,6 +41,7 @@ namespace WpfTheAionProject.PresentationLayer
             get { return _player; }
             set { _player = value; }
         }
+
         public List<string> Messages
         {
             get { return _messages; }
@@ -153,11 +152,8 @@ namespace WpfTheAionProject.PresentationLayer
             _messages = initialMessages;
 
             _gameMap = gameMap;
-            _maxRows = _gameMap.MapLocations.GetLength(0);
-            _maxColumns = _gameMap.MapLocations.GetLength(1);
-
-            _currentLocationCoordinates = currentLocationCoordinates;
-            _currentLocation = _gameMap.MapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+            _gameMap.CurrentLocationCoordinates = currentLocationCoordinates;
+            _currentLocation = _gameMap.CurrentLocation;
             InitializeView();
 
             GameTimer();
@@ -232,24 +228,24 @@ namespace WpfTheAionProject.PresentationLayer
             GammaLocation = null;
             DeltaLocation = null;
 
-            if (_gameMap.AlphaLocation(_currentLocationCoordinates, _player.ExperiencePoints) != null)
+            if (_gameMap.AlphaLocation(_player) != null)
             {
-                AlphaLocation = _gameMap.AlphaLocation(_currentLocationCoordinates, _player.ExperiencePoints);
+                AlphaLocation = _gameMap.AlphaLocation(_player);
             }
 
-            if (_gameMap.BetaLocation(_currentLocationCoordinates, _player.ExperiencePoints) != null)
+            if (_gameMap.BetaLocation(_player) != null)
             {
-                BetaLocation = _gameMap.BetaLocation(_currentLocationCoordinates, _player.ExperiencePoints);
+                BetaLocation = _gameMap.BetaLocation(_player);
             }
 
-            if (_gameMap.GammaLocation(_currentLocationCoordinates, _player.ExperiencePoints) != null)
+            if (_gameMap.GammaLocation(_player) != null)
             {
-                GammaLocation = _gameMap.GammaLocation(_currentLocationCoordinates, _player.ExperiencePoints);
+                GammaLocation = _gameMap.GammaLocation(_player);
             }
 
-            if (_gameMap.DeltaLocation(_currentLocationCoordinates, _player.ExperiencePoints) != null)
+            if (_gameMap.DeltaLocation(_player) != null)
             {
-                DeltaLocation = _gameMap.DeltaLocation(_currentLocationCoordinates, _player.ExperiencePoints);
+                DeltaLocation = _gameMap.DeltaLocation(_player);
             }      
         }
 
@@ -292,8 +288,8 @@ namespace WpfTheAionProject.PresentationLayer
         {
             if (HasAlphaLocation)
             {
-                _currentLocationCoordinates.Row--;
-                CurrentLocation = _gameMap.MapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                _gameMap.MoveAlpha();
+                CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
             }
@@ -306,8 +302,8 @@ namespace WpfTheAionProject.PresentationLayer
         {
             if (HasBetaLocation)
             {
-                _currentLocationCoordinates.Column++;
-                CurrentLocation = _gameMap.MapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                _gameMap.MoveBeta();
+                CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
             }
@@ -320,8 +316,8 @@ namespace WpfTheAionProject.PresentationLayer
         {
             if (HasGammaLocation)
             {
-                _currentLocationCoordinates.Row++;
-                CurrentLocation = _gameMap.MapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                _gameMap.MoveGamma();
+                CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
             }
@@ -334,8 +330,8 @@ namespace WpfTheAionProject.PresentationLayer
         {
             if (HasDeltaLocation)
             {
-                _currentLocationCoordinates.Column--;
-                CurrentLocation = _gameMap.MapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column];
+                _gameMap.MoveDelta();
+                CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
             }

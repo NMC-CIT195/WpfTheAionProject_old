@@ -43,17 +43,17 @@ namespace WpfTheAionProject.DataLayer
             return new GameMapCoordinates() { Row = 0, Column = 0 };
         }
 
-        public static Location[,] GameMap()
+        public static Map GameMap()
         {
             int rows = 3;
             int columns = 4;
 
-            Location[,] mapLocations = new Location[rows, columns];
+            Map gameMap = new Map(rows, columns);
 
             //
             // row 1
             //
-            mapLocations[0, 0] = new Location()
+            gameMap.MapLocations[0, 0] = new Location()
             {
                 Id = 4,
                 Name = "Norlon Corporate Headquarters",
@@ -63,7 +63,7 @@ namespace WpfTheAionProject.DataLayer
                 Accessible = true,
                 ModifiyExperiencePoints = 10
             };
-            mapLocations[0, 1] = new Location()
+            gameMap.MapLocations[0, 1] = new Location()
             {
                 Id = 1,
                 Name = "Aion Base Lab",
@@ -77,7 +77,7 @@ namespace WpfTheAionProject.DataLayer
             //
             // row 2
             //
-            mapLocations[1, 1] = new Location()
+            gameMap.MapLocations[1, 1] = new Location()
             {
                 Id = 2,
                 Name = "Felandrian Plains",
@@ -86,7 +86,7 @@ namespace WpfTheAionProject.DataLayer
                 Accessible = true,
                 ModifiyExperiencePoints = 10
             };
-            mapLocations[1, 2] = new Location()
+            gameMap.MapLocations[1, 2] = new Location()
             {
                 Id = 2,
                 Name = "Epitoria's Reading Room",
@@ -103,7 +103,7 @@ namespace WpfTheAionProject.DataLayer
             //
             // row 3
             //
-            mapLocations[2, 0] = new Location()
+            gameMap.MapLocations[2, 0] = new Location()
             {
                 Id = 3,
                 Name = "Xantoria Market",
@@ -115,7 +115,7 @@ namespace WpfTheAionProject.DataLayer
                 ModifyHealth = 50,
                 Message = "Traveler, our telemetry places you at the Xantoria Market. We have reports of local health potions."
             };
-            mapLocations[2, 1] = new Location()
+            gameMap.MapLocations[2, 1] = new Location()
             {
                 Id = 4,
                 Name = "The Tamfasia Galactic Academy",
@@ -126,7 +126,7 @@ namespace WpfTheAionProject.DataLayer
                 ModifiyExperiencePoints = 10
             };
 
-            return mapLocations;
+            return gameMap;
         }
     }
 }
