@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTheAionProject.S2.Str", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTheAionProject.S2.Sol", "WpfTheAionProject.S2.Sol\WpfTheAionProject.S2.Sol.csproj", "{4B2D34DA-C469-4E34-8E48-23815FB5AFA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTheAionProject.S2.Sol.List", "WpfTheAionProject.S2.Sol.List\WpfTheAionProject.S2.Sol.List.csproj", "{ECA30955-7D62-4D42-A718-8BEE54859061}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{4B2D34DA-C469-4E34-8E48-23815FB5AFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B2D34DA-C469-4E34-8E48-23815FB5AFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B2D34DA-C469-4E34-8E48-23815FB5AFA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECA30955-7D62-4D42-A718-8BEE54859061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA30955-7D62-4D42-A718-8BEE54859061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA30955-7D62-4D42-A718-8BEE54859061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECA30955-7D62-4D42-A718-8BEE54859061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
