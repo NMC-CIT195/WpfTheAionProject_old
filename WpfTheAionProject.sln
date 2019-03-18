@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTheAionProject.S2.Sol", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTheAionProject.S2.Sol.List", "WpfTheAionProject.S2.Sol.List\WpfTheAionProject.S2.Sol.List.csproj", "{ECA30955-7D62-4D42-A718-8BEE54859061}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTheAionProject.S2.Sol.Array", "WpfTheAionProject.S2.Sol.Array\WpfTheAionProject.S2.Sol.Array.csproj", "{EC43FCCD-9F68-45F9-B19B-10E9C70BD02C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{ECA30955-7D62-4D42-A718-8BEE54859061}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECA30955-7D62-4D42-A718-8BEE54859061}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECA30955-7D62-4D42-A718-8BEE54859061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC43FCCD-9F68-45F9-B19B-10E9C70BD02C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC43FCCD-9F68-45F9-B19B-10E9C70BD02C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC43FCCD-9F68-45F9-B19B-10E9C70BD02C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC43FCCD-9F68-45F9-B19B-10E9C70BD02C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

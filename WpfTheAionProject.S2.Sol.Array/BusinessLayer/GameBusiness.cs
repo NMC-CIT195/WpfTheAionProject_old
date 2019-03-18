@@ -24,8 +24,7 @@ namespace WpfTheAionProject.BusinessLayer
 
         GameSessionViewModel _gameSessionViewModel;
         Player _player = new Player();
-        PlayerSetupView _playerSetupView;
-        Map _gameMap;
+        PlayerSetupView _playerSetupView = null;
 
         public GameBusiness()
         {
@@ -63,7 +62,6 @@ namespace WpfTheAionProject.BusinessLayer
         private void InitializeDataSet()
         {
             _player = GameData.PlayerData();
-            _gameMap = GameData.GameMap();
         }
 
         /// <summary>
@@ -76,7 +74,8 @@ namespace WpfTheAionProject.BusinessLayer
             //
             _gameSessionViewModel = new GameSessionViewModel(
                 _player,
-                _gameMap
+                GameData.GameMap(),
+                GameData.InitialGameMapLocation()
                 );
             GameSessionView gameSessionView = new GameSessionView(_gameSessionViewModel);
 

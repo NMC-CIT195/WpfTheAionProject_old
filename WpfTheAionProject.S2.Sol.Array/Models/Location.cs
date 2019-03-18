@@ -23,12 +23,13 @@ namespace WpfTheAionProject.Models
         private string _description;
         private bool _accessible;
         private int _requiredExperiencePoints;
-        private int _modifyExperiencePoints;
+        private int _modifiyExperiencePoints;
         private int _modifyHealth;
         private int _modifyLives;
         private string _message;
 
         #endregion
+
 
         #region PROPERTIES
 
@@ -58,8 +59,8 @@ namespace WpfTheAionProject.Models
 
         public int ModifiyExperiencePoints
         {
-            get { return _modifyExperiencePoints; }
-            set { _modifyExperiencePoints = value; }
+            get { return _modifiyExperiencePoints; }
+            set { _modifiyExperiencePoints = value; }
         }
         
         public int RequiredExperiencePoints
@@ -68,13 +69,7 @@ namespace WpfTheAionProject.Models
             set { _requiredExperiencePoints = value; }
         }
 
-        public string Message
-        {
-            get { return _message; }
-            set { _message = value; }
-        }
-
-        public int ModifyHealth
+       public int ModifyHealth
         {
             get { return _modifyHealth; }
             set { _modifyHealth = value; }
@@ -86,22 +81,30 @@ namespace WpfTheAionProject.Models
             set { _modifyLives = value; }
         }
 
-        #endregion
-
-        #region CONSTRUCTORS
-
-        public Location()
+        public string Message
         {
-
+            get { return _message; }
+            set { _message = value; }
         }
 
         #endregion
 
+
+        #region CONSTRUCTORS
+
+
+
+        #endregion
+
+
         #region METHODS
 
-        public override string ToString()
+        //
+        // location is open if character has enough XP
+        //
+        public bool IsAccessibleByExperiencePoints(int playerExperiencePoints)
         {
-            return _name; 
+            return playerExperiencePoints >= _requiredExperiencePoints ? true : false;
         }
 
         #endregion

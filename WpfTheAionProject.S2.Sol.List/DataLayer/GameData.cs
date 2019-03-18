@@ -42,7 +42,11 @@ namespace WpfTheAionProject.DataLayer
                             "Michigan.Norlon, founded in 1985 as a bio-tech company, is now a 36 billion dollar company with " +
                             "huge holdings in defense and space research and development.",
                     Accessible = true,
-                    ModifiyExperiencePoints = 10
+                    ModifiyExperiencePoints = 10,
+                    Message = "\tYou have been hired by the Norlon Corporation to participate in its latest endeavor, the " +
+                            "Aion Project. Your mission is to  test the limits of the new Aion Engine and report back to the Norlon " +
+                            "Corporation. You will begin by choosing a new location and using Aion Engine to travel to that point in the " +
+                            "Galaxy.\n\tThe Aion Engine, design by Dr. Tormeld, is limited to four slipstreams, denoted by the first four Greek letters, from any given locations."
                 }
                 );
 
@@ -55,7 +59,8 @@ namespace WpfTheAionProject.DataLayer
                             "the north coast of Crete and the top secret research lab for the Aion Project.\nThe lab is a large, " + "" +
                             "well lit room, and staffed by a small number of scientists, all wearing light blue uniforms with the hydra-like Norlan Corporation logo.",
                     Accessible = true,
-                    ModifiyExperiencePoints = 10
+                    ModifiyExperiencePoints = 10,
+                    Message = "Traveler, to move from location to location, simply touch the name of the desired location on your forearm."
                 }
                 );
 
