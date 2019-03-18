@@ -26,7 +26,6 @@ namespace WpfTheAionProject.PresentationLayer
         private TimeSpan _gameTime;
 
         private Player _player;
-        private List<string> _messages;
 
         private Map _gameMap;
         private Location _currentLocation;
@@ -42,19 +41,9 @@ namespace WpfTheAionProject.PresentationLayer
             set { _player = value; }
         }
 
-        public List<string> Messages
-        {
-            get { return _messages; }
-            set
-            {
-                _messages = value;
-                OnPropertyChanged(nameof(MessageDisplay));
-            }
-        }
-
         public string MessageDisplay
         {
-            get { return FormatMessagesForViewer(); }
+            get { return _currentLocation.Message; }
         }
         public Map GameMap
         {
@@ -118,7 +107,23 @@ namespace WpfTheAionProject.PresentationLayer
             }
         }
 
-        public bool HasNorthLocation { get { return NorthLocation != null; } }
+        public bool HasNorthLocation
+        {
+            get
+            {
+                if (NorthLocation != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        //
+        // shortened code with same functionality as above
+        //
         public bool HasEastLocation { get { return EastLocation != null; } }
         public bool HasSouthLocation { get { return SouthLocation != null; } }
         public bool HasWestLocation { get { return WestLocation != null; } }
@@ -144,12 +149,10 @@ namespace WpfTheAionProject.PresentationLayer
 
         public GameSessionViewModel(
             Player player,
-            List<string> initialMessages,
             Map gameMap,
             GameMapCoordinates currentLocationCoordinates)
         {
             _player = player;
-            _messages = initialMessages;
 
             _gameMap = gameMap;
             _gameMap.CurrentLocationCoordinates = currentLocationCoordinates;
@@ -164,50 +167,12 @@ namespace WpfTheAionProject.PresentationLayer
         #region METHODS
 
         /// <summary>
-        /// game time event, publishes every 1 second
-        /// </summary>
-        public void GameTimer()
-        {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1000);
-            timer.Tick += OnGameTimerTick;
-            timer.Start();
-        }
-
-        /// <summary>
-        /// game timer event handler
-        /// 1) update mission time on window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void OnGameTimerTick(object sender, EventArgs e)
-        {
-            _gameTime = DateTime.Now - _gameStartTime;
-            MissionTimeDisplay = "Mission Time " + _gameTime.ToString(@"hh\:mm\:ss");
-        }
-
-        /// <summary>
         /// initial setup of the game session view
         /// </summary>
         private void InitializeView()
         {
             _gameStartTime = DateTime.Now;
             UpdateAvailableTravelPoints();
-        }
-
-        /// <summary>
-        /// return a unique empty location object
-        /// </summary>
-        /// <returns>empty location object</returns>
-        public Location EmptyLocation()
-        {
-            return new Location()
-            {
-                Id = 0,
-                Name = " *** No Available Slipstream ***",
-                Description = "This channel does not currently have an available slipstream from this access point. Please choose another slipstream.",
-                Accessible = true
-            };
         }
 
         /// <summary>
@@ -242,7 +207,7 @@ namespace WpfTheAionProject.PresentationLayer
             if (_gameMap.WestLocation(_player) != null)
             {
                 WestLocation = _gameMap.WestLocation(_player);
-            }      
+            }
         }
 
         /// <summary>
@@ -251,30 +216,43 @@ namespace WpfTheAionProject.PresentationLayer
         private void OnPlayerMove()
         {
             //
-            // update player stats
+            // update player stats when in new location
             //
             if (!_player.HasVisited(_currentLocation))
             {
+                //
+                // add location to list of visited locations
+                //
                 _player.LocationsVisited.Add(_currentLocation);
+
+                // 
+                // update experience points
+                //
                 _player.ExperiencePoints += _currentLocation.ModifiyExperiencePoints;
-            }
 
-            if (_currentLocation.ModifyHealth != 0)
-            {
-                _player.Health += _currentLocation.ModifyHealth;
-                if (_player.Health > 100)
+                //
+                // update health
+                //
+                if (_currentLocation.ModifyHealth != 0)
                 {
-                    _player.Health = 100;
-                    _player.Lives++;
+                    _player.Health += _currentLocation.ModifyHealth;
+                    if (_player.Health > 100)
+                    {
+                        _player.Health = 100;
+                        _player.Lives++;
+                    }
                 }
+
+                //
+                // update lives
+                //
+                if (_currentLocation.ModifyLives != 0) _player.Lives += _currentLocation.ModifyLives;
+
+                //
+                // display a new message if available
+                //
+                OnPropertyChanged(nameof(MessageDisplay));
             }
-
-            if (_currentLocation.ModifyLives != 0) _player.Lives += _currentLocation.ModifyLives;
-
-            //
-            // display a new message if available
-            //
-            if (_currentLocation.Message != null) Messages.Add(_currentLocation.Message);
         }
 
         /// <summary>
@@ -333,23 +311,7 @@ namespace WpfTheAionProject.PresentationLayer
             }
         }
 
-        /// <summary>
-        /// generates a sting of mission messages with time stamp with most current first
-        /// </summary>
-        /// <returns>string of formated mission messages</returns>
-        private string FormatMessagesForViewer()
-        {
-            List<string> lifoMessages = new List<string>();
-
-            for (int index = 0; index < _messages.Count; index++)
-            {
-                lifoMessages.Add($" <T:{GameTime().ToString(@"hh\:mm\:ss")}> " + _messages[index]);
-            }
-
-            lifoMessages.Reverse();
-
-            return string.Join("\n\n", lifoMessages);
-        }
+        #region GAME TIME METHODS
 
         /// <summary>
         /// running time of game
@@ -359,6 +321,31 @@ namespace WpfTheAionProject.PresentationLayer
         {
             return DateTime.Now - _gameStartTime;
         }
+
+        /// <summary>
+        /// game time event, publishes every 1 second
+        /// </summary>
+        public void GameTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Tick += OnGameTimerTick;
+            timer.Start();
+        }
+
+        /// <summary>
+        /// game timer event handler
+        /// 1) update mission time on window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void OnGameTimerTick(object sender, EventArgs e)
+        {
+            _gameTime = DateTime.Now - _gameStartTime;
+            MissionTimeDisplay = "Mission Time " + _gameTime.ToString(@"hh\:mm\:ss");
+        }
+
+        #endregion
 
         #endregion
 
