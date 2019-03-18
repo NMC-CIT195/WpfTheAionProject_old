@@ -30,7 +30,6 @@ namespace WpfTheAionProject.Models
 
         #endregion
 
-
         #region PROPERTIES
 
         public string Name
@@ -89,13 +88,11 @@ namespace WpfTheAionProject.Models
 
         #endregion
 
-
         #region CONSTRUCTORS
 
 
 
         #endregion
-
 
         #region METHODS
 

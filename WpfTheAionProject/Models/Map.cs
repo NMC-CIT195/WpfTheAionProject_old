@@ -40,7 +40,6 @@ namespace WpfTheAionProject.Models
 
         #endregion
 
-
         #region CONSTRUCTORS
 
         public Map(int rows, int columns)
@@ -51,7 +50,6 @@ namespace WpfTheAionProject.Models
         }
 
         #endregion
-
 
         #region METHODS
 

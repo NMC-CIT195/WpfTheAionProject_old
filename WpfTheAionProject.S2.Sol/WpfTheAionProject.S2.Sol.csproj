@@ -55,6 +55,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ObservableObject.cs" />
+    <Compile Include="PresentationLayer\GameSessionView.xaml.cs" />
+    <Compile Include="PresentationLayer\GameSessionViewModel.cs" />
+    <Compile Include="PresentationLayer\PlayerSetupView.xaml.cs" />
     <Compile Include="Utilities\StringHelpers.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -62,14 +65,6 @@
     </Compile>
     <Compile Include="BusinessLayer\GameBusiness.cs" />
     <Compile Include="DataLayer\GameData.cs" />
-    <Page Include="PresentationLayer\GameSessionView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PresentationLayer\PlayerSetupView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Character.cs" />
@@ -77,13 +72,6 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Player.cs" />
-    <Compile Include="PresentationLayer\GameSessionView.xaml.cs">
-      <DependentUpon>GameSessionView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationLayer\GameSessionViewModel.cs" />
-    <Compile Include="PresentationLayer\PlayerSetupView.xaml.cs">
-      <DependentUpon>PlayerSetupView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,6 +99,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="PresentationLayer\GameSessionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PresentationLayer\PlayerSetupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

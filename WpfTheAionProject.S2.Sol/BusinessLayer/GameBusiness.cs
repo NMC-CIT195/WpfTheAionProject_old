@@ -23,10 +23,11 @@ namespace WpfTheAionProject.BusinessLayer
         bool _newPlayer = false;
 
         GameSessionViewModel _gameSessionViewModel;
-        Player _player = new Player();
-        PlayerSetupView _playerSetupView = null;
+        Player _player;
         Map _gameMap;
         GameMapCoordinates _initialLocationCoordinates;
+
+        PlayerSetupView _playerSetupView = null;
 
         public GameBusiness()
         {
