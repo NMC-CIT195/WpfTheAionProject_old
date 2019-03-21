@@ -20,7 +20,7 @@ namespace WpfTheAionProject.BusinessLayer
         // true: open player setup window - uncomment the Close() method in InstantiateAndShowView
         // false: player data coming from GameData class
         //
-        bool _newPlayer = false;
+        bool _newPlayer = true;
 
         GameSessionViewModel _gameSessionViewModel;
         Player _player = new Player();
@@ -94,7 +94,7 @@ namespace WpfTheAionProject.BusinessLayer
             //
             // commented out because the player setup window is disabled
             //
-            //_playerSetupView.Close();
+            _playerSetupView.Close();
         }
     }
 }

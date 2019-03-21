@@ -97,7 +97,7 @@ namespace WpfTheAionProject.Models
         //
         // get the north location if it exists
         //
-        public Location NorthLocation(Player player)
+        public Location NorthLocation()
         {
             Location northLocation = null;
 
@@ -109,10 +109,9 @@ namespace WpfTheAionProject.Models
                 Location nextNorthLocation = _mapLocations[_currentLocationCoordinates.Row - 1, _currentLocationCoordinates.Column];
 
                 //
-                // location exists and player can access location
+                // location exists
                 //
-                if (nextNorthLocation != null &&
-                    (nextNorthLocation.Accessible == true || nextNorthLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
+                if (nextNorthLocation != null)
                 {
                     northLocation = nextNorthLocation;
                 }
@@ -124,7 +123,7 @@ namespace WpfTheAionProject.Models
         //
         // get the east location if it exists
         //
-        public Location EastLocation(Player player)
+        public Location EastLocation()
         {
             Location eastLocation = null;
 
@@ -136,10 +135,9 @@ namespace WpfTheAionProject.Models
                 Location nextEastLocation = _mapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column + 1];
 
                 //
-                // location exists and player can access location
+                // location exists 
                 //
-                if (nextEastLocation != null &&
-                    (nextEastLocation.Accessible == true || nextEastLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
+                if (nextEastLocation != null)
                 {
                     eastLocation = nextEastLocation;
                 }
@@ -151,7 +149,7 @@ namespace WpfTheAionProject.Models
         //
         // get the south location if it exists
         //
-        public Location SouthLocation(Player player)
+        public Location SouthLocation()
         {
             Location southLocation = null;
 
@@ -165,8 +163,7 @@ namespace WpfTheAionProject.Models
                 //
                 // location exists and player can access location
                 //
-                if (nextSouthLocation != null &&
-                    (nextSouthLocation.Accessible == true || nextSouthLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
+                if (nextSouthLocation != null)
                 {
                     southLocation = nextSouthLocation;
                 }
@@ -178,7 +175,7 @@ namespace WpfTheAionProject.Models
         //
         // get the west location if it exists
         //
-        public Location WestLocation(Player player)
+        public Location WestLocation()
         {
             Location westLocation = null;
 
@@ -192,8 +189,7 @@ namespace WpfTheAionProject.Models
                 //
                 // location exists and player can access location
                 //
-                if (nextWestLocation != null &&
-                    (nextWestLocation.Accessible == true || nextWestLocation.IsAccessibleByExperiencePoints(player.ExperiencePoints)))
+                if (nextWestLocation != null)
                 {
                     westLocation = nextWestLocation;
                 }

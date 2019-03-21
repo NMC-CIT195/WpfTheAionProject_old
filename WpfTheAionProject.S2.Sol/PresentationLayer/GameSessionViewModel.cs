@@ -189,24 +189,88 @@ namespace WpfTheAionProject.PresentationLayer
             SouthLocation = null;
             WestLocation = null;
 
-            if (_gameMap.NorthLocation(_player) != null)
+            //
+            // north location exists
+            //
+            if (_gameMap.NorthLocation() != null)
             {
-                NorthLocation = _gameMap.NorthLocation(_player);
+                Location nextNorthLocation = _gameMap.NorthLocation();
+
+                //
+                // location generally accessible or player has required conditions
+                //
+                if (nextNorthLocation.Accessible == true || PlayerCanAccessLocation(nextNorthLocation))
+                {
+                    NorthLocation = nextNorthLocation;
+                }
             }
 
-            if (_gameMap.EastLocation(_player) != null)
+            //
+            // east location exists
+            //
+            if (_gameMap.EastLocation() != null)
             {
-                EastLocation = _gameMap.EastLocation(_player);
+                Location nextEastLocation = _gameMap.EastLocation();
+
+                //
+                // location generally accessible or player has required conditions
+                //
+                if (nextEastLocation.Accessible == true || PlayerCanAccessLocation(nextEastLocation))
+                {
+                    EastLocation = nextEastLocation;
+                }
             }
 
-            if (_gameMap.SouthLocation(_player) != null)
+            //
+            // south location exists
+            //
+            if (_gameMap.SouthLocation() != null)
             {
-                SouthLocation = _gameMap.SouthLocation(_player);
+                Location nextSouthLocation = _gameMap.SouthLocation();
+
+                //
+                // location generally accessible or player has required conditions
+                //
+                if (nextSouthLocation.Accessible == true || PlayerCanAccessLocation(nextSouthLocation))
+                {
+                    SouthLocation = nextSouthLocation;
+                }
             }
 
-            if (_gameMap.WestLocation(_player) != null)
+            //
+            // west location exists
+            //
+            if (_gameMap.WestLocation() != null)
             {
-                WestLocation = _gameMap.WestLocation(_player);
+                Location nextWestLocation = _gameMap.WestLocation();
+
+                //
+                // location generally accessible or player has required conditions
+                //
+                if (nextWestLocation.Accessible == true || PlayerCanAccessLocation(nextWestLocation))
+                {
+                    WestLocation = nextWestLocation;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nextLocation">location to check accessibility</param>
+        /// <returns>accessibility</returns>
+        private bool PlayerCanAccessLocation(Location nextLocation)
+        {
+            //
+            // check access by experience points
+            //
+            if (nextLocation.IsAccessibleByExperiencePoints(_player.ExperiencePoints))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
