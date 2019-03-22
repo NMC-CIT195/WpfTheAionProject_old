@@ -27,6 +27,7 @@ namespace WpfTheAionProject.Models
         private int _modifyHealth;
         private int _modifyLives;
         private string _message;
+        private List<GameItemQuantity> _gameItems;
 
         #endregion
 
@@ -84,6 +85,12 @@ namespace WpfTheAionProject.Models
         {
             get { return _message; }
             set { _message = value; }
+        }
+
+        public List<GameItemQuantity> GameItems
+        {
+            get { return _gameItems; }
+            set { _gameItems = value; }
         }
 
         #endregion

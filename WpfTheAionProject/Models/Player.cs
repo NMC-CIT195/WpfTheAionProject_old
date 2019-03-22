@@ -24,6 +24,7 @@ namespace WpfTheAionProject.Models
         private int _experiencePoints;
         private JobTitleName _jobTitle;
         private List<Location> _locationsVisited;
+        private List<GameItemQuantity> _inventory;
 
         #endregion
 
@@ -73,6 +74,12 @@ namespace WpfTheAionProject.Models
         {
             get { return _locationsVisited; }
             set { _locationsVisited = value; }
+        }
+
+        public List<GameItemQuantity> Inventory
+        {
+            get { return _inventory; }
+            set { _inventory = value; }
         }
 
         #endregion

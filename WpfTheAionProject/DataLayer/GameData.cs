@@ -25,10 +25,14 @@ namespace WpfTheAionProject.DataLayer
                 Health = 100,
                 Lives = 3,
                 ExperiencePoints = 10,
-                LocationId = 0
+                LocationId = 0,
+                Inventory = new List<GameItemQuantity>()
+                {
+                    new GameItemQuantity(1001, 1),
+                    new GameItemQuantity(2001, 5)
+                }
             };
         }
-
 
         public static GameMapCoordinates InitialGameMapLocation()
         {
@@ -64,7 +68,7 @@ namespace WpfTheAionProject.DataLayer
                 Id = 2,
                 Name = "Aion Base Lab",
                 Description = "The Norlon Corporation research facility located in the city of Heraklion on " +
-                "the north coast of Crete and the top secret research lab for the Aion Project.\nThe lab is a large, " +"" +
+                "the north coast of Crete and the top secret research lab for the Aion Project.\nThe lab is a large, " + "" +
                 "well lit room, and staffed by a small number of scientists, all wearing light blue uniforms with the hydra-like Norlan Corporation logo.",
                 Accessible = true,
                 ModifiyExperiencePoints = 10
@@ -80,7 +84,12 @@ namespace WpfTheAionProject.DataLayer
                 Description = "The Felandrian Plains are a common destination for tourist. Located just north of the " +
                 "equatorial line on the planet of Corlon, they provide excellent habitat for a rich ecosystem of flora and fauna.",
                 Accessible = true,
-                ModifiyExperiencePoints = 10
+                ModifiyExperiencePoints = 10,
+                GameItems = new List<GameItemQuantity>
+                {
+                    new GameItemQuantity(3001, 1),
+                    new GameItemQuantity(1002, 1)
+                }
             };
             gameMap.MapLocations[1, 2] = new Location()
             {
@@ -93,7 +102,7 @@ namespace WpfTheAionProject.DataLayer
                 Accessible = false,
                 ModifiyExperiencePoints = 50,
                 ModifyLives = -1,
-                RequiredExperiencePoints = 40                
+                RequiredExperiencePoints = 40
             };
 
             //
@@ -119,10 +128,26 @@ namespace WpfTheAionProject.DataLayer
                 "You are currently in the library, standing next to the protoplasmic encabulator that stores all " +
                 "recorded information of the galactic history.",
                 Accessible = true,
-                ModifiyExperiencePoints = 10
+                ModifiyExperiencePoints = 10,
+                GameItems = new List<GameItemQuantity>()
+                {
+                    new GameItemQuantity(2001, 10)
+                }
             };
-
             return gameMap;
+        }
+
+        public static List<GameItem> StandardGameItems()
+        {
+            return new List<GameItem>()
+            {
+                new Weapon(1001, "Longsword", 75, 1, 4, "The longsword is a type of sword characterized as having a cruciform hilt with a grip for two-handed use and 85 to 110 cm in length."),
+                new Weapon(1002, "Phaser", 250, 1, 9, "Phasers are common and versatile phased array pulsed energy projectile weapons."),
+                new Treasure(2001, "Gold Coin", 10, Treasure.TreasureType.Coin, "24 karat gold coin"),
+                new Treasure(2020, "Small Diamond", 50, Treasure.TreasureType.Jewel, "A small pea-sized diamond of various colors."),
+                new Treasure(2030, "Kalzonian Manuscript", 10, Treasure.TreasureType.Manuscript, "Reportedly stolen during the Zantorian raids of of the 4th dynasty, it is said to contain information about early galactic technologies."),
+                new Potion(3001, "Distilled Baladorian Lion Mucus", 5, 40, 0, "Rare potion due to the dangers of procurement. Add 40 points of health.")
+            };
         }
     }
 }
