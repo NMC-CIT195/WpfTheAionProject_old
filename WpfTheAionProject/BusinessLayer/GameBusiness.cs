@@ -20,7 +20,7 @@ namespace WpfTheAionProject.BusinessLayer
         // true: open player setup window - uncomment the Close() method in InstantiateAndShowView
         // false: player data coming from GameData class
         //
-        bool _newPlayer = true;
+        bool _newPlayer = false;
 
         GameSessionViewModel _gameSessionViewModel;
         Player _player = new Player();
@@ -64,7 +64,6 @@ namespace WpfTheAionProject.BusinessLayer
         /// </summary>
         private void InitializeDataSet()
         {
-            _player = GameData.PlayerData();
             _gameMap = GameData.GameMap();
             _initialLocationCoordinates = GameData.InitialGameMapLocation();
         }
@@ -94,7 +93,7 @@ namespace WpfTheAionProject.BusinessLayer
             //
             // commented out because the player setup window is disabled
             //
-            _playerSetupView.Close();
+            //_playerSetupView.Close();
         }
     }
 }

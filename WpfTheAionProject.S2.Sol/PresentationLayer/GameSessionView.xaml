@@ -162,7 +162,7 @@
                                     Background="WhiteSmoke"
                                     Style="{StaticResource BorderStyle}">
                                     <TextBox
-                                        Height="150"
+                                        Height="100"
                                         Width="350"
                                         Margin="10"
                                         Background="WhiteSmoke"

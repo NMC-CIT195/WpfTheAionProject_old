@@ -138,6 +138,15 @@ namespace WpfTheAionProject.PresentationLayer
             }
         }
 
+        public ObservableCollection<GameItemQuantity> Weapons // todo left off here John! :-)
+        {
+            get
+            {
+                var weapons = _player.Inventory.Where(i => i.GameItem is Weapon) as ObservableCollection<GameItemQuantity>;
+                return weapons;
+            }
+        }
+
         #endregion
 
         #region CONSTRUCTORS

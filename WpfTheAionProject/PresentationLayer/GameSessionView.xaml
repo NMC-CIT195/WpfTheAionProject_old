@@ -117,11 +117,30 @@
                     Grid.Column="0"
                     Margin="0,0,0,10"
                     Style="{StaticResource BorderStyle}">
-                    <Label 
-                        Content="Action Interface"
+                    <StackPanel>
+                        <Label 
+                        Content="Missing Control"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Style="{StaticResource MainPanelLabelStyle}"/>
+                        <Border
+                            Margin="10,0,10,10"
+                            Padding="0"
+                            Background="WhiteSmoke"
+                            Style="{StaticResource BorderStyle}">
+                            <TextBox
+                                Height="100"
+                                Width="auto"
+                                Margin="10"
+                                Background="WhiteSmoke"
+                                BorderThickness="0"
+                                TextWrapping="Wrap"
+                                Text="{Binding MessageDisplay, Mode=OneWay}"
+                                VerticalScrollBarVisibility="Auto"
+                                VerticalContentAlignment="top"
+                                Style="{StaticResource MainPanelTextBoxStyle}"/>
+                        </Border>
+                    </StackPanel>
                 </Border>
                 <Border
                     Grid.Row="0"
@@ -287,7 +306,7 @@
                                 <Label Content="Job Title" Style="{StaticResource MainPanelLabelStyle}"/>
                             </StackPanel>
                         </StackPanel>
-                        <Border
+                        <!--<Border
                             Grid.Column="1"
                             Margin="0"
                             Padding="0"
@@ -304,7 +323,47 @@
                                 VerticalScrollBarVisibility="Auto"
                                 VerticalContentAlignment="top"
                                 Style="{StaticResource MainPanelTextBoxStyle}"/>
-                        </Border>
+                        </Border>-->
+                        <TabControl 
+                            Grid.Column="1"
+                            x:Name="PlayerDataTabControl">
+                            <TabItem Header="Inventory"
+                                x:Name="InventoryTabItem">
+                                <DataGrid 
+                                    ItemsSource="{Binding Weapons}"
+                                    AutoGenerateColumns="False"
+                                    HeadersVisibility="Column">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Name"
+                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                                Width="*"/>
+                                        <DataGridTextColumn Header="Qty"
+                                                IsReadOnly="True"
+                                                Width="Auto"
+                                                Binding="{Binding Quantity, Mode=OneWay}"/>
+                                        <DataGridTextColumn Header="Value"
+                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
+                                                Width="Auto"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </TabItem>
+
+                            <TabItem Header="Quests"
+                                x:Name="QuestsTabItem">
+                                <DataGrid ItemsSource="{Binding CurrentPlayer.Quests}"
+                                    AutoGenerateColumns="False"
+                                    HeadersVisibility="Column">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Name"
+                                                Binding="{Binding PlayerQuest.Name, Mode=OneWay}"
+                                                Width="*"/>
+                                        <DataGridTextColumn Header="Done?"
+                                                Binding="{Binding IsCompleted, Mode=OneWay}"
+                                                Width="Auto"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </TabItem>
+                        </TabControl>
                         <StackPanel
                             Grid.Column="2"
                             Orientation="Vertical">

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace WpfTheAionProject.Models
 {
@@ -24,7 +25,7 @@ namespace WpfTheAionProject.Models
         private int _experiencePoints;
         private JobTitleName _jobTitle;
         private List<Location> _locationsVisited;
-        private List<GameItemQuantity> _inventory;
+        private ObservableCollection<GameItemQuantity> _inventory;
 
         #endregion
 
@@ -76,7 +77,7 @@ namespace WpfTheAionProject.Models
             set { _locationsVisited = value; }
         }
 
-        public List<GameItemQuantity> Inventory
+        public ObservableCollection<GameItemQuantity> Inventory
         {
             get { return _inventory; }
             set { _inventory = value; }
