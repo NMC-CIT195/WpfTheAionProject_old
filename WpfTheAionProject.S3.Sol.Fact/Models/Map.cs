@@ -16,7 +16,6 @@ namespace WpfTheAionProject.Models
         private Location[,] _mapLocations;
         private int _maxRows, _maxColumns;
         private GameMapCoordinates _currentLocationCoordinates;
-        private List<GameItem> _standardGameItems;
 
         #endregion
 
@@ -38,12 +37,6 @@ namespace WpfTheAionProject.Models
         {
             get { return _mapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column]; }
         }
-        
-        public List<GameItem> StandardGameItems
-        {
-            get { return _standardGameItems; }
-            set { _standardGameItems = value; }
-        }
 
         #endregion
 
@@ -59,8 +52,6 @@ namespace WpfTheAionProject.Models
         #endregion
 
         #region METHODS
-
-        #region MOVEMENT METHODS
 
         public void MoveNorth()
         {
@@ -205,18 +196,6 @@ namespace WpfTheAionProject.Models
             }
 
             return westLocation;
-        }
-
-        #endregion
-
-        /// <summary>
-        /// get a standard game item from the list by id
-        /// </summary>
-        /// <param name="gameItemId">standard game item info</param>
-        /// <returns></returns>
-        public GameItem GameItemById(int gameItemId)
-        {
-            return StandardGameItems.FirstOrDefault(i => i.Id == gameItemId);
         }
 
         #endregion

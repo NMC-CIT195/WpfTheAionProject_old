@@ -28,9 +28,9 @@ namespace WpfTheAionProject.DataLayer
                 LocationId = 0,
                 Inventory = new ObservableCollection<GameItemQuantity>()
                 {
-                    new GameItemQuantity(1002, 1),
-                    new GameItemQuantity(2001, 5),
-                }              
+                    new GameItemQuantity(ItemFactory.CreateGameItem(1001), 1),
+                    new GameItemQuantity(ItemFactory.CreateGameItem(2001), 5)
+                }
             };
         }
 
@@ -45,8 +45,6 @@ namespace WpfTheAionProject.DataLayer
             int columns = 4;
 
             Map gameMap = new Map(rows, columns);
-
-            gameMap.StandardGameItems = StandardGameItems();
 
             //
             // row 1
@@ -89,8 +87,8 @@ namespace WpfTheAionProject.DataLayer
                 ModifiyExperiencePoints = 10,
                 GameItems = new List<GameItemQuantity>
                 {
-                    new GameItemQuantity(3001, 1),
-                    new GameItemQuantity(1002, 1)
+                    new GameItemQuantity(ItemFactory.CreateGameItem(3001), 1),
+                    new GameItemQuantity(ItemFactory.CreateGameItem(1002), 1)
                 }
             };
             gameMap.MapLocations[1, 2] = new Location()
@@ -133,7 +131,7 @@ namespace WpfTheAionProject.DataLayer
                 ModifiyExperiencePoints = 10,
                 GameItems = new List<GameItemQuantity>()
                 {
-                    new GameItemQuantity(2001, 10)
+                    new GameItemQuantity(ItemFactory.CreateGameItem(2001), 10)
                 }
             };
             return gameMap;

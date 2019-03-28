@@ -145,7 +145,7 @@ namespace WpfTheAionProject.PresentationLayer
                 ObservableCollection<GameItemQuantity> weapons = new ObservableCollection<GameItemQuantity>();
                 foreach (var item in _player.Inventory)
                 {
-                    if (_gameMap.GameItemById(item.GameItemId) is Weapon)
+                    if (item.GameItem is Weapon)
                     {
                         weapons.Add(item);
                     }

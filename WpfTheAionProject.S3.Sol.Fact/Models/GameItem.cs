@@ -11,17 +11,22 @@ namespace WpfTheAionProject.Models
         //
         // auto implemented properties are used for 
         //
-        public int Id { get; set; }
+        public int ItemTypeID { get; set; }
         public string Name { get; set; }
         public int Value { get; set; }
         public string Description { get; set; }
 
-        public GameItem(int id, string name, int value, string description)
+        public GameItem(int itemTypeID, string name, int value, string description)
         {
-            Id = id;
+            ItemTypeID = itemTypeID;
             Name = name;
             Value = value;
             Description = description;
+        }
+
+        public GameItem Clone()
+        {
+            return new GameItem(ItemTypeID, Name, Value, Description);
         }
     }
 }

@@ -17,10 +17,15 @@ namespace WpfTheAionProject.Models
 
         public TreasureType Type { get; set; }
 
-        public Treasure(int id, string name, int value, TreasureType type, string description)
-            : base(id, name, value, description)
+        public Treasure(int itemTypeID, string name, int value, TreasureType type, string description)
+            : base(itemTypeID, name, value, description)
         {
             Type = type;
+        }
+
+        public Treasure Clone(int itemTypeID, string name, int value, TreasureType type, string description)
+        {
+            return new Treasure(ItemTypeID, Name, value, Type, Description);
         }
     }
 }

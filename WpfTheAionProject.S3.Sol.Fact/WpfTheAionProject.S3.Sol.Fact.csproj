@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8FE5F9D2-E024-4B2A-BB82-9FEF1D7E6D8E}</ProjectGuid>
+    <ProjectGuid>{FC522426-3AA9-4709-983F-207F0626C4FC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>WpfTheAionProject</RootNamespace>
     <AssemblyName>WpfTheAionProject</AssemblyName>
@@ -54,32 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ObservableObject.cs" />
-    <Compile Include="Utilities\StringHelpers.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BusinessLayer\GameBusiness.cs" />
+    <Compile Include="DataLayer\ItemFactory.cs" />
     <Compile Include="DataLayer\GameData.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="PresentationLayer\GameSessionView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PresentationLayer\PlayerSetupView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\GameItem.cs" />
     <Compile Include="Models\GameItemQuantity.cs" />
@@ -97,6 +78,10 @@
     <Compile Include="PresentationLayer\PlayerSetupView.xaml.cs">
       <DependentUpon>PlayerSetupView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\StringHelpers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ObservableObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -124,6 +109,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="PresentationLayer\GameSessionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PresentationLayer\PlayerSetupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

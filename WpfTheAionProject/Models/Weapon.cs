@@ -11,16 +11,11 @@ namespace WpfTheAionProject.Models
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
 
-        public Weapon(int itemTypeID, string name, int value, int minDamage, int maxDamage, string description)
-            : base(itemTypeID, name, value, description)
+        public Weapon(int id, string name, int value, int minDamage, int maxDamage, string description)
+            : base(id, name, value, description)
         {
             MinimumDamage = minDamage;
             MaximumDamage = maxDamage;
-        }
-
-        public Weapon Clone(int itemTypeID, string name, int value, int minDamage, int maxDamage, string description)
-        {
-            return new Weapon(ItemTypeID, Name, Value, MinimumDamage, MaximumDamage, Description);
         }
     }
 }
