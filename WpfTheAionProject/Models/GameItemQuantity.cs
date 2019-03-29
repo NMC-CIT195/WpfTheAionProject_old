@@ -8,7 +8,7 @@ namespace WpfTheAionProject.Models
 {
     public class GameItemQuantity
     {
-        public int GameItemId { get; set; }
+        public GameItem GameItem { get; set; }
         public int Quantity { get; set; }
 
         public GameItemQuantity()
@@ -16,9 +16,9 @@ namespace WpfTheAionProject.Models
 
         }
 
-        public GameItemQuantity(int gameItemId, int quantity)
+        public GameItemQuantity(GameItem gameItem, int quantity)
         {
-            GameItemId = gameItemId;
+            GameItem = gameItem;
             Quantity = quantity;
         }
     }

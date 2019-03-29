@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace WpfTheAionProject.Models
 {
     /// <summary>
     /// class for the game map locations
     /// </summary>
-    public class Location
+    public class Location : ObservableObject
     {
         #region ENUMS
 
@@ -27,7 +28,7 @@ namespace WpfTheAionProject.Models
         private int _modifyHealth;
         private int _modifyLives;
         private string _message;
-        private List<GameItemQuantity> _gameItems;
+        private ObservableCollection<GameItemQuantity> _gameItems;
 
         #endregion
 
@@ -87,10 +88,14 @@ namespace WpfTheAionProject.Models
             set { _message = value; }
         }
 
-        public List<GameItemQuantity> GameItems
+        public ObservableCollection<GameItemQuantity> GameItems
         {
             get { return _gameItems; }
-            set { _gameItems = value; }
+            set
+            {
+                _gameItems = value;
+                OnPropertyChanged(nameof(GameItems));
+            }
         }
 
         #endregion

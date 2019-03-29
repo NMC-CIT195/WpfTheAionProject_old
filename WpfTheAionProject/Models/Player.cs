@@ -80,7 +80,67 @@ namespace WpfTheAionProject.Models
         public ObservableCollection<GameItemQuantity> Inventory
         {
             get { return _inventory; }
-            set { _inventory = value; }
+            set
+            {
+                _inventory = value;
+                OnPropertyChanged(nameof(Weapons));
+                OnPropertyChanged(nameof(Potions));
+                OnPropertyChanged(nameof(Treasure));
+            }
+        }
+
+        public ObservableCollection<GameItemQuantity> Weapons
+        {
+            get
+            {
+                ObservableCollection<GameItemQuantity> weapons = new ObservableCollection<GameItemQuantity>();
+
+                foreach (var item in _inventory)
+                {
+                    if (item.GameItem is Weapon)
+                    {
+                        weapons.Add(item);
+                    }
+                }
+
+                return weapons;
+            }
+        }
+
+        public ObservableCollection<GameItemQuantity> Potions
+        {
+            get
+            {
+                ObservableCollection<GameItemQuantity> potions = new ObservableCollection<GameItemQuantity>();
+
+                foreach (var item in _inventory)
+                {
+                    if (item.GameItem is Potion)
+                    {
+                        potions.Add(item);
+                    }
+                }
+
+                return potions;
+            }
+        }
+
+        public ObservableCollection<GameItemQuantity> Treasure
+        {
+            get
+            {
+                ObservableCollection<GameItemQuantity> treasure = new ObservableCollection<GameItemQuantity>();
+
+                foreach (var item in _inventory)
+                {
+                    if (item.GameItem is Treasure)
+                    {
+                        treasure.Add(item);
+                    }
+                }
+
+                return treasure;
+            }
         }
 
         #endregion
@@ -91,7 +151,7 @@ namespace WpfTheAionProject.Models
         {
             _locationsVisited = new List<Location>();
         }
-        
+
         #endregion
 
         #region METHODS
@@ -112,7 +172,7 @@ namespace WpfTheAionProject.Models
 
             List<string> vowels = new List<string>() { "A", "E", "I", "O", "U" };
 
-            if (vowels.Contains(_jobTitle.ToString().Substring(0, 1)));
+            if (vowels.Contains(_jobTitle.ToString().Substring(0, 1))) ;
             {
                 article = "an";
             }

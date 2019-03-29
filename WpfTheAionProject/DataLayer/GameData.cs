@@ -28,10 +28,15 @@ namespace WpfTheAionProject.DataLayer
                 LocationId = 0,
                 Inventory = new ObservableCollection<GameItemQuantity>()
                 {
-                    new GameItemQuantity(1002, 1),
-                    new GameItemQuantity(2001, 5),
+                    new GameItemQuantity(GameItemById(1002), 1),
+                    new GameItemQuantity(GameItemById(2001), 5),
                 }              
             };
+        }
+
+        private static GameItem GameItemById(int id)
+        {
+            return StandardGameItems().FirstOrDefault(i => i.Id == id);
         }
 
         public static GameMapCoordinates InitialGameMapLocation()
@@ -87,10 +92,10 @@ namespace WpfTheAionProject.DataLayer
                 "equatorial line on the planet of Corlon, they provide excellent habitat for a rich ecosystem of flora and fauna.",
                 Accessible = true,
                 ModifiyExperiencePoints = 10,
-                GameItems = new List<GameItemQuantity>
+                GameItems = new ObservableCollection<GameItemQuantity>
                 {
-                    new GameItemQuantity(3001, 1),
-                    new GameItemQuantity(1002, 1)
+                    new GameItemQuantity(GameItemById(3001), 1),
+                    new GameItemQuantity(GameItemById(1002), 1)
                 }
             };
             gameMap.MapLocations[1, 2] = new Location()
@@ -131,9 +136,9 @@ namespace WpfTheAionProject.DataLayer
                 "recorded information of the galactic history.",
                 Accessible = true,
                 ModifiyExperiencePoints = 10,
-                GameItems = new List<GameItemQuantity>()
+                GameItems = new ObservableCollection<GameItemQuantity>()
                 {
-                    new GameItemQuantity(2001, 10)
+                    new GameItemQuantity(GameItemById(2001), 10)
                 }
             };
             return gameMap;

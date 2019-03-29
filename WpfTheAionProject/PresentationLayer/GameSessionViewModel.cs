@@ -138,23 +138,6 @@ namespace WpfTheAionProject.PresentationLayer
             }
         }
 
-        public ObservableCollection<GameItemQuantity> Weapons // todo left off here John! :-)
-        {
-            get
-            {
-                ObservableCollection<GameItemQuantity> weapons = new ObservableCollection<GameItemQuantity>();
-                foreach (var item in _player.Inventory)
-                {
-                    if (_gameMap.GameItemById(item.GameItemId) is Weapon)
-                    {
-                        weapons.Add(item);
-                    }
-                }
-
-                return weapons;
-            }
-        }
-
         #endregion
 
         #region CONSTRUCTORS
@@ -191,6 +174,8 @@ namespace WpfTheAionProject.PresentationLayer
             _gameStartTime = DateTime.Now;
             UpdateAvailableTravelPoints();
         }
+
+        #region MOVEMENT METHODS
 
         /// <summary>
         /// calculate the available travel points from current location
@@ -391,6 +376,8 @@ namespace WpfTheAionProject.PresentationLayer
                 OnPlayerMove();
             }
         }
+
+        #endregion
 
         #region GAME TIME METHODS
 
