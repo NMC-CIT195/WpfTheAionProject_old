@@ -11,8 +11,8 @@ namespace WpfTheAionProject.Models
         public int HealthChange { get; set; }
         public int LivesChange { get; set; }
 
-        public Potion(int id, string name, int value, int healthChange, int livesChange, string description)
-            : base(id, name, value, description)
+        public Potion(int id, string name, int value, int healthChange, int livesChange, string description, int experiencePoints)
+            : base(id, name, value, description, experiencePoints)
         {
             HealthChange = healthChange;
             LivesChange = livesChange;

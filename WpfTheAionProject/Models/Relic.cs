@@ -6,21 +6,12 @@ using System.Threading.Tasks;
 
 namespace WpfTheAionProject.Models
 {
-    public class Treasure : GameItem
+    public class Relic : GameItem
     {
-        public enum TreasureType
-        {
-            Coin,
-            Jewel,
-            Manuscript
-        }
-
-        public TreasureType Type { get; set; }
-
-        public Treasure(int id, string name, int value, TreasureType type, string description, int experiencePoints)
+        public Relic(int id, string name, int value, string description, int experiencePoints)
             : base(id, name, value, description, experiencePoints)
         {
-            Type = type;
+
         }
 
         public override string InformationString()

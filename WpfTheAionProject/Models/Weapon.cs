@@ -11,8 +11,8 @@ namespace WpfTheAionProject.Models
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
 
-        public Weapon(int id, string name, int value, int minDamage, int maxDamage, string description)
-            : base(id, name, value, description)
+        public Weapon(int id, string name, int value, int minDamage, int maxDamage, string description, int experiencePoints)
+            : base(id, name, value, description, experiencePoints)
         {
             MinimumDamage = minDamage;
             MaximumDamage = maxDamage;

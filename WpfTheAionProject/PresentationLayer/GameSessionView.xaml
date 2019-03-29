@@ -300,6 +300,27 @@
                             x:Name="PlayerDataTabControl"
                             Width="auto">
 
+                            <TabItem Header="Relics"
+                                x:Name="RelicsTabItem">
+                                <DataGrid 
+                                    ItemsSource="{Binding Player.Potions}"
+                                    AutoGenerateColumns="False"
+                                    HeadersVisibility="Column">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Name"
+                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                                Width="*"/>
+                                        <DataGridTextColumn Header="Qty"
+                                                IsReadOnly="True"
+                                                Width="Auto"
+                                                Binding="{Binding Quantity, Mode=OneWay}"/>
+                                        <DataGridTextColumn Header="Value"
+                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
+                                                Width="Auto"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </TabItem>
+
                             <TabItem Header="Weapons"
                                 x:Name="WeaponsTabItem">
                                 <DataGrid 

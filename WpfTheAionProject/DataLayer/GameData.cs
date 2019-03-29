@@ -95,7 +95,8 @@ namespace WpfTheAionProject.DataLayer
                 GameItems = new ObservableCollection<GameItemQuantity>
                 {
                     new GameItemQuantity(GameItemById(3001), 1),
-                    new GameItemQuantity(GameItemById(1002), 1)
+                    new GameItemQuantity(GameItemById(1002), 1),
+                    new GameItemQuantity(GameItemById(4001), 1)
                 }
             };
             gameMap.MapLocations[1, 2] = new Location()
@@ -148,12 +149,13 @@ namespace WpfTheAionProject.DataLayer
         {
             return new List<GameItem>()
             {
-                new Weapon(1001, "Longsword", 75, 1, 4, "The longsword is a type of sword characterized as having a cruciform hilt with a grip for two-handed use and 85 to 110 cm in length."),
-                new Weapon(1002, "Phaser", 250, 1, 9, "Phasers are common and versatile phased array pulsed energy projectile weapons."),
-                new Treasure(2001, "Gold Coin", 10, Treasure.TreasureType.Coin, "24 karat gold coin"),
-                new Treasure(2020, "Small Diamond", 50, Treasure.TreasureType.Jewel, "A small pea-sized diamond of various colors."),
-                new Treasure(2030, "Kalzonian Manuscript", 10, Treasure.TreasureType.Manuscript, "Reportedly stolen during the Zantorian raids of of the 4th dynasty, it is said to contain information about early galactic technologies."),
-                new Potion(3001, "Distilled Baladorian Lion Mucus", 5, 40, 0, "Rare potion due to the dangers of procurement. Add 40 points of health.")
+                new Weapon(1001, "Longsword", 75, 1, 4, "The longsword is a type of sword characterized as having a cruciform hilt with a grip for two-handed use and 85 to 110 cm in length.", 10),
+                new Weapon(1002, "Phaser", 250, 1, 9, "Phasers are common and versatile phased array pulsed energy projectile weapons.", 10),
+                new Treasure(2001, "Gold Coin", 10, Treasure.TreasureType.Coin, "24 karat gold coin", 1),
+                new Treasure(2020, "Small Diamond", 50, Treasure.TreasureType.Jewel, "A small pea-sized diamond of various colors.", 1),
+                new Treasure(2030, "Kalzonian Manuscript", 10, Treasure.TreasureType.Manuscript, "Reportedly stolen during the Zantorian raids of of the 4th dynasty, it is said to contain information about early galactic technologies.", 5),
+                new Potion(3001, "Distilled Baladorian Lion Mucus", 5, 40, 0, "Rare potion due to the dangers of procurement. Add 40 points of health.", 5),
+                new Relic(4001, "Crystal Key", 5, "Conjured by the Forest Wizard, it opens many doors.", 5)
             };
         }
     }

@@ -313,7 +313,7 @@ namespace WpfTheAionProject.PresentationLayer
                 //
                 // update lives
                 //
-                if (_currentLocation.ModifyLives != 0) _player.Lives += _currentLocation.ModifyLives;
+                _player.Lives += _currentLocation.ModifyLives;
 
                 //
                 // display a new message if available
@@ -418,6 +418,10 @@ namespace WpfTheAionProject.PresentationLayer
 
         #region ACTION METHODS
 
+        /// <summary>
+        /// add a new item to the players inventory
+        /// </summary>
+        /// <param name="selectedItem"></param>
         public void AddItemToInventory(object selectedItem)
         {
             if (selectedItem != null && _currentLocation.GameItems.Contains(selectedItem))
@@ -425,10 +429,21 @@ namespace WpfTheAionProject.PresentationLayer
                 GameItemQuantity selectedGameItemQuantity = selectedItem as GameItemQuantity;
 
                 _currentLocation.GameItems.Remove(selectedGameItemQuantity);
-                _player.Inventory.Add(selectedGameItemQuantity);
+                _player.AddGameItemQuantityToInventory(selectedGameItemQuantity);
 
                 _player.UpdateInventoryCategories();
+
+                OnPlayerPickUp(selectedGameItemQuantity);
             }
+        }
+
+        /// <summary>
+        /// process events when a player picks up a new game item
+        /// </summary>
+        /// <param name="gameItemQuantity">new game item</param>
+        private void OnPlayerPickUp(GameItemQuantity gameItemQuantity)
+        {
+            _player.ExperiencePoints += gameItemQuantity.GameItem.ExperiencePoints;
         }
 
         #endregion

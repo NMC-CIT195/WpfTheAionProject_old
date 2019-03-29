@@ -30,6 +30,7 @@ namespace WpfTheAionProject.Models
         private ObservableCollection<GameItemQuantity> _potions;
         private ObservableCollection<GameItemQuantity> _treasure;
         private ObservableCollection<GameItemQuantity> _weapons;
+        private ObservableCollection<GameItemQuantity> _relics;
 
         #endregion
 
@@ -109,6 +110,12 @@ namespace WpfTheAionProject.Models
             set { _treasure = value; }
         }
 
+        public ObservableCollection<GameItemQuantity> Relics
+        {
+            get { return _relics; }
+            set { _relics = value; }
+        }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -119,26 +126,70 @@ namespace WpfTheAionProject.Models
             _weapons = new ObservableCollection<GameItemQuantity>();
             _treasure = new ObservableCollection<GameItemQuantity>();
             _potions = new ObservableCollection<GameItemQuantity>();
+            _relics = new ObservableCollection<GameItemQuantity>();
         }
 
         #endregion
 
         #region METHODS
 
+        /// <summary>
+        /// update the game item category lists
+        /// </summary>
         public void UpdateInventoryCategories()
         {
             Potions.Clear();
             Weapons.Clear();
             Treasure.Clear();
+            Relics.Clear();
 
-            foreach (var item in _inventory)
+            foreach (var gameItemQuantity in _inventory)
             {
-                if (item.GameItem is Potion) Potions.Add(item);
-                if (item.GameItem is Weapon) Weapons.Add(item);
-                if (item.GameItem is Treasure) Treasure.Add(item);
+                if (gameItemQuantity.GameItem is Potion) Potions.Add(gameItemQuantity);
+                if (gameItemQuantity.GameItem is Weapon) Weapons.Add(gameItemQuantity);
+                if (gameItemQuantity.GameItem is Treasure) Treasure.Add(gameItemQuantity);
+                if (gameItemQuantity.GameItem is Relic) Relics.Add(gameItemQuantity);
             }
         }
 
+        /// <summary>
+        /// add selected item to inventory or update quantity if already in inventory
+        /// </summary>
+        /// <param name="selectedGameItemQuantity">selected item</param>
+        public void AddGameItemQuantityToInventory(GameItemQuantity selectedGameItemQuantity)
+        {
+                if (!IsGameItemQuantityInInventory(selectedGameItemQuantity))
+                {
+                    _inventory.Add(selectedGameItemQuantity);
+                }
+                else
+                {
+                    _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id).Quantity += selectedGameItemQuantity.Quantity;
+                }
+        }
+
+        /// <summary>
+        /// determine if the selected item is currently in inventory
+        /// </summary>
+        /// <param name="newGameItemQuantity">in inventory</param>
+        /// <returns></returns>
+        private bool IsGameItemQuantityInInventory(GameItemQuantity newGameItemQuantity)
+        {
+            foreach (GameItemQuantity gameItemQuantity in _inventory)
+            {
+                if (newGameItemQuantity.GameItem.Id == gameItemQuantity.GameItem.Id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// determine if this is a old location
+        /// </summary>
+        /// <param name="location">old location</param>
+        /// <returns></returns>
         public bool HasVisited(Location location)
         {
             return _locationsVisited.Contains(location);

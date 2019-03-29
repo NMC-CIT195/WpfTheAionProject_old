@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Relic.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Utilities\StringHelpers.cs" />
     <Page Include="MainWindow.xaml">
