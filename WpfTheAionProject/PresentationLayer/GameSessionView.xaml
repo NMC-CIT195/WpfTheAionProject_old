@@ -119,12 +119,27 @@
                     Style="{StaticResource BorderStyle}">
                     <StackPanel>
                         <Label 
-                        Content="Travel"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Style="{StaticResource MainPanelLabelStyle}"/>
+                            Content="{Binding MissionTimeDisplay}" 
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource MainPanelLabelStyle}"/>
+                        <Label 
+                            Content="Current Location" 
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource MainPanelLabelStyle}"/>
+                        <TextBox
+                            Width="175"
+                            Margin="10"
+                            Text="{Binding CurrentLocation.Name, Mode=OneWay}" 
+                            Style="{StaticResource MainPanelTextBoxStyle}"
+                            HorizontalContentAlignment="Center"
+                            Background="WhiteSmoke"/>
+
+                        <Label 
+                            Content="Travel"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource MainPanelLabelStyle}"/>
                         <StackPanel
-                            Grid.Row="1" 
                             Orientation="Vertical">
                             <StackPanel
                                 Orientation="Horizontal"
@@ -181,6 +196,7 @@
                                     Text="{Binding WestLocation.Name, Mode=OneWay}" 
                                     Visibility="{Binding HasWestLocation, Converter={StaticResource BooleanToVisibility}}"
                                     Style="{StaticResource MainPanelTextBoxStyle}"/>
+
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -199,24 +215,13 @@
                             Grid.Row="0" 
                             Orientation="Vertical">
                             <StackPanel
-                                    Orientation="Vertical"
-                                    HorizontalAlignment="Center"
-                                    Margin="0">
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                Margin="0">
                                 <Label 
-                                        Content="{Binding MissionTimeDisplay}" 
+                                        Content="Current Location Information" 
                                         HorizontalAlignment="Center"
                                         Style="{StaticResource MainPanelLabelStyle}"/>
-                                <Label 
-                                        Content="Current Location" 
-                                        HorizontalAlignment="Center"
-                                        Style="{StaticResource MainPanelLabelStyle}"/>
-                                <TextBox
-                                    Width="250"
-                                    Margin="0,0,0,5"
-                                    Text="{Binding CurrentLocation.Name, Mode=OneWay}" 
-                                    Style="{StaticResource MainPanelTextBoxStyle}"
-                                    HorizontalContentAlignment="Center"
-                                    Background="WhiteSmoke"/>
                                 <Border
                                     Grid.Column="1"
                                     Margin="0,0,0,5"
@@ -224,7 +229,7 @@
                                     Background="WhiteSmoke"
                                     Style="{StaticResource BorderStyle}">
                                     <TextBox
-                                        Height="100"
+                                        Height="75"
                                         Width="350"
                                         Margin="10"
                                         Background="WhiteSmoke"
@@ -241,25 +246,41 @@
                                     <TabItem Header="Items"
                                         x:Name="ItemsInfoTabItem">
                                         <DataGrid 
-                                            ItemsSource="{Binding CurrentLocation.GameItems}"
+                                            x:Name="LocationItemsDataGrid"
+                                            Height="150"
+                                            ItemsSource="{Binding CurrentLocation.GameItems}"                                                
                                             AutoGenerateColumns="False"
                                             HeadersVisibility="Column">
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Header="Name"
-                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
-                                                Width="*"/>
-                                                <DataGridTextColumn Header="Qty"
-                                                IsReadOnly="True"
-                                                Width="Auto"
-                                                Binding="{Binding Quantity, Mode=OneWay}"/>
-                                                <DataGridTextColumn Header="Value"
-                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
-                                                Width="Auto"/>
+                                                <DataGridTextColumn 
+                                                    Header="Description" 
+                                                    IsReadOnly="True"                 
+                                                    Binding="{Binding GameItem.Information, Mode=OneWay}"
+                                                    Width="*">
+                                                    <DataGridTextColumn.ElementStyle>
+                                                        <Style>
+                                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                        </Style>
+                                                    </DataGridTextColumn.ElementStyle>
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn 
+                                                    Header="Qty"
+                                                    IsReadOnly="True"
+                                                    Width="Auto"
+                                                    Binding="{Binding Quantity, Mode=OneWay}"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </TabItem>
                                 </TabControl>
                             </StackPanel>
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Orientation="Horizontal">
+                            <Button 
+                                Content="Pick Up" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Click="PickUpButtonClick"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -392,12 +413,12 @@
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
                                 Style="{StaticResource MainPanelLabelStyle}"/>
-                         <Border
+                            <Border
                             Margin="10"
                             Padding="0"
                             Background="WhiteSmoke"
                             Style="{StaticResource BorderStyle}">
-                            <TextBox
+                                <TextBox
                                 Height="50"
                                 Width="auto"
                                 Margin="10"
@@ -408,7 +429,7 @@
                                 VerticalScrollBarVisibility="Auto"
                                 VerticalContentAlignment="top"
                                 Style="{StaticResource MainPanelTextBoxStyle}"/>
-                        </Border>                           
+                            </Border>
                         </StackPanel>
 
 

@@ -7,6 +7,7 @@ using WpfTheAionProject.Models;
 using WpfTheAionProject;
 using System.Windows.Threading;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace WpfTheAionProject.PresentationLayer
 {
@@ -411,6 +412,23 @@ namespace WpfTheAionProject.PresentationLayer
         {
             _gameTime = DateTime.Now - _gameStartTime;
             MissionTimeDisplay = "Mission Time " + _gameTime.ToString(@"hh\:mm\:ss");
+        }
+
+        #endregion
+
+        #region ACTION METHODS
+
+        public void AddItemToInventory(object selectedItem)
+        {
+            if (selectedItem != null && _currentLocation.GameItems.Contains(selectedItem))
+            {
+                GameItemQuantity selectedGameItemQuantity = selectedItem as GameItemQuantity;
+
+                _currentLocation.GameItems.Remove(selectedGameItemQuantity);
+                _player.Inventory.Add(selectedGameItemQuantity);
+
+                _player.UpdateInventoryCategories();
+            }
         }
 
         #endregion

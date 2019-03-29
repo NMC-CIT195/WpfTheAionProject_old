@@ -17,5 +17,10 @@ namespace WpfTheAionProject.Models
             MinimumDamage = minDamage;
             MaximumDamage = maxDamage;
         }
+
+        public override string InformationString()
+        {
+            return $"{Name}: {Description}\nDamage: {MinimumDamage}-{MaximumDamage}";
+        }
     }
 }

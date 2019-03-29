@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace WpfTheAionProject.Models
 {
@@ -26,6 +27,9 @@ namespace WpfTheAionProject.Models
         private JobTitleName _jobTitle;
         private List<Location> _locationsVisited;
         private ObservableCollection<GameItemQuantity> _inventory;
+        private ObservableCollection<GameItemQuantity> _potions;
+        private ObservableCollection<GameItemQuantity> _treasure;
+        private ObservableCollection<GameItemQuantity> _weapons;
 
         #endregion
 
@@ -83,64 +87,26 @@ namespace WpfTheAionProject.Models
             set
             {
                 _inventory = value;
-                OnPropertyChanged(nameof(Weapons));
-                OnPropertyChanged(nameof(Potions));
-                OnPropertyChanged(nameof(Treasure));
+                UpdateInventoryCategories();
             }
         }
 
         public ObservableCollection<GameItemQuantity> Weapons
         {
-            get
-            {
-                ObservableCollection<GameItemQuantity> weapons = new ObservableCollection<GameItemQuantity>();
-
-                foreach (var item in _inventory)
-                {
-                    if (item.GameItem is Weapon)
-                    {
-                        weapons.Add(item);
-                    }
-                }
-
-                return weapons;
-            }
+            get { return _weapons; }
+            set { _weapons = value; }
         }
 
         public ObservableCollection<GameItemQuantity> Potions
         {
-            get
-            {
-                ObservableCollection<GameItemQuantity> potions = new ObservableCollection<GameItemQuantity>();
-
-                foreach (var item in _inventory)
-                {
-                    if (item.GameItem is Potion)
-                    {
-                        potions.Add(item);
-                    }
-                }
-
-                return potions;
-            }
+            get { return _potions; }
+            set { _potions = value; }
         }
 
         public ObservableCollection<GameItemQuantity> Treasure
         {
-            get
-            {
-                ObservableCollection<GameItemQuantity> treasure = new ObservableCollection<GameItemQuantity>();
-
-                foreach (var item in _inventory)
-                {
-                    if (item.GameItem is Treasure)
-                    {
-                        treasure.Add(item);
-                    }
-                }
-
-                return treasure;
-            }
+            get { return _treasure; }
+            set { _treasure = value; }
         }
 
         #endregion
@@ -150,11 +116,28 @@ namespace WpfTheAionProject.Models
         public Player()
         {
             _locationsVisited = new List<Location>();
+            _weapons = new ObservableCollection<GameItemQuantity>();
+            _treasure = new ObservableCollection<GameItemQuantity>();
+            _potions = new ObservableCollection<GameItemQuantity>();
         }
 
         #endregion
 
         #region METHODS
+
+        public void UpdateInventoryCategories()
+        {
+            Potions.Clear();
+            Weapons.Clear();
+            Treasure.Clear();
+
+            foreach (var item in _inventory)
+            {
+                if (item.GameItem is Potion) Potions.Add(item);
+                if (item.GameItem is Weapon) Weapons.Add(item);
+                if (item.GameItem is Treasure) Treasure.Add(item);
+            }
+        }
 
         public bool HasVisited(Location location)
         {

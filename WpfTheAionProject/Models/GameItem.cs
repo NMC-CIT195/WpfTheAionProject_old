@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfTheAionProject.Models
 {
-    public class GameItem
+    public abstract class GameItem
     {
         //
         // auto implemented properties are used for 
@@ -15,6 +15,13 @@ namespace WpfTheAionProject.Models
         public string Name { get; set; }
         public int Value { get; set; }
         public string Description { get; set; }
+        public string Information
+        {
+            get
+            {
+                return InformationString();
+            }
+        }
 
         public GameItem(int id, string name, int value, string description)
         {
@@ -23,5 +30,7 @@ namespace WpfTheAionProject.Models
             Value = value;
             Description = description;
         }
+
+        public abstract string InformationString();
     }
 }

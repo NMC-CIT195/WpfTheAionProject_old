@@ -54,5 +54,13 @@ namespace WpfTheAionProject.PresentationLayer
         {
             _gameSessionViewModel.MoveWest();
         }
+
+        private void PickUpButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (LocationItemsDataGrid.SelectedItem != null)
+            {
+                _gameSessionViewModel.AddItemToInventory(LocationItemsDataGrid.SelectedItem);
+            }
+        }
     }
 }

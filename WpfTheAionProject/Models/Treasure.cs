@@ -22,5 +22,10 @@ namespace WpfTheAionProject.Models
         {
             Type = type;
         }
+
+        public override string InformationString()
+        {
+            return $"{Name}: {Description}\nValue: {Value}";
+        }
     }
 }
