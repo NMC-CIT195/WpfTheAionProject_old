@@ -33,7 +33,7 @@
         </Style>
         <Style x:Key="MainPanelButtonStyle" TargetType="Button">
             <Setter Property="Margin" Value="10,0,10,0"/>
-            <Setter Property="Width" Value="50"/>
+            <Setter Property="Width" Value="75"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="Background" Value="Silver"/>
             <Setter Property="Foreground" Value="MidnightBlue"/>
@@ -146,6 +146,7 @@
                                 HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
+                                    Width="50"
                                     Content="North" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
                                     Click="NorthTravelButton_Click"/>
@@ -160,6 +161,7 @@
                                 HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
+                                    Width="50"
                                     Content="East" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
                                     Click="EastTravelButton_Click"/>
@@ -174,6 +176,7 @@
                                 HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
+                                    Width="50"
                                     Content="South" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
                                     Click="SouthTravelButton_Click"/>
@@ -188,6 +191,7 @@
                                 HorizontalAlignment="Left"
                                 Margin="0,5,10,0">
                                 <Button 
+                                    Width="50"
                                     Content="West" 
                                     Style="{StaticResource MainPanelButtonStyle}" 
                                     Click="WestTravelButton_Click"/>
@@ -248,7 +252,8 @@
                                         <DataGrid 
                                             x:Name="LocationItemsDataGrid"
                                             Height="150"
-                                            ItemsSource="{Binding CurrentLocation.GameItems}"                                                
+                                            ItemsSource="{Binding CurrentLocation.GameItems}" 
+                                            SelectedItem="{Binding CurrentGameItem}"
                                             AutoGenerateColumns="False"
                                             HeadersVisibility="Column">
                                             <DataGrid.Columns>
@@ -280,7 +285,7 @@
                             <Button 
                                 Content="Pick Up" 
                                 Style="{StaticResource MainPanelButtonStyle}" 
-                                Click="PickUpButtonClick"/>
+                                Click="PickUpButton_Click"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -303,7 +308,9 @@
                             <TabItem Header="Relics"
                                 x:Name="RelicsTabItem">
                                 <DataGrid 
-                                    ItemsSource="{Binding Player.Potions}"
+                                    x:Name="RelicsDataGrid"
+                                    ItemsSource="{Binding Player.Relics}"
+                                    SelectedItem="{Binding CurrentGameItem}"
                                     AutoGenerateColumns="False"
                                     HeadersVisibility="Column">
                                     <DataGrid.Columns>
@@ -324,7 +331,9 @@
                             <TabItem Header="Weapons"
                                 x:Name="WeaponsTabItem">
                                 <DataGrid 
+                                    x:Name="WeaponsDataGrid"
                                     ItemsSource="{Binding Player.Weapons}"
+                                    SelectedItem="{Binding CurrentGameItem}"
                                     AutoGenerateColumns="False"
                                     HeadersVisibility="Column">
                                     <DataGrid.Columns>
@@ -345,7 +354,9 @@
                             <TabItem Header="Treasure"
                                 x:Name="TreasureTabItem">
                                 <DataGrid 
+                                    x:Name="TreasureDataGrid"
                                     ItemsSource="{Binding Player.Treasure}"
+                                    SelectedItem="{Binding CurrentGameItem}"
                                     AutoGenerateColumns="False"
                                     HeadersVisibility="Column">
                                     <DataGrid.Columns>
@@ -366,7 +377,9 @@
                             <TabItem Header="Potions"
                                 x:Name="PotionsTabItem">
                                 <DataGrid 
+                                    x:Name="PotionsDataGrid"
                                     ItemsSource="{Binding Player.Potions}"
+                                    SelectedItem="{Binding CurrentGameItem}"
                                     AutoGenerateColumns="False"
                                     HeadersVisibility="Column">
                                     <DataGrid.Columns>
@@ -385,6 +398,14 @@
                             </TabItem>
 
                         </TabControl>
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Margin="10">
+                            <Button 
+                                Content="Put Down" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Click="PutDownButton_Click"/>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
                 <Border
@@ -474,6 +495,12 @@
                                 HorizontalAlignment="Right">
                                 <Label Content="Experience" Style="{StaticResource MainPanelLabelStyle}"/>
                                 <TextBox Text="{Binding Player.ExperiencePoints}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                                <Label Content="Wealth" Style="{StaticResource MainPanelLabelStyle}"/>
+                                <TextBox Text="{Binding Player.Wealth}" Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>

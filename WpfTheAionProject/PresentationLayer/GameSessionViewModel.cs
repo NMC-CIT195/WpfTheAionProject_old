@@ -32,6 +32,8 @@ namespace WpfTheAionProject.PresentationLayer
         private Location _currentLocation;
         private Location _northLocation, _eastLocation, _southLocation, _westLocation;
 
+        private GameItemQuantity _currentGameItem;
+ 
         #endregion
 
         #region PROPERTIES
@@ -74,6 +76,7 @@ namespace WpfTheAionProject.PresentationLayer
                 OnPropertyChanged(nameof(HasNorthLocation));
             }
         }
+
 
         public Location EastLocation
         {
@@ -139,6 +142,12 @@ namespace WpfTheAionProject.PresentationLayer
             }
         }
 
+        public GameItemQuantity CurrentGameItem
+        {
+            get { return _currentGameItem; }
+            set { _currentGameItem = value; }
+        }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -174,6 +183,7 @@ namespace WpfTheAionProject.PresentationLayer
         {
             _gameStartTime = DateTime.Now;
             UpdateAvailableTravelPoints();
+            _player.UpdateInventoryCategories();
         }
 
         #region MOVEMENT METHODS
@@ -422,18 +432,50 @@ namespace WpfTheAionProject.PresentationLayer
         /// add a new item to the players inventory
         /// </summary>
         /// <param name="selectedItem"></param>
-        public void AddItemToInventory(object selectedItem)
+        public void AddItemToInventory()
         {
-            if (selectedItem != null && _currentLocation.GameItems.Contains(selectedItem))
+            //
+            // confirm a game item selected and is in current location
+            // subtract from location and add to inventory
+            //
+            if (_currentGameItem != null && _currentLocation.GameItems.Contains(_currentGameItem))
             {
-                GameItemQuantity selectedGameItemQuantity = selectedItem as GameItemQuantity;
+                //
+                // cast selected game item 
+                //
+                GameItemQuantity selectedGameItemQuantity = _currentGameItem as GameItemQuantity;
 
-                _currentLocation.GameItems.Remove(selectedGameItemQuantity);
+                _currentLocation.RemoveGameItemQuantityFromLocation(selectedGameItemQuantity);
                 _player.AddGameItemQuantityToInventory(selectedGameItemQuantity);
 
                 _player.UpdateInventoryCategories();
+                _currentLocation.UpdateLocationGameItems(selectedGameItemQuantity);
 
                 OnPlayerPickUp(selectedGameItemQuantity);
+            }
+        }
+
+
+        public void PutDownItemFromInventory()
+        {
+            //
+            // confirm a game item selected and is in inventory
+            // subtract from inventory and add to location
+            //
+            if (_currentGameItem != null)
+            {
+                //
+                // cast selected game item 
+                //
+                GameItemQuantity selectedGameItemQuantity = _currentGameItem as GameItemQuantity;
+
+                _currentLocation.AddGameItemQuantityToLocation(selectedGameItemQuantity);
+                _player.RemoveGameItemQuantityFromInventory(selectedGameItemQuantity);
+
+                _player.UpdateInventoryCategories();
+                _currentLocation.UpdateLocationGameItems(selectedGameItemQuantity);
+
+                OnPlayerPutDown(selectedGameItemQuantity);
             }
         }
 
@@ -444,6 +486,16 @@ namespace WpfTheAionProject.PresentationLayer
         private void OnPlayerPickUp(GameItemQuantity gameItemQuantity)
         {
             _player.ExperiencePoints += gameItemQuantity.GameItem.ExperiencePoints;
+            _player.Wealth += gameItemQuantity.GameItem.Value;
+        }
+
+        /// <summary>
+        /// process events when a player puts down a new game item
+        /// </summary>
+        /// <param name="gameItemQuantity">new game item</param>
+        private void OnPlayerPutDown(GameItemQuantity gameItemQuantity)
+        {
+            _player.Wealth -= gameItemQuantity.GameItem.Value;
         }
 
         #endregion

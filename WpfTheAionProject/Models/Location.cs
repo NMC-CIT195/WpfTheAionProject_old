@@ -14,7 +14,7 @@ namespace WpfTheAionProject.Models
     {
         #region ENUMS
 
- 
+
         #endregion
 
         #region FIELDS
@@ -63,14 +63,14 @@ namespace WpfTheAionProject.Models
             get { return _modifiyExperiencePoints; }
             set { _modifiyExperiencePoints = value; }
         }
-        
+
         public int RequiredExperiencePoints
         {
             get { return _requiredExperiencePoints; }
             set { _requiredExperiencePoints = value; }
         }
 
-       public int ModifyHealth
+        public int ModifyHealth
         {
             get { return _modifyHealth; }
             set { _modifyHealth = value; }
@@ -91,18 +91,17 @@ namespace WpfTheAionProject.Models
         public ObservableCollection<GameItemQuantity> GameItems
         {
             get { return _gameItems; }
-            set
-            {
-                _gameItems = value;
-                OnPropertyChanged(nameof(GameItems));
-            }
+            set { _gameItems = value; }
         }
 
         #endregion
 
         #region CONSTRUCTORS
 
-
+        public Location()
+        {
+            _gameItems = new ObservableCollection<GameItemQuantity>();
+        }
 
         #endregion
 
@@ -114,6 +113,76 @@ namespace WpfTheAionProject.Models
         public bool IsAccessibleByExperiencePoints(int playerExperiencePoints)
         {
             return playerExperiencePoints >= _requiredExperiencePoints ? true : false;
+        }
+
+        //
+        // Stopgap to force the list of items in the location to update
+        //
+        // todo refactor using the CollectionChanged event
+        public void UpdateLocationGameItems(GameItemQuantity newGameItemQuanity)
+        {
+            ObservableCollection<GameItemQuantity> updatedLocationGameItems = new ObservableCollection<GameItemQuantity>();
+
+            foreach (GameItemQuantity gameItemQuantity in _gameItems)
+            {
+                updatedLocationGameItems.Add(gameItemQuantity);
+            }
+
+            GameItems.Clear();
+
+            foreach (GameItemQuantity gameItemQuantity in updatedLocationGameItems)
+            {
+                GameItems.Add(gameItemQuantity);
+            }
+        }
+
+        /// <summary>
+        /// add selected item to location or update quantity if already in location
+        /// </summary>
+        /// <param name="selectedGameItemQuantity">selected item</param>
+        public void AddGameItemQuantityToLocation(GameItemQuantity selectedGameItemQuantity)
+        {
+            //
+            // locate selected item in location
+            //
+            GameItemQuantity gameItemQuantity = _gameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+
+            if (gameItemQuantity == null)
+            {
+                GameItemQuantity newGameItemQuantity = new GameItemQuantity();
+                newGameItemQuantity.GameItem = selectedGameItemQuantity.GameItem;
+                newGameItemQuantity.Quantity = 1;
+
+                _gameItems.Add(newGameItemQuantity);
+            }
+            else
+            {
+                gameItemQuantity.Quantity++;
+            }
+        }
+
+        /// <summary>
+        /// remove selected item from location or update quantity
+        /// </summary>
+        /// <param name="selectedGameItemQuantity">selected item</param>
+        public void RemoveGameItemQuantityFromLocation(GameItemQuantity selectedGameItemQuantity)
+        {
+            //
+            // locate selected item in location
+            //
+            GameItemQuantity gameItemQuantity = _gameItems.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+
+            if (gameItemQuantity != null)
+            {
+                if (selectedGameItemQuantity.Quantity == 1)
+                {
+                    _gameItems.Remove(gameItemQuantity);
+                }
+                else
+                {
+                    gameItemQuantity.Quantity--;
+                }
+            }
         }
 
         #endregion

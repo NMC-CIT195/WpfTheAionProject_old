@@ -24,6 +24,7 @@ namespace WpfTheAionProject.Models
         private int _lives;
         private int _health;
         private int _experiencePoints;
+        private int _wealth;
         private JobTitleName _jobTitle;
         private List<Location> _locationsVisited;
         private ObservableCollection<GameItemQuantity> _inventory;
@@ -76,6 +77,16 @@ namespace WpfTheAionProject.Models
             }
         }
 
+        public int Wealth
+        {
+            get { return _wealth; }
+            set
+            {
+                _wealth = value;
+                OnPropertyChanged(nameof(Wealth));
+            }
+        }
+
         public List<Location> LocationsVisited
         {
             get { return _locationsVisited; }
@@ -88,7 +99,6 @@ namespace WpfTheAionProject.Models
             set
             {
                 _inventory = value;
-                UpdateInventoryCategories();
             }
         }
 
@@ -158,14 +168,47 @@ namespace WpfTheAionProject.Models
         /// <param name="selectedGameItemQuantity">selected item</param>
         public void AddGameItemQuantityToInventory(GameItemQuantity selectedGameItemQuantity)
         {
-                if (!IsGameItemQuantityInInventory(selectedGameItemQuantity))
+            //
+            // locate selected item in inventory
+            //
+            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+
+            if (gameItemQuantity == null)
+            {
+                GameItemQuantity newGameItemQuantity = new GameItemQuantity();
+                newGameItemQuantity.GameItem = selectedGameItemQuantity.GameItem;
+                newGameItemQuantity.Quantity = 1;
+
+                _inventory.Add(newGameItemQuantity);
+            }
+            else
+            {
+                gameItemQuantity.Quantity++;
+            }
+        }
+
+        /// <summary>
+        /// remove selected item from inventory
+        /// </summary>
+        /// <param name="selectedGameItemQuantity">selected item</param>
+        public void RemoveGameItemQuantityFromInventory(GameItemQuantity selectedGameItemQuantity)
+        {
+            //
+            // locate selected item in inventory
+            //
+            GameItemQuantity gameItemQuantity = _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id);
+
+            if (gameItemQuantity != null)
+            {
+                if (selectedGameItemQuantity.Quantity == 1)
                 {
-                    _inventory.Add(selectedGameItemQuantity);
+                    _inventory.Remove(gameItemQuantity);
                 }
                 else
                 {
-                    _inventory.FirstOrDefault(i => i.GameItem.Id == selectedGameItemQuantity.GameItem.Id).Quantity += selectedGameItemQuantity.Quantity;
+                    gameItemQuantity.Quantity--;
                 }
+            }
         }
 
         /// <summary>
