@@ -297,15 +297,7 @@ namespace WpfTheAionProject.PresentationLayer
                 //
                 // update health
                 //
-                if (_currentLocation.ModifyHealth != 0)
-                {
-                    _player.Health += _currentLocation.ModifyHealth;
-                    if (_player.Health > 100)
-                    {
-                        _player.Health = 100;
-                        _player.Lives++;
-                    }
-                }
+                _player.Health += _currentLocation.ModifyHealth;
 
                 //
                 // update lives

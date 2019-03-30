@@ -33,7 +33,7 @@ namespace WpfTheAionProject.PresentationLayer
         private Location _northLocation, _eastLocation, _southLocation, _westLocation;
 
         private GameItemQuantity _currentGameItem;
- 
+
         #endregion
 
         #region PROPERTIES
@@ -310,15 +310,7 @@ namespace WpfTheAionProject.PresentationLayer
                 //
                 // update health
                 //
-                if (_currentLocation.ModifyHealth != 0)
-                {
-                    _player.Health += _currentLocation.ModifyHealth;
-                    if (_player.Health > 100)
-                    {
-                        _player.Health = 100;
-                        _player.Lives++;
-                    }
-                }
+                _player.Health += _currentLocation.ModifyHealth;
 
                 //
                 // update lives

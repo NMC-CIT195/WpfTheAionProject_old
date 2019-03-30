@@ -63,6 +63,17 @@ namespace WpfTheAionProject.Models
             set
             {
                 _health = value;
+
+                if (_health > 100)
+                {
+                    _health = 100;
+                }
+                else if (_health <= 0)
+                {
+                    _health = 100;
+                    _lives--;
+                }
+
                 OnPropertyChanged(nameof(Health));
             }
         }
