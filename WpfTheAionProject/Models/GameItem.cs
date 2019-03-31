@@ -16,6 +16,7 @@ namespace WpfTheAionProject.Models
         public int Value { get; set; }
         public string Description { get; set; }
         public int ExperiencePoints { get; set; }
+        public string UseMessage { get; set; }
 
         public string Information
         {
@@ -25,13 +26,14 @@ namespace WpfTheAionProject.Models
             }
         }
 
-        public GameItem(int id, string name, int value, string description, int experiencePoints)
+        public GameItem(int id, string name, int value, string description, int experiencePoints, string useMessage = "")
         {
             Id = id;
             Name = name;
             Value = value;
             Description = description;
             ExperiencePoints = experiencePoints;
+            UseMessage = useMessage;
         }
 
         public abstract string InformationString();

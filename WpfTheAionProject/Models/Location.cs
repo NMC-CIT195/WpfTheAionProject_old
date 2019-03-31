@@ -24,6 +24,7 @@ namespace WpfTheAionProject.Models
         private string _description;
         private bool _accessible;
         private int _requiredExperiencePoints;
+        private int _requiredRelicId;
         private int _modifiyExperiencePoints;
         private int _modifyHealth;
         private int _modifyLives;
@@ -68,6 +69,12 @@ namespace WpfTheAionProject.Models
         {
             get { return _requiredExperiencePoints; }
             set { _requiredExperiencePoints = value; }
+        }
+
+        public int RequiredRelicId
+        {
+            get { return _requiredRelicId; }
+            set { _requiredRelicId = value; }
         }
 
         public int ModifyHealth
@@ -119,7 +126,7 @@ namespace WpfTheAionProject.Models
         // Stopgap to force the list of items in the location to update
         //
         // todo refactor using the CollectionChanged event
-        public void UpdateLocationGameItems(GameItemQuantity newGameItemQuanity)
+        public void UpdateLocationGameItems()
         {
             ObservableCollection<GameItemQuantity> updatedLocationGameItems = new ObservableCollection<GameItemQuantity>();
 
@@ -159,6 +166,8 @@ namespace WpfTheAionProject.Models
             {
                 gameItemQuantity.Quantity++;
             }
+
+            UpdateLocationGameItems();
         }
 
         /// <summary>
@@ -183,6 +192,8 @@ namespace WpfTheAionProject.Models
                     gameItemQuantity.Quantity--;
                 }
             }
+
+            UpdateLocationGameItems();
         }
 
         #endregion

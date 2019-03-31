@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 namespace WpfTheAionProject.Models
 {
     public class Relic : GameItem
-    {
-        public Relic(int id, string name, int value, string description, int experiencePoints)
-            : base(id, name, value, description, experiencePoints)
+    {       
+        public enum UseActionType
         {
+            OPENLOCATION,
+            KILLPLAYER
+        }
 
+        public UseActionType UseAction { get; set; }
+
+        public Relic(int id, string name, int value, string description, int experiencePoints, string useMessage, UseActionType useAction)
+            : base(id, name, value, description, experiencePoints, useMessage)
+        {
+            UseAction = useAction;
         }
 
         public override string InformationString()

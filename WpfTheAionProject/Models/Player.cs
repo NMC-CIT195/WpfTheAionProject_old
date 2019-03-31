@@ -196,6 +196,8 @@ namespace WpfTheAionProject.Models
             {
                 gameItemQuantity.Quantity++;
             }
+
+            UpdateInventoryCategories();
         }
 
         /// <summary>
@@ -220,6 +222,8 @@ namespace WpfTheAionProject.Models
                     gameItemQuantity.Quantity--;
                 }
             }
+
+            UpdateInventoryCategories();
         }
 
         /// <summary>

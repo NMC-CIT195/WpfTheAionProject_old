@@ -67,5 +67,10 @@ namespace WpfTheAionProject.PresentationLayer
         {
             _gameSessionViewModel.PutDownItemFromInventory();
         }
+
+        private void UseButton_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.OnUseGameItem();
+        }
     }
 }

@@ -8,6 +8,7 @@ using WpfTheAionProject;
 using System.Windows.Threading;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
+using System.Windows;
 
 namespace WpfTheAionProject.PresentationLayer
 {
@@ -31,6 +32,7 @@ namespace WpfTheAionProject.PresentationLayer
         private Map _gameMap;
         private Location _currentLocation;
         private Location _northLocation, _eastLocation, _southLocation, _westLocation;
+        private string _currentLocationInformation;
 
         private GameItemQuantity _currentGameItem;
 
@@ -59,7 +61,9 @@ namespace WpfTheAionProject.PresentationLayer
             set
             {
                 _currentLocation = value;
+                _currentLocationInformation = _currentLocation.Description;
                 OnPropertyChanged(nameof(CurrentLocation));
+                OnPropertyChanged(nameof(CurrentLocationInformation));
             }
         }
 
@@ -76,7 +80,6 @@ namespace WpfTheAionProject.PresentationLayer
                 OnPropertyChanged(nameof(HasNorthLocation));
             }
         }
-
 
         public Location EastLocation
         {
@@ -108,6 +111,17 @@ namespace WpfTheAionProject.PresentationLayer
                 _westLocation = value;
                 OnPropertyChanged(nameof(WestLocation));
                 OnPropertyChanged(nameof(HasWestLocation));
+            }
+        }
+
+
+        public string CurrentLocationInformation
+        {
+            get { return _currentLocationInformation; }
+            set
+            {
+                _currentLocationInformation = value;
+                OnPropertyChanged(nameof(CurrentLocationInformation));
             }
         }
 
@@ -183,6 +197,7 @@ namespace WpfTheAionProject.PresentationLayer
         {
             _gameStartTime = DateTime.Now;
             UpdateAvailableTravelPoints();
+            _currentLocationInformation = CurrentLocation.Description;
             _player.UpdateInventoryCategories();
         }
 
@@ -440,14 +455,14 @@ namespace WpfTheAionProject.PresentationLayer
                 _currentLocation.RemoveGameItemQuantityFromLocation(selectedGameItemQuantity);
                 _player.AddGameItemQuantityToInventory(selectedGameItemQuantity);
 
-                _player.UpdateInventoryCategories();
-                _currentLocation.UpdateLocationGameItems(selectedGameItemQuantity);
-
                 OnPlayerPickUp(selectedGameItemQuantity);
             }
         }
 
-
+        /// <summary>
+        /// remove item from the players inventory
+        /// </summary>
+        /// <param name="selectedItem"></param>
         public void PutDownItemFromInventory()
         {
             //
@@ -463,9 +478,6 @@ namespace WpfTheAionProject.PresentationLayer
 
                 _currentLocation.AddGameItemQuantityToLocation(selectedGameItemQuantity);
                 _player.RemoveGameItemQuantityFromInventory(selectedGameItemQuantity);
-
-                _player.UpdateInventoryCategories();
-                _currentLocation.UpdateLocationGameItems(selectedGameItemQuantity);
 
                 OnPlayerPutDown(selectedGameItemQuantity);
             }
@@ -488,6 +500,97 @@ namespace WpfTheAionProject.PresentationLayer
         private void OnPlayerPutDown(GameItemQuantity gameItemQuantity)
         {
             _player.Wealth -= gameItemQuantity.GameItem.Value;
+        }
+
+        /// <summary>
+        /// process using an item in the player's inventory
+        /// </summary>
+        public void OnUseGameItem()
+        {
+             switch (_currentGameItem.GameItem)
+            {
+                case Potion potion:
+                    ProcessPotionUse(potion);
+                    break;
+                case Relic relic:
+                    ProcessRelicUse(relic);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// process the effects of using the relic
+        /// </summary>
+        /// <param name="potion">potion</param>
+        private void ProcessRelicUse(Relic relic)
+        {
+            string message;
+
+            switch (relic.UseAction)
+            {
+                case Relic.UseActionType.OPENLOCATION:
+                    message = _gameMap.OpenLocationsByRelic(relic.Id);
+                    CurrentLocationInformation = relic.UseMessage;
+                    break;
+                case Relic.UseActionType.KILLPLAYER:
+                    PlayerDies(relic.UseMessage);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// process player dies with option to reset and play again
+        /// </summary>
+        /// <param name="message">message regarding player death</param>
+        private void PlayerDies(string message)
+        {
+            string messagetext = message +
+                "\n\nWould you like to play again?";
+
+            string titleText = "Death";
+            MessageBoxButton button = MessageBoxButton.YesNo;
+            MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    ResetPlayer();
+                    break;
+                case MessageBoxResult.No:
+                    QuiteApplication();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// player chooses to exit game
+        /// </summary>
+        private void QuiteApplication()
+        {
+            Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// player chooses to reset game
+        /// </summary>
+        private void ResetPlayer()
+        {
+            Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// process the effects of using the potion
+        /// </summary>
+        /// <param name="potion">potion</param>
+        private void ProcessPotionUse(Potion potion)
+        {
+            _player.Health += potion.HealthChange;
+            _player.Lives += potion.LivesChange;
+            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
         }
 
         #endregion

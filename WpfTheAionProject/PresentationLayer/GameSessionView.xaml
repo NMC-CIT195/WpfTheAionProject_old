@@ -239,7 +239,7 @@
                                         Background="WhiteSmoke"
                                         BorderThickness="0"
                                         TextWrapping="Wrap"
-                                        Text="{Binding CurrentLocation.Description, Mode=OneWay}"
+                                        Text="{Binding CurrentLocationInformation, Mode=OneWay}"
                                         VerticalScrollBarVisibility="Auto"
                                         VerticalContentAlignment="top"
                                         Style="{StaticResource MainPanelTextBoxStyle}"/>
@@ -405,6 +405,10 @@
                                 Content="Put Down" 
                                 Style="{StaticResource MainPanelButtonStyle}" 
                                 Click="PutDownButton_Click"/>
+                            <Button 
+                                Content="Use" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Click="UseButton_Click"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
