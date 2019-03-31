@@ -137,24 +137,7 @@ namespace WpfTheAionProject.PresentationLayer
                 OnPropertyChanged(nameof(MissionTimeDisplay));
             }
         }
-
-        public ObservableCollection<GameItemQuantity> Weapons // todo left off here John! :-)
-        {
-            get
-            {
-                ObservableCollection<GameItemQuantity> weapons = new ObservableCollection<GameItemQuantity>();
-                foreach (var item in _player.Inventory)
-                {
-                    if (item.GameItem is Weapon)
-                    {
-                        weapons.Add(item);
-                    }
-                }
-
-                return weapons;
-            }
-        }
-
+        
         #endregion
 
         #region CONSTRUCTORS

@@ -107,10 +107,7 @@ namespace WpfTheAionProject.Models
         public ObservableCollection<GameItemQuantity> Inventory
         {
             get { return _inventory; }
-            set
-            {
-                _inventory = value;
-            }
+            set { _inventory = value; }
         }
 
         public ObservableCollection<GameItemQuantity> Weapons
@@ -231,17 +228,17 @@ namespace WpfTheAionProject.Models
         /// </summary>
         /// <param name="newGameItemQuantity">in inventory</param>
         /// <returns></returns>
-        private bool IsGameItemQuantityInInventory(GameItemQuantity newGameItemQuantity)
-        {
-            foreach (GameItemQuantity gameItemQuantity in _inventory)
-            {
-                if (newGameItemQuantity.GameItem.Id == gameItemQuantity.GameItem.Id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //private bool IsGameItemQuantityInInventory(GameItemQuantity newGameItemQuantity)
+        //{
+        //    foreach (GameItemQuantity gameItemQuantity in _inventory)
+        //    {
+        //        if (newGameItemQuantity.GameItem.Id == gameItemQuantity.GameItem.Id)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         /// <summary>
         /// determine if this is a old location
