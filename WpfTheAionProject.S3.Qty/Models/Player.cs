@@ -151,6 +151,11 @@ namespace WpfTheAionProject.Models
 
         #region METHODS
 
+        public void InitializeWealth()
+        {
+            Wealth = _inventory.Sum(i => i.GameItem.Value);
+        }
+
         /// <summary>
         /// update the game item category lists
         /// </summary>
@@ -223,6 +228,7 @@ namespace WpfTheAionProject.Models
             UpdateInventoryCategories();
         }
 
+        // todo delete this?
         /// <summary>
         /// determine if the selected item is currently in inventory
         /// </summary>

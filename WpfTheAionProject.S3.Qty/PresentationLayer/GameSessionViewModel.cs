@@ -199,6 +199,7 @@ namespace WpfTheAionProject.PresentationLayer
             UpdateAvailableTravelPoints();
             _currentLocationInformation = CurrentLocation.Description;
             _player.UpdateInventoryCategories();
+            _player.InitializeWealth();
         }
 
         #region MOVEMENT METHODS
@@ -463,7 +464,7 @@ namespace WpfTheAionProject.PresentationLayer
         /// remove item from the players inventory
         /// </summary>
         /// <param name="selectedItem"></param>
-        public void PutDownItemFromInventory()
+        public void RemoveItemFromInventory()
         {
             //
             // confirm a game item selected and is in inventory

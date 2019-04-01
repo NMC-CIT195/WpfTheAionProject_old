@@ -65,7 +65,7 @@ namespace WpfTheAionProject.PresentationLayer
 
         private void PutDownButton_Click(object sender, RoutedEventArgs e)
         {
-            _gameSessionViewModel.PutDownItemFromInventory();
+            _gameSessionViewModel.RemoveItemFromInventory();
         }
 
         private void UseButton_Click(object sender, RoutedEventArgs e)
