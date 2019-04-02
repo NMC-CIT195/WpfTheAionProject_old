@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfTheAionProject.Models
 {
-    public abstract class GameItem
+    public class GameItem
     {
         //
         // auto implemented properties are used for 
@@ -36,6 +36,9 @@ namespace WpfTheAionProject.Models
             UseMessage = useMessage;
         }
 
-        public abstract string InformationString();
+        public virtual string InformationString()
+        {
+            return $"{Name}: {Description}/nValue: {Value}";
+        }
     }
 }
