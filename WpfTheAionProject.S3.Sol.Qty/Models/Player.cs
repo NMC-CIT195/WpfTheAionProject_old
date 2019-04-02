@@ -153,7 +153,7 @@ namespace WpfTheAionProject.Models
 
         public void InitializeWealth()
         {
-            Wealth = _inventory.Sum(i => i.GameItem.Value);
+            Wealth = _inventory.Sum(i => i.GameItem.Value * i.Quantity);
         }
 
         /// <summary>

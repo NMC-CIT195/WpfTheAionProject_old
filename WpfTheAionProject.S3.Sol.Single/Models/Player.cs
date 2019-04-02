@@ -151,6 +151,33 @@ namespace WpfTheAionProject.Models
 
         #region METHODS
 
+        //
+        // set the players wealth based on the initial inventory
+        //
+        public void InitializeWealth()
+        {
+            Wealth = _inventory.Sum(i => i.Value);
+        }
+
+        /// <summary>
+        /// update the game item category lists
+        /// </summary>
+        public void UpdateInventoryCategories()
+        {
+            Potions.Clear();
+            Weapons.Clear();
+            Treasure.Clear();
+            Relics.Clear();
+
+            foreach (var gameItem in _inventory)
+            {
+                if (gameItem is Potion) Potions.Add(gameItem);
+                if (gameItem is Weapon) Weapons.Add(gameItem);
+                if (gameItem is Treasure) Treasure.Add(gameItem);
+                if (gameItem is Relic) Relics.Add(gameItem);
+            }
+        }
+
         /// <summary>
         /// remove selected item from inventory
         /// </summary>

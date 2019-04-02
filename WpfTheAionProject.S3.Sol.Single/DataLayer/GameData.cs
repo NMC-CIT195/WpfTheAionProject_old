@@ -79,9 +79,9 @@ namespace WpfTheAionProject.DataLayer
                 "well lit room, and staffed by a small number of scientists, all wearing light blue uniforms with the hydra-like Norlan Corporation logo.",
                 Accessible = true,
                 ModifiyExperiencePoints = 10,
-                GameItems = new ObservableCollection<GameItemQuantity>
+                GameItems = new ObservableCollection<GameItem>
                 {
-                    new GameItemQuantity(GameItemById(4002), 1)
+                    GameItemById(4002)
                 }
             };
 
@@ -96,11 +96,11 @@ namespace WpfTheAionProject.DataLayer
                 "equatorial line on the planet of Corlon, they provide excellent habitat for a rich ecosystem of flora and fauna.",
                 Accessible = true,
                 ModifiyExperiencePoints = 10,
-                GameItems = new ObservableCollection<GameItemQuantity>
+                GameItems = new ObservableCollection<GameItem>
                 {
-                    new GameItemQuantity(GameItemById(3001), 1),
-                    new GameItemQuantity(GameItemById(1002), 1),
-                    new GameItemQuantity(GameItemById(4001), 1)
+                    GameItemById(3002),
+                    GameItemById(1002),
+                    GameItemById(4001)
                 }
             };
             gameMap.MapLocations[1, 2] = new Location()
@@ -142,9 +142,9 @@ namespace WpfTheAionProject.DataLayer
                 "recorded information of the galactic history.",
                 Accessible = true,
                 ModifiyExperiencePoints = 10,
-                GameItems = new ObservableCollection<GameItemQuantity>()
+                GameItems = new ObservableCollection<GameItem>()
                 {
-                    new GameItemQuantity(GameItemById(2001), 10)
+                    GameItemById(2001)
                 }
             };
             return gameMap;

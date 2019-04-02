@@ -24,10 +24,12 @@ namespace WpfTheAionProject.Models
         private string _description;
         private bool _accessible;
         private int _requiredExperiencePoints;
+        private int _requiredRelicId;
         private int _modifiyExperiencePoints;
         private int _modifyHealth;
         private int _modifyLives;
         private string _message;
+        private ObservableCollection<GameItem> _gameItems;
 
         #endregion
 
@@ -69,6 +71,12 @@ namespace WpfTheAionProject.Models
             set { _requiredExperiencePoints = value; }
         }
 
+        public int RequiredRelicId
+        {
+            get { return _requiredRelicId; }
+            set { _requiredRelicId = value; }
+        }
+
         public int ModifyHealth
         {
             get { return _modifyHealth; }
@@ -87,13 +95,19 @@ namespace WpfTheAionProject.Models
             set { _message = value; }
         }
 
+        public ObservableCollection<GameItem> GameItems
+        {
+            get { return _gameItems; }
+            set { _gameItems = value; }
+        }
+
         #endregion
 
         #region CONSTRUCTORS
 
         public Location()
         {
-
+            _gameItems = new ObservableCollection<GameItem>();
         }
 
         #endregion
@@ -106,6 +120,55 @@ namespace WpfTheAionProject.Models
         public bool IsAccessibleByExperiencePoints(int playerExperiencePoints)
         {
             return playerExperiencePoints >= _requiredExperiencePoints ? true : false;
+        }
+
+        //
+        // Stopgap to force the list of items in the location to update
+        //
+        // todo refactor using the CollectionChanged event
+        public void UpdateLocationGameItems()
+        {
+            ObservableCollection<GameItem> updatedLocationGameItems = new ObservableCollection<GameItem>();
+
+            foreach (GameItem GameItem in _gameItems)
+            {
+                updatedLocationGameItems.Add(GameItem);
+            }
+
+            GameItems.Clear();
+
+            foreach (GameItem gameItem in updatedLocationGameItems)
+            {
+                GameItems.Add(gameItem);
+            }
+        }
+
+        /// <summary>
+        /// add selected item to location
+        /// </summary>
+        /// <param name="selectedGameItem">selected item</param>
+        public void AddGameItemToLocation(GameItem selectedGameItem)
+        {
+            if (selectedGameItem == null)
+            {
+                _gameItems.Add(selectedGameItem);
+            }
+
+            UpdateLocationGameItems();
+        }
+
+        /// <summary>
+        /// remove selected item from location
+        /// </summary>
+        /// <param name="selectedGameItem">selected item</param>
+        public void RemoveGameItemFromLocation(GameItem selectedGameItem)
+        {
+            if (selectedGameItem == null)
+            {
+                _gameItems.Remove(selectedGameItem);
+            }
+
+            UpdateLocationGameItems();
         }
 
         #endregion

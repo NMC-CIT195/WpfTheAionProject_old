@@ -34,7 +34,7 @@ namespace WpfTheAionProject.PresentationLayer
         private Location _northLocation, _eastLocation, _southLocation, _westLocation;
         private string _currentLocationInformation;
 
-        //private GameItemQuantity _currentGameItem;
+        private GameItem _currentGameItem;
 
         #endregion
 
@@ -156,11 +156,11 @@ namespace WpfTheAionProject.PresentationLayer
             }
         }
 
-        //public GameItemQuantity CurrentGameItem
-        //{
-        //    get { return _currentGameItem; }
-        //    set { _currentGameItem = value; }
-        //}
+        public GameItem CurrentGameItem
+        {
+            get { return _currentGameItem; }
+            set { _currentGameItem = value; }
+        }
 
         #endregion
 
@@ -198,6 +198,8 @@ namespace WpfTheAionProject.PresentationLayer
             _gameStartTime = DateTime.Now;
             UpdateAvailableTravelPoints();
             _currentLocationInformation = CurrentLocation.Description;
+            _player.UpdateInventoryCategories();
+            _player.InitializeWealth();
         }
 
         #region MOVEMENT METHODS
