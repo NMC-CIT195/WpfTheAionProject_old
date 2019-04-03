@@ -437,6 +437,124 @@ namespace WpfTheAionProject.PresentationLayer
         #region ACTION METHODS
 
         /// <summary>
+        /// add a new item to the players inventory
+        /// </summary>
+        /// <param name="selectedItem"></param>
+        public void AddItemToInventory()
+        {
+            //
+            // confirm a game item selected and is in current location
+            // subtract from location and add to inventory
+            //
+            if (_currentGameItem != null && _currentLocation.GameItems.Contains(_currentGameItem))
+            {
+                //
+                // cast selected game item 
+                //
+                GameItem selectedGameItem = _currentGameItem as GameItem;
+
+                _currentLocation.RemoveGameItemFromLocation(selectedGameItem);
+                _player.AddGameItemToInventory(selectedGameItem);
+
+                OnPlayerPickUp(selectedGameItem);
+            }
+        }
+
+        /// <summary>
+        /// remove item from the players inventory
+        /// </summary>
+        /// <param name="selectedItem"></param>
+        public void RemoveItemFromInventory()
+        {
+            //
+            // confirm a game item selected and is in inventory
+            // subtract from inventory and add to location
+            //
+            if (_currentGameItem != null)
+            {
+                //
+                // cast selected game item 
+                //
+                GameItem selectedGameItem = _currentGameItem as GameItem;
+
+                _currentLocation.AddGameItemToLocation(selectedGameItem);
+                _player.RemoveGameItemFromInventory(selectedGameItem);
+
+                OnPlayerPutDown(selectedGameItem);
+            }
+        }
+
+        /// <summary>
+        /// process events when a player picks up a new game item
+        /// </summary>
+        /// <param name="gameItem">new game item</param>
+        private void OnPlayerPickUp(GameItem gameItem)
+        {
+            _player.ExperiencePoints += gameItem.ExperiencePoints;
+            _player.Wealth += gameItem.Value;
+        }
+
+        /// <summary>
+        /// process events when a player puts down a new game item
+        /// </summary>
+        /// <param name="gameItem">new game item</param>
+        private void OnPlayerPutDown(GameItem gameItem)
+        {
+            _player.Wealth -= gameItem.Value;
+        }
+
+        /// <summary>
+        /// process using an item in the player's inventory
+        /// </summary>
+        public void OnUseGameItem()
+        {
+            switch (_currentGameItem)
+            {
+                case Potion potion:
+                    ProcessPotionUse(potion);
+                    break;
+                case Relic relic:
+                    ProcessRelicUse(relic);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// process the effects of using the relic
+        /// </summary>
+        /// <param name="potion">potion</param>
+        private void ProcessRelicUse(Relic relic)
+        {
+            string message;
+
+            switch (relic.UseAction)
+            {
+                case Relic.UseActionType.OPENLOCATION:
+                    message = _gameMap.OpenLocationsByRelic(relic.Id);
+                    CurrentLocationInformation = relic.UseMessage;
+                    break;
+                case Relic.UseActionType.KILLPLAYER:
+                    PlayerDies(relic.UseMessage);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// process the effects of using the potion
+        /// </summary>
+        /// <param name="potion">potion</param>
+        private void ProcessPotionUse(Potion potion)
+        {
+            _player.Health += potion.HealthChange;
+            _player.Lives += potion.LivesChange;
+            _player.RemoveGameItemFromInventory(_currentGameItem);
+        }
+
+        /// <summary>
         /// process player dies with option to reset and play again
         /// </summary>
         /// <param name="message">message regarding player death</param>

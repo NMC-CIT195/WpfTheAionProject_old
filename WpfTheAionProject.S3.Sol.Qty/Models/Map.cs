@@ -219,6 +219,11 @@ namespace WpfTheAionProject.Models
             return StandardGameItems.FirstOrDefault(i => i.Id == gameItemId);
         }
 
+        /// <summary>
+        /// open the location controlled by a given relic
+        /// </summary>
+        /// <param name="relicId"></param>
+        /// <returns>user message regarding success of attempt</returns>
         public string OpenLocationsByRelic(int relicId)
         {
             string message = "The relic did nothing.";

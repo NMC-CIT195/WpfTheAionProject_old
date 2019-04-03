@@ -182,7 +182,7 @@ namespace WpfTheAionProject.Models
         /// remove selected item from inventory
         /// </summary>
         /// <param name="selectedGameItem">selected item</param>
-        public void AddGameItemTInventory(GameItem selectedGameItem)
+        public void AddGameItemToInventory(GameItem selectedGameItem)
         {
             if (selectedGameItem != null)
             {

@@ -544,6 +544,17 @@ namespace WpfTheAionProject.PresentationLayer
         }
 
         /// <summary>
+        /// process the effects of using the potion
+        /// </summary>
+        /// <param name="potion">potion</param>
+        private void ProcessPotionUse(Potion potion)
+        {
+            _player.Health += potion.HealthChange;
+            _player.Lives += potion.LivesChange;
+            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
+        }
+
+        /// <summary>
         /// process player dies with option to reset and play again
         /// </summary>
         /// <param name="message">message regarding player death</param>
@@ -581,17 +592,6 @@ namespace WpfTheAionProject.PresentationLayer
         private void ResetPlayer()
         {
             Environment.Exit(0);
-        }
-
-        /// <summary>
-        /// process the effects of using the potion
-        /// </summary>
-        /// <param name="potion">potion</param>
-        private void ProcessPotionUse(Potion potion)
-        {
-            _player.Health += potion.HealthChange;
-            _player.Lives += potion.LivesChange;
-            _player.RemoveGameItemQuantityFromInventory(_currentGameItem);
         }
 
         #endregion
