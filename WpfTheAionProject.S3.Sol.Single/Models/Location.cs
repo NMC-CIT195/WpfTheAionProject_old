@@ -149,7 +149,7 @@ namespace WpfTheAionProject.Models
         /// <param name="selectedGameItem">selected item</param>
         public void AddGameItemToLocation(GameItem selectedGameItem)
         {
-            if (selectedGameItem == null)
+            if (selectedGameItem != null)
             {
                 _gameItems.Add(selectedGameItem);
             }
@@ -163,7 +163,7 @@ namespace WpfTheAionProject.Models
         /// <param name="selectedGameItem">selected item</param>
         public void RemoveGameItemFromLocation(GameItem selectedGameItem)
         {
-            if (selectedGameItem == null)
+            if (selectedGameItem != null)
             {
                 _gameItems.Remove(selectedGameItem);
             }

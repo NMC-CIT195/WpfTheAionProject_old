@@ -260,7 +260,7 @@
                                                 <DataGridTextColumn 
                                                     Header="Description" 
                                                     IsReadOnly="True"                 
-                                                    Binding="{Binding GameItem.Information, Mode=OneWay}"
+                                                    Binding="{Binding Information, Mode=OneWay}"
                                                     Width="*">
                                                     <DataGridTextColumn.ElementStyle>
                                                         <Style>
@@ -268,11 +268,6 @@
                                                         </Style>
                                                     </DataGridTextColumn.ElementStyle>
                                                 </DataGridTextColumn>
-                                                <DataGridTextColumn 
-                                                    Header="Qty"
-                                                    IsReadOnly="True"
-                                                    Width="Auto"
-                                                    Binding="{Binding Quantity, Mode=OneWay}"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </TabItem>
@@ -302,21 +297,17 @@
                         HorizontalAlignment="Center"
                         Style="{StaticResource MainPanelLabelStyle}"/>
                         <DataGrid 
-                                    x:Name="RelicsDataGrid"
-                                    ItemsSource="{Binding Player.Inventory}"
-                                    SelectedItem="{Binding CurrentGameItem}"
-                                    AutoGenerateColumns="False"
-                                    HeadersVisibility="Column">
+                            x:Name="InventoryDataGrid"
+                            ItemsSource="{Binding Player.Inventory}"
+                            SelectedItem="{Binding CurrentGameItem}"
+                            AutoGenerateColumns="False"
+                            HeadersVisibility="Column">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name"
-                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                                Binding="{Binding Name, Mode=OneWay}"
                                                 Width="*"/>
-                                <DataGridTextColumn Header="Qty"
-                                                IsReadOnly="True"
-                                                Width="Auto"
-                                                Binding="{Binding Quantity, Mode=OneWay}"/>
                                 <DataGridTextColumn Header="Value"
-                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
+                                                Binding="{Binding Value, Mode=OneWay}"
                                                 Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>

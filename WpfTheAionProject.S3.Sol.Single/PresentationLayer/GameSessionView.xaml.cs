@@ -65,16 +65,15 @@ namespace WpfTheAionProject.PresentationLayer
 
         private void PutDownButton_Click(object sender, RoutedEventArgs e)
         {
-            if (LocationItemsDataGrid.SelectedItem != null)
+            if (InventoryDataGrid.SelectedItem != null)
             {
                 _gameSessionViewModel.RemoveItemFromInventory();
             }
-
         }
 
         private void UseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (LocationItemsDataGrid.SelectedItem != null)
+            if (InventoryDataGrid.SelectedItem != null)
             {
                 _gameSessionViewModel.OnUseGameItem();
             }
