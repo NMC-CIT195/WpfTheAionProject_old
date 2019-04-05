@@ -125,7 +125,7 @@ namespace WpfTheAionProject.Models
         //
         // Stopgap to force the list of items in the location to update
         //
-        // todo refactor using the CollectionChanged event
+        // todo Velis refactor using the CollectionChanged event
         public void UpdateLocationGameItems()
         {
             ObservableCollection<GameItem> updatedLocationGameItems = new ObservableCollection<GameItem>();

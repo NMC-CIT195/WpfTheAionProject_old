@@ -17,6 +17,9 @@ namespace WpfTheAionProject.Models
         private int _maxRows, _maxColumns;
         private GameMapCoordinates _currentLocationCoordinates;
 
+        // todo 08 Map: add field for the list of game items
+        //private List<GameItem> _standardGameItems;
+
         #endregion
 
         #region PROPERTIES
@@ -37,7 +40,14 @@ namespace WpfTheAionProject.Models
         {
             get { return _mapLocations[_currentLocationCoordinates.Row, _currentLocationCoordinates.Column]; }
         }
-        
+
+        // todo 09 Map: add property for the list of game items
+        //public List<GameItem> StandardGameItems
+        //{
+        //    get { return _standardGameItems; }
+        //    set { _standardGameItems = value; }
+        //}
+
         #endregion
 
         #region CONSTRUCTORS
@@ -202,6 +212,37 @@ namespace WpfTheAionProject.Models
 
         #endregion
 
+        #region ACTION METHODS
+
+        // todo 10 Map: method to allow a game item to open a given location
+        /// <summary>
+        /// open the location controlled by a given relic
+        /// </summary>
+        /// <param name="relicId"></param>
+        /// <returns>user message regarding success of attempt</returns>
+        //public string OpenLocationsByRelic(int relicId)
+        //{
+        //    string message = "The relic did nothing.";
+        //    Location mapLocation = new Location();
+
+        //    for (int row = 0; row < _maxRows; row++)
+        //    {
+        //        for (int column = 0; column < _maxColumns; column++)
+        //        {
+        //            mapLocation = _mapLocations[row, column];
+
+        //            if (mapLocation != null && mapLocation.RequiredRelicId == relicId)
+        //            {
+        //                mapLocation.Accessible = true;
+        //                message = $"{mapLocation.Name} is now accessible.";
+        //            }
+        //        }
+        //    }
+
+        //    return message;
+        //}
+
+        #endregion
 
         #endregion
     }

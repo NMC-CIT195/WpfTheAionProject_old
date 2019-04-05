@@ -467,7 +467,7 @@ namespace WpfTheAionProject.PresentationLayer
         public void RemoveItemFromInventory()
         {
             //
-            // confirm a game item selected and is in inventory
+            // confirm a game item selected
             // subtract from inventory and add to location
             //
             if (_currentGameItem != null)

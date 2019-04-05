@@ -25,9 +25,27 @@ namespace WpfTheAionProject.DataLayer
                 Health = 100,
                 Lives = 3,
                 ExperiencePoints = 10,
-                LocationId = 0           
+                LocationId = 0,
+
+                // todo 24 GameData: add game items to the player's initial inventory
+                //Inventory = new ObservableCollection<GameItem>()
+                //{
+                //    GameItemById(1002),
+                //    GameItemById(2001)
+                //}
             };
         }
+
+        // todo 20 GameData: method to get a game item by id
+        /// <summary>
+        /// get game item by Id
+        /// </summary>
+        /// <param name="id">game item</param>
+        /// <returns></returns>
+        //private static GameItem GameItemById(int id)
+        //{
+        //    return StandardGameItems().FirstOrDefault(i => i.Id == id);
+        //}
 
         public static GameMapCoordinates InitialGameMapLocation()
         {
@@ -41,8 +59,10 @@ namespace WpfTheAionProject.DataLayer
 
             Map gameMap = new Map(rows, columns);
 
+            // todo 21 GameData: add all standard game items to the game map
             //gameMap.StandardGameItems = StandardGameItems();
 
+            // todo 22 GameData: add game items to the locations (multiple)
             //
             // row 1
             //
@@ -68,7 +88,11 @@ namespace WpfTheAionProject.DataLayer
                 "the north coast of Crete and the top secret research lab for the Aion Project.\nThe lab is a large, " + "" +
                 "well lit room, and staffed by a small number of scientists, all wearing light blue uniforms with the hydra-like Norlan Corporation logo.",
                 Accessible = true,
-                ModifiyExperiencePoints = 10
+                ModifiyExperiencePoints = 10,
+                //GameItems = new ObservableCollection<GameItem>
+                //{
+                //    GameItemById(4002)
+                //}
             };
 
             //
@@ -81,7 +105,13 @@ namespace WpfTheAionProject.DataLayer
                 Description = "The Felandrian Plains are a common destination for tourist. Located just north of the " +
                 "equatorial line on the planet of Corlon, they provide excellent habitat for a rich ecosystem of flora and fauna.",
                 Accessible = true,
-                ModifiyExperiencePoints = 10
+                ModifiyExperiencePoints = 10,
+                //GameItems = new ObservableCollection<GameItem>
+                //{
+                //    GameItemById(3001),
+                //    GameItemById(1002),
+                //    GameItemById(4001)
+                //}
             };
             gameMap.MapLocations[1, 2] = new Location()
             {
@@ -92,6 +122,9 @@ namespace WpfTheAionProject.DataLayer
                 "balconies filled with scrolls, texts, and infocrystals. As you enter the room a red fog desends from the ceiling " +
                 "and you begin feeling your life energy slip away slowly until you are dead.",
                 Accessible = false,
+
+                // todo 23 GameData: add game item required to open location
+                //RequiredRelicId = 4001,
                 ModifiyExperiencePoints = 50,
                 ModifyLives = -1,
                 RequiredExperiencePoints = 40
@@ -120,11 +153,20 @@ namespace WpfTheAionProject.DataLayer
                 "You are currently in the library, standing next to the protoplasmic encabulator that stores all " +
                 "recorded information of the galactic history.",
                 Accessible = true,
-                ModifiyExperiencePoints = 10
+                ModifiyExperiencePoints = 10,
+                //GameItems = new ObservableCollection<GameItem>()
+                //{
+                //    GameItemById(2001)
+                //}
             };
             return gameMap;
         }
 
+        // todo 19 GameData: method to generate a list of all game items
+        /// <summary>
+        /// generate a list of all game items
+        /// </summary>
+        /// <returns>list of all game items</returns>
         //public static List<GameItem> StandardGameItems()
         //{
         //    return new List<GameItem>()
@@ -132,10 +174,10 @@ namespace WpfTheAionProject.DataLayer
         //        new Weapon(1001, "Longsword", 75, 1, 4, "The longsword is a type of sword characterized as having a cruciform hilt with a grip for two-handed use and 85 to 110 cm in length.", 10),
         //        new Weapon(1002, "Phaser", 250, 1, 9, "Phasers are common and versatile phased array pulsed energy projectile weapons.", 10),
         //        new Treasure(2001, "Gold Coin", 10, Treasure.TreasureType.Coin, "24 karat gold coin", 1),
-        //        new Treasure(2020, "Small Diamond", 50, Treasure.TreasureType.Jewel, "A small pea-sized diamond of various colors.", 1),
-        //        new Treasure(2030, "Kalzonian Manuscript", 10, Treasure.TreasureType.Manuscript, "Reportedly stolen during the Zantorian raids of of the 4th dynasty, it is said to contain information about early galactic technologies.", 5),
+        //        new Treasure(2002, "Small Diamond", 50, Treasure.TreasureType.Jewel, "A small pea-sized diamond of various colors.", 1),
+        //        new Treasure(2003, "Kalzonian Manuscript", 10, Treasure.TreasureType.Manuscript, "Reportedly stolen during the Zantorian raids of of the 4th dynasty, it is said to contain information about early galactic technologies.", 5),
         //        new Potion(3001, "Distilled Baladorian Lion Mucus", 5, 40, 1, "Rare potion due to the dangers of procurement. Add 40 points of health.", 5),
-        //        new Relic(4001, "Crystal Key", 5, "Conjured by the Forest Wizard, it opens many doors.", 5, "You have opened the Xantoria Market.", Relic.UseActionType.OPENLOCATION),
+        //        new Relic(4001, "Crystal Key", 5, "Conjured by the Forest Wizard, it opens many doors.", 5, "You have opened the Epitoria's Reading Room.", Relic.UseActionType.OPENLOCATION),
         //        new Relic(4002, "Stick of Adol", 5, "Long polished wooden rod with sliding silver ribbons..", 5, "Sliding the silver ribbons, you feel a sharp pain in your left temple and quickly die.", Relic.UseActionType.KILLPLAYER)
         //    };
         //}

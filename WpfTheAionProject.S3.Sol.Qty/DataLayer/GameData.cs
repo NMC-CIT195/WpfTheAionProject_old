@@ -160,7 +160,7 @@ namespace WpfTheAionProject.DataLayer
                 new Treasure(2020, "Small Diamond", 50, Treasure.TreasureType.Jewel, "A small pea-sized diamond of various colors.", 1),
                 new Treasure(2030, "Kalzonian Manuscript", 10, Treasure.TreasureType.Manuscript, "Reportedly stolen during the Zantorian raids of of the 4th dynasty, it is said to contain information about early galactic technologies.", 5),
                 new Potion(3001, "Distilled Baladorian Lion Mucus", 5, 40, 1, "Rare potion due to the dangers of procurement. Add 40 points of health.", 5),
-                new Relic(4001, "Crystal Key", 5, "Conjured by the Forest Wizard, it opens many doors.", 5, "You have opened the Xantoria Market.", Relic.UseActionType.OPENLOCATION),
+                new Relic(4001, "Crystal Key", 5, "Conjured by the Forest Wizard, it opens many doors.", 5, "You have opened the Epitoria's Reading Room.", Relic.UseActionType.OPENLOCATION),
                 new Relic(4002, "Stick of Adol", 5, "Long polished wooden rod with sliding silver ribbons..", 5, "Sliding the silver ribbons, you feel a sharp pain in your left temple and quickly die.", Relic.UseActionType.KILLPLAYER)
             };
         }

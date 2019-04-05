@@ -24,7 +24,7 @@ namespace WpfTheAionProject.Models
             {
                 return $"{Name}: {Description}\nHealth: {HealthChange}";
             }
-            else if(HealthChange != 0)
+            else if(LivesChange != 0)
             {
                 return $"{Name}: {Description}\nLives: {LivesChange}";
             }

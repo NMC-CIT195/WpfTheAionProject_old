@@ -28,6 +28,13 @@ namespace WpfTheAionProject.Models
         private JobTitleName _jobTitle;
         private List<Location> _locationsVisited;
 
+        // todo 01 Player: update player fields
+        //private ObservableCollection<GameItem> _inventory;
+        //private ObservableCollection<GameItem> _potions;
+        //private ObservableCollection<GameItem> _treasure;
+        //private ObservableCollection<GameItem> _weapons;
+        //private ObservableCollection<GameItem> _relics;
+
         #endregion
 
         #region PROPERTIES
@@ -99,18 +106,109 @@ namespace WpfTheAionProject.Models
             set { _locationsVisited = value; }
         }
 
+        // todo 02 Player: update player properties
+        //public ObservableCollection<GameItem> Inventory
+        //{
+        //    get { return _inventory; }
+        //    set { _inventory = value; }
+        //}
+
+        //public ObservableCollection<GameItem> Weapons
+        //{
+        //    get { return _weapons; }
+        //    set { _weapons = value; }
+        //}
+
+        //public ObservableCollection<GameItem> Potions
+        //{
+        //    get { return _potions; }
+        //    set { _potions = value; }
+        //}
+
+        //public ObservableCollection<GameItem> Treasure
+        //{
+        //    get { return _treasure; }
+        //    set { _treasure = value; }
+        //}
+
+        //public ObservableCollection<GameItem> Relics
+        //{
+        //    get { return _relics; }
+        //    set { _relics = value; }
+        //}
+
         #endregion
 
         #region CONSTRUCTORS
 
         public Player()
         {
+            // todo 03 Player: instantiate observable collections in constructor
             _locationsVisited = new List<Location>();
+            //_weapons = new ObservableCollection<GameItem>();
+            //_treasure = new ObservableCollection<GameItem>();
+            //_potions = new ObservableCollection<GameItem>();
+            //_relics = new ObservableCollection<GameItem>();
         }
 
         #endregion
 
         #region METHODS
+
+        // todo 05 Player: method to initialize players wealth
+        //
+        // set the players wealth based on the initial inventory
+        //
+        //public void InitializeWealth()
+        //{
+        //    Wealth = _inventory.Sum(i => i.Value);
+        //}
+
+        // todo 04 Player: method to update the game item observable collections
+        /// <summary>
+        /// update the game item category lists
+        /// </summary>
+        //public void UpdateInventoryCategories()
+        //{
+        //    Potions.Clear();
+        //    Weapons.Clear();
+        //    Treasure.Clear();
+        //    Relics.Clear();
+
+        //    foreach (var gameItem in _inventory)
+        //    {
+        //        if (gameItem is Potion) Potions.Add(gameItem);
+        //        if (gameItem is Weapon) Weapons.Add(gameItem);
+        //        if (gameItem is Treasure) Treasure.Add(gameItem);
+        //        if (gameItem is Relic) Relics.Add(gameItem);
+        //    }
+        //}
+
+        // todo 06 Player: method to add a game item to inventory
+        /// <summary>
+        /// remove selected item from inventory
+        /// </summary>
+        /// <param name="selectedGameItem">selected item</param>
+        //public void AddGameItemToInventory(GameItem selectedGameItem)
+        //{
+        //    if (selectedGameItem != null)
+        //    {
+        //        _inventory.Add(selectedGameItem);
+        //    }
+        //}
+
+        // todo 07 Player: method to add a game item to inventory
+        /// <summary>
+        /// remove selected item from inventory
+        /// </summary>
+        /// <param name="selectedGameItem">selected item</param>
+        //public void RemoveGameItemFromInventory(GameItem selectedGameItem)
+        //{
+        //    if (selectedGameItem != null)
+        //    {
+        //        _inventory.Remove(selectedGameItem);
+        //    }
+        //}
 
         /// <summary>
         /// determine if this is a old location
