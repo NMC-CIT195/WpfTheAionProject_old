@@ -199,7 +199,7 @@ namespace WpfTheAionProject.PresentationLayer
             UpdateAvailableTravelPoints();
             _currentLocationInformation = CurrentLocation.Description;
             _player.UpdateInventoryCategories();
-            _player.InitializeWealth();
+            _player.CalculateWealth();
         }
 
         #region MOVEMENT METHODS
@@ -536,7 +536,7 @@ namespace WpfTheAionProject.PresentationLayer
                     CurrentLocationInformation = relic.UseMessage;
                     break;
                 case Relic.UseActionType.KILLPLAYER:
-                    PlayerDies(relic.UseMessage);
+                    OnPlayerDies(relic.UseMessage);
                     break;
                 default:
                     break;
@@ -558,7 +558,7 @@ namespace WpfTheAionProject.PresentationLayer
         /// process player dies with option to reset and play again
         /// </summary>
         /// <param name="message">message regarding player death</param>
-        private void PlayerDies(string message)
+        private void OnPlayerDies(string message)
         {
             string messagetext = message +
                 "\n\nWould you like to play again?";

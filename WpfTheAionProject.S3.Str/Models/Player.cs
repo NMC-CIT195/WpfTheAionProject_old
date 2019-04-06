@@ -159,7 +159,7 @@ namespace WpfTheAionProject.Models
         //
         // set the players wealth based on the initial inventory
         //
-        //public void InitializeWealth()
+        //public void CalculateWealth()
         //{
         //    Wealth = _inventory.Sum(i => i.Value);
         //}

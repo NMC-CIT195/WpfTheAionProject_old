@@ -55,11 +55,12 @@ namespace WpfTheAionProject.PresentationLayer
             _gameSessionViewModel.MoveWest();
         }
 
+        // todo 34 GameSessionView code behind: add methods to handle the game item action events
         private void PickUpButton_Click(object sender, RoutedEventArgs e)
         {
             if (LocationItemsDataGrid.SelectedItem != null)
             {
-                _gameSessionViewModel.AddItemToInventory();
+                //_gameSessionViewModel.AddItemToInventory();
             }
         }
 
@@ -67,7 +68,7 @@ namespace WpfTheAionProject.PresentationLayer
         {
             if (InventoryDataGrid.SelectedItem != null)
             {
-                _gameSessionViewModel.RemoveItemFromInventory();
+               //_gameSessionViewModel.RemoveItemFromInventory();
             }
         }
 
@@ -75,7 +76,7 @@ namespace WpfTheAionProject.PresentationLayer
         {
             if (InventoryDataGrid.SelectedItem != null)
             {
-                _gameSessionViewModel.OnUseGameItem();
+                //_gameSessionViewModel.OnUseGameItem();
             }
         }
     }

@@ -151,7 +151,7 @@ namespace WpfTheAionProject.Models
 
         #region METHODS
 
-        public void InitializeWealth()
+        public void CalculateWealth()
         {
             Wealth = _inventory.Sum(i => i.GameItem.Value * i.Quantity);
         }

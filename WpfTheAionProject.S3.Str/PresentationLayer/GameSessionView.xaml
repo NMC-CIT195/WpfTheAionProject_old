@@ -244,6 +244,8 @@
                                         VerticalContentAlignment="top"
                                         Style="{StaticResource MainPanelTextBoxStyle}"/>
                                 </Border>
+                                
+                                <!--tab control to display game items in the current location-->
                                 <TabControl 
                                     x:Name="LocationInfoTabControl"
                                     Width="350">
@@ -274,6 +276,8 @@
                                 </TabControl>
                             </StackPanel>
                         </StackPanel>
+                        
+                        <!--stack panel to hold the action buttons for the current location game items-->
                         <StackPanel
                             Grid.Row="1"
                             Orientation="Horizontal">
@@ -296,6 +300,8 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Style="{StaticResource MainPanelLabelStyle}"/>
+                        
+                        <!--data grid to display the game items in inventory-->
                         <DataGrid 
                             x:Name="InventoryDataGrid"
                             ItemsSource="{Binding Player.Inventory}"
@@ -312,6 +318,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
+                        <!--stack panel to hold the action buttons for the inventory-->
                         <StackPanel
                             Orientation="Horizontal"
                             Margin="10">

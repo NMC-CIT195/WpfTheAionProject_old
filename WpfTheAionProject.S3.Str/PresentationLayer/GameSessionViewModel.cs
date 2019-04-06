@@ -465,7 +465,7 @@ namespace WpfTheAionProject.PresentationLayer
         //    }
         //}
 
-        // todo 28 GameSessionViewModel: add method to remove a game item to inventory
+        // todo 29 GameSessionViewModel: add method to remove a game item to inventory
         /// <summary>
         /// remove item from the players inventory
         /// </summary>
@@ -490,99 +490,103 @@ namespace WpfTheAionProject.PresentationLayer
         //    }
         //}
 
+        // todo 30 GameSessionViewModel: add methods to handle the pickup and put down events
         /// <summary>
         /// process events when a player picks up a new game item
         /// </summary>
         /// <param name="gameItem">new game item</param>
-        private void OnPlayerPickUp(GameItem gameItem)
-        {
-            _player.ExperiencePoints += gameItem.ExperiencePoints;
-            _player.Wealth += gameItem.Value;
-        }
+        //private void OnPlayerPickUp(GameItem gameItem)
+        //{
+        //    _player.ExperiencePoints += gameItem.ExperiencePoints;
+        //    _player.Wealth += gameItem.Value;
+        //}
 
-        /// <summary>
-        /// process events when a player puts down a new game item
-        /// </summary>
-        /// <param name="gameItem">new game item</param>
-        private void OnPlayerPutDown(GameItem gameItem)
-        {
-            _player.Wealth -= gameItem.Value;
-        }
+        ///// <summary>
+        ///// process events when a player puts down a new game item
+        ///// </summary>
+        ///// <param name="gameItem">new game item</param>
+        //private void OnPlayerPutDown(GameItem gameItem)
+        //{
+        //    _player.Wealth -= gameItem.Value;
+        //}
 
+        // todo 31 GameSessionViewModel: add a method to handle the game item use event
         /// <summary>
         /// process using an item in the player's inventory
         /// </summary>
-        public void OnUseGameItem()
-        {
-            switch (_currentGameItem)
-            {
-                case Potion potion:
-                    ProcessPotionUse(potion);
-                    break;
-                case Relic relic:
-                    ProcessRelicUse(relic);
-                    break;
-                default:
-                    break;
-            }
-        }
+        //public void OnUseGameItem()
+        //{
+        //    switch (_currentGameItem)
+        //    {
+        //        case Potion potion:
+        //            ProcessPotionUse(potion);
+        //            break;
+        //        case Relic relic:
+        //            ProcessRelicUse(relic);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
+        // todo 32 GameSessionViewModel: add methods to handle the game item use event for each game item class
         /// <summary>
         /// process the effects of using the relic
         /// </summary>
         /// <param name="potion">potion</param>
-        private void ProcessRelicUse(Relic relic)
-        {
-            string message;
+        //private void ProcessRelicUse(Relic relic)
+        //{
+        //    string message;
 
-            switch (relic.UseAction)
-            {
-                case Relic.UseActionType.OPENLOCATION:
-                    message = _gameMap.OpenLocationsByRelic(relic.Id);
-                    CurrentLocationInformation = relic.UseMessage;
-                    break;
-                case Relic.UseActionType.KILLPLAYER:
-                    PlayerDies(relic.UseMessage);
-                    break;
-                default:
-                    break;
-            }
-        }
+        //    switch (relic.UseAction)
+        //    {
+        //        case Relic.UseActionType.OPENLOCATION:
+        //            message = _gameMap.OpenLocationsByRelic(relic.Id);
+        //            CurrentLocationInformation = relic.UseMessage;
+        //            break;
+        //        case Relic.UseActionType.KILLPLAYER:
+        //            PlayerDies(relic.UseMessage);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
         /// <summary>
         /// process the effects of using the potion
         /// </summary>
         /// <param name="potion">potion</param>
-        private void ProcessPotionUse(Potion potion)
-        {
-            _player.Health += potion.HealthChange;
-            _player.Lives += potion.LivesChange;
-            _player.RemoveGameItemFromInventory(_currentGameItem);
-        }
+        //private void ProcessPotionUse(Potion potion)
+        //{
+        //    _player.Health += potion.HealthChange;
+        //    _player.Lives += potion.LivesChange;
+        //    _player.RemoveGameItemFromInventory(_currentGameItem);
+        //}
 
+        // todo 33 GameSessionViewModel: add method to handle the player dies event
         /// <summary>
         /// process player dies with option to reset and play again
         /// </summary>
         /// <param name="message">message regarding player death</param>
-        private void PlayerDies(string message)
-        {
-            string messagetext = message +
-                "\n\nWould you like to play again?";
+        //private void OnPlayerDies(string message)
+        //{
+        //    string messagetext = message +
+        //        "\n\nWould you like to play again?";
 
-            string titleText = "Death";
-            MessageBoxButton button = MessageBoxButton.YesNo;
-            MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
+        //    string titleText = "Death";
+        //    MessageBoxButton button = MessageBoxButton.YesNo;
+        //    MessageBoxResult result = MessageBox.Show(messagetext, titleText, button);
 
-            switch (result)
-            {
-                case MessageBoxResult.Yes:
-                    ResetPlayer();
-                    break;
-                case MessageBoxResult.No:
-                    QuiteApplication();
-                    break;
-            }
-        }
+        //    switch (result)
+        //    {
+        //        case MessageBoxResult.Yes:
+        //            ResetPlayer();
+        //            break;
+        //        case MessageBoxResult.No:
+        //            QuiteApplication();
+        //            break;
+        //    }
+        //}
 
         /// <summary>
         /// player chooses to exit game
